@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bespoke Production Enquiry — Concept Inc.</title>
+  <meta name="description" content="Custom event production for festivals, multi-day events, unusual venues, and creative briefs. Tell us what you're planning.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../shared/styles.css">
+
+  <style>
+    /*
+     * Bespoke quote page — page-specific styles.
+     * Tone: consultative, confident. Orange used once (form submit).
+     */
+
+    /* =============================================
+       HERO
+       ============================================= */
+    .hero { min-height: 60vh; }
+    .hero-subhead { margin-bottom: 0; }
+    @media (min-width: 768px) { .hero { min-height: 70vh; } }
+
+    /* =============================================
+       WHEN BESPOKE MAKES SENSE
+       4 scenario cards — 1 → 2 → 4 col
+       ============================================= */
+    .bespoke-scenarios {
+      padding: 4.5rem 0;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .bespoke-scenarios > .container > .section-label {
+      margin-bottom: 0.6rem;
+    }
+
+    .bespoke-scenarios > .container > h2 {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.02em;
+      margin-bottom: 2.25rem;
+    }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+
+    @media (min-width: 580px) {
+      .scenario-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1024px) {
+      .scenario-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .scenario-card {
+      border-top: 2px solid var(--black);
+      padding-top: 1.25rem;
+    }
+
+    .scenario-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    .scenario-card p {
+      font-size: 0.83rem;
+      color: var(--mid-grey);
+      line-height: 1.65;
+      margin-bottom: 0.75rem;
+    }
+
+    /* =============================================
+       PROCESS STRIP
+       Brand black. 4 steps. No orange.
+       ============================================= */
+    .bespoke-process {
+      background-color: var(--black);
+      padding: 4.5rem 0;
+    }
+
+    .bespoke-process > .container > .section-label {
+      color: rgba(250, 250, 247, 0.3);
+      margin-bottom: 0.6rem;
+    }
+
+    .bespoke-process > .container > h2 {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 700;
+      color: var(--off-white);
+      letter-spacing: -0.02em;
+      margin-bottom: 2.5rem;
+    }
+
+    .process-strip {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background-color: rgba(250, 250, 247, 0.08);
+      border: 1px solid rgba(250, 250, 247, 0.08);
+    }
+
+    @media (min-width: 768px) {
+      .process-strip { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .process-step {
+      background-color: var(--black);
+      padding: 1.75rem 1.5rem;
+    }
+
+    .step-num {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(250, 250, 247, 0.25);
+      margin-bottom: 0.6rem;
+    }
+
+    .process-step h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--off-white);
+      margin-bottom: 0.5rem;
+    }
+
+    .process-step p {
+      font-size: 0.8rem;
+      color: rgba(250, 250, 247, 0.5);
+      line-height: 1.65;
+    }
+
+    /* =============================================
+       WHAT WE'LL NEED FROM YOU
+       4 items — soft-grey, friendly framing
+       ============================================= */
+    .bespoke-needs {
+      padding: 4rem 0;
+      background-color: var(--soft-grey);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .bespoke-needs > .container > .section-label {
+      margin-bottom: 0.6rem;
+    }
+
+    .bespoke-needs > .container > h2 {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+    }
+
+    .bespoke-needs > .container > .needs-intro {
+      font-size: 0.9rem;
+      color: var(--mid-grey);
+      line-height: 1.6;
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+    }
+
+    .needs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .needs-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .need-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .need-number {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+    }
+
+    .need-item h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .need-item p {
+      font-size: 0.8rem;
+      color: var(--mid-grey);
+      line-height: 1.6;
+    }
+
+    /* =============================================
+       ENQUIRY FORM
+       Generous, not interrogative. Orange submit.
+       ============================================= */
+    .bespoke-form-section {
+      padding: 5rem 0;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .form-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    @media (min-width: 900px) {
+      .form-layout { grid-template-columns: 1fr 2fr; }
+    }
+
+    /* Left column — intro */
+    .form-intro h2 {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    .form-intro p {
+      font-size: 0.875rem;
+      color: var(--mid-grey);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-assurance {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .form-assurance li {
+      font-size: 0.82rem;
+      color: var(--mid-grey);
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      line-height: 1.55;
+    }
+
+    .form-assurance li::before {
+      content: '—';
+      color: var(--light-grey);
+      flex-shrink: 0;
+    }
+
+    /* Form fields */
+    .bespoke-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0 1.5rem;
+    }
+
+    @media (min-width: 580px) {
+      .form-row { grid-template-columns: 1fr 1fr; }
+    }
+
+    .form-field {
+      padding: 1.25rem 0;
+      border-top: 1px solid var(--light-grey);
+    }
+
+    .form-field:first-child {
+      border-top: none;
+    }
+
+    @media (min-width: 580px) {
+      /* In a two-col row, both fields get a top border */
+      .form-row .form-field { border-top: 1px solid var(--light-grey); }
+
+      /* But not the very first row's fields */
+      .form-row:first-child .form-field { border-top: none; }
+    }
+
+    .form-field label {
+      display: flex;
+      align-items: baseline;
+      gap: 0.45rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 0.35rem;
+    }
+
+    .field-optional {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--mid-grey);
+      letter-spacing: 0.02em;
+    }
+
+    .field-hint {
+      font-size: 0.78rem;
+      color: var(--mid-grey);
+      line-height: 1.6;
+      margin-bottom: 0.6rem;
+    }
+
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      color: var(--soft-black);
+      background-color: var(--soft-grey);
+      border: 1px solid var(--light-grey);
+      padding: 0.85rem 1rem;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      line-height: 1.5;
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color: var(--placeholder);
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus,
+    .form-field select:focus {
+      border-color: var(--black);
+      background-color: var(--off-white);
+    }
+
+    .form-field textarea {
+      resize: vertical;
+      min-height: 180px;
+    }
+
+    /* Select arrow */
+    .select-wrapper {
+      position: relative;
+    }
+
+    .select-wrapper::after {
+      content: '▾';
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.7rem;
+      color: var(--mid-grey);
+      pointer-events: none;
+    }
+
+    .form-field select {
+      cursor: pointer;
+      color: var(--mid-grey);
+    }
+
+    .form-field select:not([value=""]) {
+      color: var(--soft-black);
+    }
+
+    /* Full-width field within a two-col context */
+    .form-field--full {
+      grid-column: 1 / -1;
+    }
+
+    .form-submit-row {
+      padding-top: 2rem;
+      border-top: 1px solid var(--light-grey);
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .form-submit-note {
+      font-size: 0.78rem;
+      color: var(--mid-grey);
+      line-height: 1.55;
+    }
+
+    /* =============================================
+       PREFER TO TALK? CALLOUT
+       Soft-grey band. Contact info + response time.
+       ============================================= */
+    .bespoke-talk {
+      padding: 3.5rem 0;
+      background-color: var(--soft-grey);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .talk-inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .talk-inner {
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 3rem;
+      }
+    }
+
+    .talk-inner > .divider {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .talk-inner > .divider {
+        display: block;
+        width: 1px;
+        height: 3rem;
+        background-color: var(--light-grey);
+      }
+    }
+
+    .talk-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .bespoke-talk h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.4rem;
+    }
+
+    .bespoke-talk p {
+      font-size: 0.83rem;
+      color: var(--mid-grey);
+      line-height: 1.6;
+    }
+
+    .talk-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .talk-contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .talk-contact-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+    }
+
+    .talk-contact-value {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .talk-contact-value:hover {
+      text-decoration: underline;
+    }
+
+    .response-time {
+      font-size: 0.78rem;
+      color: var(--mid-grey);
+      line-height: 1.55;
+      max-width: 220px;
+    }
+
+  </style>
+</head>
+<body>
+
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="site-header">
+    <div class="container">
+
+      <a href="/" class="wordmark" aria-label="Concept Inc. home">
+        <img src="../../assets/logo v1.png" alt="Concept Inc." class="wordmark-img">
+      </a>
+
+      <div class="header-right">
+
+        <nav aria-label="Primary navigation">
+          <ul class="site-nav">
+            <li><a href="/what-we-do">What We Do</a></li>
+            <li class="has-dropdown">
+              <a href="#" class="dropdown-toggle" aria-current="page">Packages <span class="chevron" aria-hidden="true">▾</span></a>
+              <ul class="dropdown">
+                <li><a href="/packages/weddings">Weddings</a></li>
+                <li><a href="/packages/corporate">Corporate</a></li>
+                <li><a href="/packages/gear-hire">Gear hire</a></li>
+                <li><a href="/packages/bespoke" aria-current="page">Bespoke quote</a></li>
+              </ul>
+            </li>
+            <li><a href="/curated-experiences">Curated Experiences</a></li>
+            <li><a href="/portfolio">Portfolio</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <a href="/contact" class="btn btn-black btn-sm header-quote">Get a quote</a>
+          <span class="mobile-toggle" aria-label="Open menu">Menu</span>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       HERO
+       Confident. Bespoke is a strength, not a fallback.
+       No CTAs — the form below does that work.
+       ============================================================ -->
+  <section class="hero" aria-label="Bespoke production">
+
+    <div class="hero-bg" aria-hidden="true" role="img">
+      PHOTO PLACEHOLDER — Large-scale or unusual event production
+    </div>
+
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <h1>Every event is its<br>own concept.</h1>
+      <p class="hero-subhead">
+        When a package doesn't fit, we build the brief from scratch.
+        Custom production for events that need to be designed,
+        not selected from a menu.
+      </p>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       WHEN BESPOKE MAKES SENSE
+       4 scenarios — self-qualifying for buyers
+       ============================================================ -->
+  <section class="bespoke-scenarios" aria-label="When bespoke makes sense">
+    <div class="container">
+
+      <p class="section-label">When bespoke makes sense</p>
+      <h2>Some events need to be designed.</h2>
+
+      <div class="scenario-grid">
+
+        <div class="scenario-card">
+          <h3>Festivals &amp; touring shows</h3>
+          <p>
+            Multi-stage builds, outdoor line arrays, touring rigs with
+            changing venues, or any production that requires engineering
+            from the ground up rather than a fixed spec.
+          </p>
+        </div>
+
+        <div class="scenario-card">
+          <h3>Multi-day events</h3>
+          <p>
+            Conferences, festivals, or experiences running over two or more
+            days with different setups each day — production that needs to
+            flex within a single logistical framework.
+          </p>
+        </div>
+
+        <div class="scenario-card">
+          <h3>Unusual venues</h3>
+          <p>
+            No fixed infrastructure, awkward acoustics, outdoor sites, or
+            architecturally complex spaces. A warehouse, rooftop, beach,
+            wine farm, or game reserve — we spec for the actual space.
+          </p>
+        </div>
+
+        <div class="scenario-card">
+          <h3>Creative &amp; performance briefs</h3>
+          <p>
+            Choreography, live performance, immersive experience, or anything
+            that needs production to be part of the creative — not bolted on
+            afterwards.
+          </p>
+          <a href="/curated-experiences" class="card-link">See Curated Experiences</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       HOW THE PROCESS WORKS
+       4 steps. Brand black. No orange.
+       ============================================================ -->
+  <section class="bespoke-process" aria-label="How the process works">
+    <div class="container">
+
+      <p class="section-label eyebrow">Process</p>
+      <h2>How we build a bespoke brief.</h2>
+
+      <div class="process-strip">
+
+        <div class="process-step">
+          <span class="step-num">01 — Enquiry</span>
+          <h3>Tell us what you're planning</h3>
+          <p>
+            Fill in the form below with as much or as little as you have.
+            A rough idea is enough to start — we'll ask the right questions
+            to fill the gaps.
+          </p>
+        </div>
+
+        <div class="process-step">
+          <span class="step-num">02 — Brief &amp; design</span>
+          <h3>We design and quote</h3>
+          <p>
+            We take your brief and come back with a full production proposal —
+            equipment list, crew, schedule, and itemised pricing. No guesswork,
+            no vague line items.
+          </p>
+        </div>
+
+        <div class="process-step">
+          <span class="step-num">03 — Approval</span>
+          <h3>You approve</h3>
+          <p>
+            Review the proposal, ask questions, adjust scope. We don't start
+            production until you're satisfied with exactly what's been quoted
+            and what it costs.
+          </p>
+        </div>
+
+        <div class="process-step">
+          <span class="step-num">04 — Production</span>
+          <h3>We produce</h3>
+          <p>
+            Full crew on site, on brief, on schedule. Load-in, build,
+            rehearsal, event day, and packdown. One point of contact
+            throughout.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       WHAT WE'LL NEED FROM YOU
+       4 items — frames the brief in a friendly way
+       ============================================================ -->
+  <section class="bespoke-needs" aria-label="What we need from you">
+    <div class="container">
+
+      <p class="section-label">What helps</p>
+      <h2>What we'll need from you.</h2>
+      <p class="needs-intro">
+        You don't need a full technical brief to start. These four things
+        give us enough to build a first-pass proposal — everything else we
+        can work out together.
+      </p>
+
+      <div class="needs-grid">
+
+        <div class="need-item">
+          <span class="need-number">01</span>
+          <h3>Date</h3>
+          <p>Even approximate — month and year is enough to check availability and flag any constraints.</p>
+        </div>
+
+        <div class="need-item">
+          <span class="need-number">02</span>
+          <h3>Venue</h3>
+          <p>If you've confirmed a venue, the space tells us a lot. If not, shortlist or location type works.</p>
+        </div>
+
+        <div class="need-item">
+          <span class="need-number">03</span>
+          <h3>Approximate guest count</h3>
+          <p>Determines scale of the rig. A rough number is fine — 50, 300, or "around 1,000" all give us what we need.</p>
+        </div>
+
+        <div class="need-item">
+          <span class="need-number">04</span>
+          <h3>What you want guests to feel</h3>
+          <p>The experience you're building towards. Not a technical spec — just the feeling, the moment, the intention.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ENQUIRY FORM
+       Generous layout. Orange submit. Left: intro. Right: form.
+       ============================================================ -->
+  <section class="bespoke-form-section" id="enquiry" aria-label="Bespoke enquiry form">
+    <div class="container">
+
+      <div class="form-layout">
+
+        <!-- Left: intro + reassurance -->
+        <div class="form-intro">
+          <h2>Tell us what you're planning.</h2>
+          <p>
+            No brief is too rough. Fill in what you know — we'll
+            follow up with the questions that matter.
+          </p>
+          <ul class="form-assurance" aria-label="What to expect">
+            <li>We'll respond within one business day</li>
+            <li>No commitment to proceed</li>
+            <li>Budget range is optional — there's no wrong answer</li>
+            <li>We work across all event sizes</li>
+          </ul>
+        </div>
+
+        <!-- Right: form -->
+        <form class="bespoke-form" action="#" method="post" novalidate>
+
+          <!-- Row 1: Name + Email -->
+          <div class="form-row">
+
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                autocomplete="name"
+                placeholder="Your name"
+                required
+              >
+            </div>
+
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                autocomplete="email"
+                placeholder="your@email.com"
+                required
+              >
+            </div>
+
+          </div>
+
+          <!-- Row 2: Phone + Event date -->
+          <div class="form-row">
+
+            <div class="form-field">
+              <label for="phone">
+                Phone
+                <span class="field-optional">optional</span>
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                autocomplete="tel"
+                placeholder="+27 ..."
+              >
+            </div>
+
+            <div class="form-field">
+              <label for="event-date">
+                Event date
+                <span class="field-optional">approximate is fine</span>
+              </label>
+              <input
+                type="text"
+                id="event-date"
+                name="event-date"
+                placeholder="e.g. October 2026, or a specific date"
+              >
+            </div>
+
+          </div>
+
+          <!-- Row 3: Venue + Guest count -->
+          <div class="form-row">
+
+            <div class="form-field">
+              <label for="venue">
+                Venue
+                <span class="field-optional">if known</span>
+              </label>
+              <input
+                type="text"
+                id="venue"
+                name="venue"
+                placeholder="Venue name or location"
+              >
+            </div>
+
+            <div class="form-field">
+              <label for="guests">Approximate guest count</label>
+              <input
+                type="text"
+                id="guests"
+                name="guests"
+                placeholder="e.g. 200 guests, or around 500"
+                required
+              >
+            </div>
+
+          </div>
+
+          <!-- Full-width: Event description -->
+          <div class="form-row">
+            <div class="form-field form-field--full">
+              <label for="description">Tell us about your event</label>
+              <p class="field-hint">
+                What are you producing? What do you want guests to feel?
+                What's the moment you're building towards? There's no wrong
+                answer — give us as much or as little as you have right now.
+              </p>
+              <textarea
+                id="description"
+                name="description"
+                rows="7"
+                placeholder="Describe your event..."
+                required
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Budget band -->
+          <div class="form-row">
+            <div class="form-field">
+              <label for="budget">
+                Budget band
+                <span class="field-optional">optional</span>
+              </label>
+              <p class="field-hint">
+                Helps us spec appropriately. There's no number that disqualifies you.
+              </p>
+              <div class="select-wrapper">
+                <select id="budget" name="budget">
+                  <option value="" disabled selected>Select a range</option>
+                  <option value="under-20k">Under R20,000</option>
+                  <option value="20k-50k">R20,000 – R50,000</option>
+                  <option value="50k-100k">R50,000 – R100,000</option>
+                  <option value="100k-250k">R100,000 – R250,000</option>
+                  <option value="250k-plus">R250,000+</option>
+                  <option value="discuss">I'd rather discuss</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <div class="form-submit-row">
+            <button type="submit" class="btn btn-orange">Send your enquiry</button>
+            <p class="form-submit-note">
+              We'll follow up by email — usually within one business day.
+            </p>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       PREFER TO TALK?
+       Soft-grey band. Phone + email + response expectation.
+       ============================================================ -->
+  <section class="bespoke-talk" aria-label="Contact us directly">
+    <div class="container">
+
+      <div class="talk-inner">
+
+        <div>
+          <span class="talk-label">Prefer to talk?</span>
+          <h2>Reach us directly.</h2>
+          <p>
+            If you'd rather talk through your event before filling anything in,
+            that's completely fine. Call or email — no form required.
+          </p>
+        </div>
+
+        <div class="divider" aria-hidden="true"></div>
+
+        <div class="talk-contact">
+          <div class="talk-contact-item">
+            <span class="talk-contact-label">Phone</span>
+            <a href="tel:+270000000000" class="talk-contact-value">+27 00 000 0000</a>
+          </div>
+          <div class="talk-contact-item">
+            <span class="talk-contact-label">Email</span>
+            <a href="mailto:hello@conceptinc.co.za" class="talk-contact-value">hello@conceptinc.co.za</a>
+          </div>
+        </div>
+
+        <p class="response-time">
+          We respond to all enquiries within one business day.
+          For urgent briefs, call directly.
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       No footer-cta band — the form already serves that purpose.
+       ============================================================ -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+
+      <div class="footer-top">
+        <a href="/" class="footer-wordmark" aria-label="Concept Inc. home">
+          <img src="../../assets/logo v1 light.png" alt="Concept Inc." style="height:40px;width:auto;display:block;">
+        </a>
+        <p class="footer-meta">
+          Cape Town, South Africa<br>
+          hello@conceptinc.co.za
+        </p>
+      </div>
+
+      <nav aria-label="Footer links">
+        <div class="footer-links">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Privacy policy</a>
+          <span class="footer-copy">© 2026 Concept Inc.</span>
+        </div>
+      </nav>
+
+    </div>
+  </footer>
+
+
+</body>
+</html>
