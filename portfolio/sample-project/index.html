@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Project name] — Portfolio — Concept Inc.</title>
+  <meta name="description" content="[One-sentence project description for SEO. Replace per case study.]">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../shared/styles.css">
+
+  <style>
+    /*
+     * Portfolio case study template — cs-* class prefix.
+     * Duplicate this file for each project. Replace all [bracketed] content.
+     * Tone: editorial, quiet. Zero orange. The photography does the work.
+     */
+
+    /* =============================================
+       BREADCRUMB BAR
+       ============================================= */
+    .breadcrumb-bar {
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+      padding: 0.65rem 0;
+    }
+
+    .breadcrumb ol {
+      display: flex;
+      list-style: none;
+      flex-wrap: wrap;
+      gap: 0;
+      align-items: center;
+    }
+
+    .breadcrumb li {
+      font-size: 0.78rem;
+      color: var(--mid-grey);
+      display: flex;
+      align-items: center;
+    }
+
+    .breadcrumb li + li::before {
+      content: '/';
+      margin: 0 0.5rem;
+      color: var(--light-grey);
+    }
+
+    .breadcrumb a {
+      color: var(--mid-grey);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover { color: var(--black); }
+
+    .breadcrumb li[aria-current] {
+      color: var(--black);
+      font-weight: 600;
+    }
+
+    /* =============================================
+       HERO — pure image, no overlay text.
+       Full-bleed. The photo opens the story.
+       ============================================= */
+    .cs-hero {
+      width: 100%;
+      min-height: 60vh;
+      background-color: var(--placeholder);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--mid-grey);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    @media (min-width: 768px) { .cs-hero { min-height: 72vh; } }
+
+    /* =============================================
+       METADATA STRIP
+       Brand black. 5 data points. Flex row on desktop.
+       ============================================= */
+    .cs-meta {
+      background-color: var(--black);
+      padding: 2rem 0;
+      border-bottom: 1px solid rgba(250, 250, 247, 0.08);
+    }
+
+    .cs-meta-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .cs-meta-list {
+        display: flex;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      .cs-meta-item {
+        flex: 1;
+        padding: 0 2rem;
+        border-right: 1px solid rgba(250, 250, 247, 0.1);
+      }
+
+      .cs-meta-item:first-child { padding-left: 0; }
+      .cs-meta-item:last-child  { border-right: none; }
+    }
+
+    .cs-meta-label {
+      display: block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(250, 250, 247, 0.3);
+      margin-bottom: 0.4rem;
+    }
+
+    .cs-meta-value {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--off-white);
+      line-height: 1.4;
+    }
+
+    /* =============================================
+       BRIEF — editorial, 2-col on desktop.
+       Left: project name + client. Right: body copy.
+       ============================================= */
+    .cs-brief {
+      padding: 5rem 0;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .cs-brief-inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .cs-brief-inner {
+        grid-template-columns: 1fr 2fr;
+        gap: 5rem;
+        align-items: start;
+      }
+    }
+
+    .cs-brief-title .section-label {
+      margin-bottom: 0.75rem;
+    }
+
+    .cs-brief-title h2 {
+      font-size: clamp(1.3rem, 3.5vw, 2rem);
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .cs-client-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .cs-client-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    .cs-brief-body p {
+      font-size: 0.975rem;
+      color: var(--soft-black);
+      line-height: 1.85;
+      margin-bottom: 1.4rem;
+    }
+
+    .cs-brief-body p:last-child { margin-bottom: 0; }
+
+    /* =============================================
+       IMAGE GALLERY
+       Magazine-style grid. 8 images.
+       Specific nth-child spans kick in at 640px+.
+       ============================================= */
+    .cs-gallery-section {
+      padding: 3.5rem 0;
+      background-color: var(--soft-grey);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .cs-gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-auto-rows: 220px;
+      gap: 0.75rem;
+    }
+
+    @media (min-width: 640px) {
+      .cs-gallery {
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 220px;
+      }
+
+      /* Image 1: landscape — 2 cols wide */
+      .cs-gallery > *:nth-child(1) { grid-column: span 2; }
+
+      /* Image 2: portrait — 2 rows tall */
+      .cs-gallery > *:nth-child(2) { grid-row: span 2; }
+
+      /* Image 5: full-width panoramic */
+      .cs-gallery > *:nth-child(5) { grid-column: span 3; }
+    }
+
+    .cs-gal-item {
+      background-color: var(--placeholder);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--off-white);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      overflow: hidden;
+    }
+
+    /* Vary shades across gallery items to suggest photo variety */
+    .cs-gal-item:nth-child(2) { background-color: #B8B6B1; }
+    .cs-gal-item:nth-child(3) { background-color: #CECDCA; }
+    .cs-gal-item:nth-child(4) { background-color: #B0AEA9; }
+    .cs-gal-item:nth-child(6) { background-color: #CECDCA; }
+    .cs-gal-item:nth-child(7) { background-color: #B8B6B1; }
+    .cs-gal-item:nth-child(8) { background-color: #D6D4CF; }
+
+    /* =============================================
+       WHAT WE PROVIDED
+       Two-column: Equipment | Services.
+       ============================================= */
+    .cs-provided {
+      padding: 4.5rem 0;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .cs-provided > .container > .section-label {
+      margin-bottom: 0.6rem;
+    }
+
+    .cs-provided > .container > h2 {
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.02em;
+      margin-bottom: 2.5rem;
+    }
+
+    .cs-provided-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .cs-provided-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .cs-provided-col h3 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .cs-provided-list {
+      list-style: none;
+    }
+
+    .cs-provided-list li {
+      font-size: 0.875rem;
+      color: var(--soft-black);
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--light-grey);
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+
+    .cs-provided-list li::before {
+      content: '—';
+      color: var(--light-grey);
+      flex-shrink: 0;
+      font-size: 0.75rem;
+    }
+
+    /* =============================================
+       PULL QUOTE
+       Brand black. Large italic Inter.
+       ============================================= */
+    .cs-quote {
+      background-color: var(--black);
+      padding: 5.5rem 0;
+      border-bottom: 1px solid rgba(250, 250, 247, 0.08);
+    }
+
+    .cs-quote-inner {
+      max-width: 780px;
+    }
+
+    .cs-quote-mark {
+      display: block;
+      font-size: 3.5rem;
+      line-height: 1;
+      color: rgba(250, 250, 247, 0.12);
+      margin-bottom: 0.25rem;
+      margin-left: -0.05em;
+      font-style: italic;
+    }
+
+    .cs-quote-text {
+      font-size: clamp(1.15rem, 3.2vw, 1.7rem);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--off-white);
+      line-height: 1.55;
+      letter-spacing: -0.01em;
+      margin-bottom: 2rem;
+    }
+
+    .cs-quote-attr {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .cs-quote-name {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: rgba(250, 250, 247, 0.55);
+    }
+
+    .cs-quote-role {
+      font-size: 0.75rem;
+      color: rgba(250, 250, 247, 0.28);
+      letter-spacing: 0.02em;
+    }
+
+    /* =============================================
+       RELATED WORK
+       3 thumbnails. Same card logic as portfolio index.
+       ============================================= */
+    .cs-related {
+      padding: 4.5rem 0;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .cs-related-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      gap: 1rem;
+    }
+
+    .cs-related-header h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .cs-related-header a {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--black);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .cs-related-header a::after { content: ' →'; }
+
+    .cs-related-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    @media (min-width: 580px) {
+      .cs-related-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .cs-rel-card {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+    }
+
+    .cs-rel-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background-color: var(--placeholder);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--off-white);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .cs-rel-card:nth-child(2) .cs-rel-img { background-color: #B8B6B1; }
+    .cs-rel-card:nth-child(3) .cs-rel-img { background-color: #CECDCA; }
+
+    .cs-rel-meta {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .cs-rel-tag {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+    }
+
+    .cs-rel-year {
+      font-size: 0.7rem;
+      color: var(--light-grey);
+    }
+
+    .cs-rel-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.3;
+    }
+
+  </style>
+</head>
+<body>
+
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="site-header">
+    <div class="container">
+
+      <a href="/" class="wordmark" aria-label="Concept Inc. home">
+        <img src="../../assets/logo v1.png" alt="Concept Inc." class="wordmark-img">
+      </a>
+
+      <div class="header-right">
+
+        <nav aria-label="Primary navigation">
+          <ul class="site-nav">
+            <li><a href="/what-we-do">What We Do</a></li>
+            <li class="has-dropdown">
+              <a href="#" class="dropdown-toggle">Packages <span class="chevron" aria-hidden="true">▾</span></a>
+              <ul class="dropdown">
+                <li><a href="/packages/weddings">Weddings</a></li>
+                <li><a href="/packages/corporate">Corporate</a></li>
+                <li><a href="/packages/gear-hire">Gear hire</a></li>
+                <li><a href="/packages/bespoke">Bespoke quote</a></li>
+              </ul>
+            </li>
+            <li><a href="/curated-experiences">Curated Experiences</a></li>
+            <li><a href="/portfolio" aria-current="page">Portfolio</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <a href="/contact" class="btn btn-black btn-sm header-quote">Get a quote</a>
+          <span class="mobile-toggle" aria-label="Open menu">Menu</span>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       BREADCRUMB
+       ============================================================ -->
+  <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/portfolio">Portfolio</a></li>
+        <li aria-current="page">[Project name]</li>
+      </ol>
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       HERO — pure image, no text.
+       Replace with a full-bleed photograph per project.
+       ============================================================ -->
+  <div class="cs-hero" role="img" aria-label="Hero image — [Project name]">
+    PHOTO PLACEHOLDER — Hero image: dominant, single scene from the event
+  </div>
+
+
+  <!-- ============================================================
+       METADATA STRIP
+       5 data points. Brand black.
+       ============================================================ -->
+  <aside class="cs-meta" aria-label="Project details">
+    <div class="container">
+      <dl class="cs-meta-list">
+
+        <div class="cs-meta-item">
+          <dt class="cs-meta-label">Event type</dt>
+          <dd class="cs-meta-value">[e.g. Corporate gala]</dd>
+        </div>
+
+        <div class="cs-meta-item">
+          <dt class="cs-meta-label">Date</dt>
+          <dd class="cs-meta-value">[Month Year]</dd>
+        </div>
+
+        <div class="cs-meta-item">
+          <dt class="cs-meta-label">Venue</dt>
+          <dd class="cs-meta-value">[Venue name, City]</dd>
+        </div>
+
+        <div class="cs-meta-item">
+          <dt class="cs-meta-label">Guests</dt>
+          <dd class="cs-meta-value">[Number]</dd>
+        </div>
+
+        <div class="cs-meta-item">
+          <dt class="cs-meta-label">Services</dt>
+          <dd class="cs-meta-value">Audio · Lighting · [Add/remove]</dd>
+        </div>
+
+      </dl>
+    </div>
+  </aside>
+
+
+  <!-- ============================================================
+       BRIEF — 2-col editorial layout.
+       Left: project name + client. Right: body paragraphs.
+       ============================================================ -->
+  <section class="cs-brief" aria-label="Project brief">
+    <div class="container">
+      <div class="cs-brief-inner">
+
+        <!-- Left: identity -->
+        <div class="cs-brief-title">
+          <p class="section-label">The brief</p>
+          <h2>[Client name] —<br>[Project title or occasion]</h2>
+          <span class="cs-client-label">Client</span>
+          <span class="cs-client-name">[Client name or organisation]</span>
+        </div>
+
+        <!-- Right: story -->
+        <div class="cs-brief-body">
+          <p>
+            [Paragraph 1 — Client context and occasion. Who is the client?
+            What was the event? What mattered to them about it? Set the scene
+            before introducing any technical detail. This should read like the
+            opening of a well-edited feature article, not a brief summary.]
+          </p>
+          <p>
+            [Paragraph 2 — The challenge. What made this event technically or
+            creatively complex? Was it the venue, the timeline, the scale, the
+            combination of disciplines? What was the production problem that
+            Concept Inc. was brought in to solve? Be specific — vague
+            challenges don't read as credible.]
+          </p>
+          <p>
+            [Paragraph 3 — What Concept Inc. delivered and the outcome.
+            Equipment, crew, disciplines, and the result. Avoid generic
+            superlatives — use concrete detail. What happened on the day?
+            What did the room feel like? How did the client react?]
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       IMAGE GALLERY — Magazine-style CSS grid.
+       8 images. Specific nth-child spans create the layout:
+         Image 1: 2-col landscape
+         Image 2: 2-row portrait
+         Image 5: 3-col panoramic
+       All others: 1×1.
+       ============================================================ -->
+  <section class="cs-gallery-section" aria-label="Project gallery">
+    <div class="container">
+
+      <div class="cs-gallery">
+
+        <div class="cs-gal-item" role="img" aria-label="Gallery photo 1">Photo</div>
+        <div class="cs-gal-item" role="img" aria-label="Gallery photo 2">Photo</div>
+        <div class="cs-gal-item" role="img" aria-label="Gallery photo 3">Photo</div>
+        <div class="cs-gal-item" role="img" aria-label="Gallery photo 4">Photo</div>
+        <div class="cs-gal-item" role="img" aria-label="Gallery photo 5 — panoramic">Photo</div>
+        <div class="cs-gal-item" role="img" aria-label="Gallery photo 6">Photo</div>
+        <div class="cs-gal-item" role="img" aria-label="Gallery photo 7">Photo</div>
+        <div class="cs-gal-item" role="img" aria-label="Gallery photo 8">Photo</div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       WHAT WE PROVIDED
+       Equipment list + services list. Two columns.
+       ============================================================ -->
+  <section class="cs-provided" aria-label="Equipment and services">
+    <div class="container">
+
+      <p class="section-label">What we provided</p>
+      <h2>Equipment &amp; services.</h2>
+
+      <div class="cs-provided-grid">
+
+        <!-- Equipment -->
+        <div class="cs-provided-col">
+          <h3>Equipment</h3>
+          <ul class="cs-provided-list">
+            <li>[e.g. Line array system — 8 elements + subs]</li>
+            <li>[Digital mixing console — FOH + monitor]</li>
+            <li>[16× automated moving head fixtures]</li>
+            <li>[8× LED par wash — colour]</li>
+            <li>[Hazer machine]</li>
+            <li>[8× wireless microphone channels]</li>
+            <li>[Add/remove lines as needed]</li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div class="cs-provided-col">
+          <h3>Services</h3>
+          <ul class="cs-provided-list">
+            <li>[e.g. Full audio production]</li>
+            <li>[Lighting design &amp; operation]</li>
+            <li>[Show calling &amp; direction]</li>
+            <li>[Pre-production &amp; site survey]</li>
+            <li>[Load-in, build &amp; packdown]</li>
+            <li>[On-site crew — [n] technicians]</li>
+            <li>[Add/remove lines as needed]</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       PULL QUOTE — large client testimonial.
+       Brand black. Inter italic.
+       ============================================================ -->
+  <section class="cs-quote" aria-label="Client testimonial">
+    <div class="container">
+      <figure class="cs-quote-inner">
+
+        <span class="cs-quote-mark" aria-hidden="true">"</span>
+
+        <blockquote class="cs-quote-text">
+          [Client quote goes here. Should be genuine and specific —
+          not generic praise. One to three sentences. The best quotes
+          name a feeling or a specific moment, not just "great work."
+          Replace this placeholder with the real testimonial.]
+        </blockquote>
+
+        <figcaption class="cs-quote-attr">
+          <span class="cs-quote-name">[Client name], [Title]</span>
+          <span class="cs-quote-role">[Company] · [Event name or type]</span>
+        </figcaption>
+
+      </figure>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       RELATED WORK — 3 other project thumbnails.
+       Link to other case study pages once built.
+       ============================================================ -->
+  <section class="cs-related" aria-label="Related projects">
+    <div class="container">
+
+      <div class="cs-related-header">
+        <h2>More recent work.</h2>
+        <a href="/portfolio">View all projects</a>
+      </div>
+
+      <div class="cs-related-grid">
+
+        <a href="/portfolio/[project-slug]" class="cs-rel-card">
+          <div class="cs-rel-img" role="img" aria-label="Related project photo">Photo</div>
+          <div class="cs-rel-meta">
+            <span class="cs-rel-tag">[Event type]</span>
+            <span class="cs-rel-year">[Year]</span>
+          </div>
+          <span class="cs-rel-name">[Related project name]</span>
+        </a>
+
+        <a href="/portfolio/[project-slug]" class="cs-rel-card">
+          <div class="cs-rel-img" role="img" aria-label="Related project photo">Photo</div>
+          <div class="cs-rel-meta">
+            <span class="cs-rel-tag">[Event type]</span>
+            <span class="cs-rel-year">[Year]</span>
+          </div>
+          <span class="cs-rel-name">[Related project name]</span>
+        </a>
+
+        <a href="/portfolio/[project-slug]" class="cs-rel-card">
+          <div class="cs-rel-img" role="img" aria-label="Related project photo">Photo</div>
+          <div class="cs-rel-meta">
+            <span class="cs-rel-tag">[Event type]</span>
+            <span class="cs-rel-year">[Year]</span>
+          </div>
+          <span class="cs-rel-name">[Related project name]</span>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER CTA
+       ============================================================ -->
+  <section class="footer-cta" aria-label="Get in touch">
+    <div class="container">
+      <h2>Ready to build yours?</h2>
+      <a href="/contact" class="btn btn-black">Get in touch</a>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+
+      <div class="footer-top">
+        <a href="/" class="footer-wordmark" aria-label="Concept Inc. home">
+          <img src="../../assets/logo v1 light.png" alt="Concept Inc." style="height:40px;width:auto;display:block;">
+        </a>
+        <p class="footer-meta">
+          Cape Town, South Africa<br>
+          hello@conceptinc.co.za
+        </p>
+      </div>
+
+      <nav aria-label="Footer links">
+        <div class="footer-links">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Privacy policy</a>
+          <span class="footer-copy">© 2026 Concept Inc.</span>
+        </div>
+      </nav>
+
+    </div>
+  </footer>
+
+
+</body>
+</html>
