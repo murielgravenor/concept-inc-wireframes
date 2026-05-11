@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concept Inc. — Homepage Wireframe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================
+       RESET & BASE
+       ============================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --black:       #1A1612;
+      --off-white:   #FAFAF7;
+      --orange:      #E85D04;
+      --soft-black:  #1A1A1A;
+      --mid-grey:    #6B6B6B;
+      --light-grey:  #E8E6E1;
+      --placeholder: #C4C2BD;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--off-white);
+      color: var(--soft-black);
+      line-height: 1.6;
+    }
+
+    /* =============================================
+       SHARED UTILITIES
+       ============================================= */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Greyscale image stand-in */
+    .img-placeholder {
+      background-color: var(--placeholder);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--mid-grey);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      margin-bottom: 0.75rem;
+    }
+
+    /* =============================================
+       BUTTONS
+       ============================================= */
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.6rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      border: 2px solid transparent;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .btn-sm { padding: 0.55rem 1.1rem; font-size: 0.8rem; }
+
+    .btn-black {
+      background-color: var(--black);
+      color: var(--off-white);
+      border-color: var(--black);
+    }
+
+    .btn-outline-dark {
+      background-color: transparent;
+      color: var(--black);
+      border-color: var(--black);
+    }
+
+    .btn-outline-light {
+      background-color: transparent;
+      color: var(--off-white);
+      border-color: var(--off-white);
+    }
+
+    /* ORANGE BUTTON — used once: footer CTA */
+    .btn-orange {
+      background-color: var(--orange);
+      color: var(--off-white);
+      border-color: var(--orange);
+    }
+
+
+    /* =============================================
+       SECTION 1: HEADER
+       ============================================= */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+      padding: 1rem 0;
+    }
+
+    .site-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1rem;
+    }
+
+    .wordmark {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+
+    .wordmark-img {
+      height: 50px;
+      width: auto;
+      display: block;
+    }
+
+    /* Nav — hidden on mobile, shown at md+ */
+    .site-nav {
+      display: none;
+      list-style: none;
+      gap: 1.75rem;
+    }
+
+    .site-nav a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--soft-black);
+      text-decoration: none;
+    }
+
+    .site-nav a:hover { color: var(--black); }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-left: auto;
+    }
+
+    .header-actions { display: flex; align-items: center; gap: 1rem; }
+
+    .header-quote { display: none; } /* shown at md+ */
+
+    /* Mobile menu placeholder */
+    .mobile-toggle {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--mid-grey);
+      border: 1px solid var(--light-grey);
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+    }
+
+
+    /* =============================================
+       SECTION 2: HERO
+       ============================================= */
+    .hero {
+      position: relative;
+      min-height: 85vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    /* Full-bleed photography placeholder */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--placeholder);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--mid-grey);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* Gradient overlay for legibility */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(26, 22, 18, 0.88) 0%,
+        rgba(26, 22, 18, 0.45) 55%,
+        rgba(26, 22, 18, 0.1) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 3rem 1.25rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 8vw, 4.75rem);
+      font-weight: 700;
+      color: var(--off-white);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin-bottom: 1rem;
+    }
+
+    .hero-subhead {
+      font-size: 1rem;
+      color: rgba(250, 250, 247, 0.72);
+      line-height: 1.6;
+      max-width: 500px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+
+    /* =============================================
+       SECTION 3: PERSONA ROUTING
+       ============================================= */
+    .persona-routing {
+      padding: 4rem 0;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .persona-routing h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.015em;
+      margin-bottom: 1.75rem;
+    }
+
+    .persona-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background-color: var(--light-grey); /* creates grid lines */
+      border: 1px solid var(--light-grey);
+    }
+
+    .persona-card {
+      background-color: var(--off-white);
+      padding: 1.75rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    /* Icon placeholder */
+    .card-icon {
+      width: 2rem;
+      height: 2rem;
+      background-color: var(--light-grey);
+      margin-bottom: 0.6rem;
+    }
+
+    .persona-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .price-note {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--mid-grey);
+      letter-spacing: 0.02em;
+    }
+
+    .persona-card p {
+      font-size: 0.85rem;
+      color: var(--mid-grey);
+      line-height: 1.55;
+      margin-top: 0.25rem;
+    }
+
+    .card-link {
+      margin-top: 0.9rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--black);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .card-link::after { content: '→'; }
+
+
+    /* =============================================
+       SECTION 4: CREDIBILITY STRIP
+       ============================================= */
+    .credibility {
+      padding: 4.5rem 0;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .credibility-intro {
+      margin-bottom: 2.5rem;
+    }
+
+    .credibility-intro h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.015em;
+    }
+
+    .cred-cols {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .cred-col h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--black);
+      padding-bottom: 0.75rem;
+      margin-bottom: 0.75rem;
+      border-bottom: 2px solid var(--black);
+    }
+
+    .cred-col p {
+      font-size: 0.85rem;
+      color: var(--mid-grey);
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+
+    .cred-col ul {
+      list-style: none;
+    }
+
+    .cred-col ul li {
+      font-size: 0.8rem;
+      color: var(--mid-grey);
+      padding: 0.2rem 0;
+    }
+
+    .cred-col ul li::before { content: '— '; }
+
+
+    /* =============================================
+       SECTION 5: CURATED EXPERIENCES
+       ============================================= */
+    .curated {
+      background-color: var(--black);
+      padding: 5.5rem 0;
+      color: var(--off-white);
+    }
+
+    /* ORANGE USE #1 — eyebrow label on dark band */
+    .curated .eyebrow { color: var(--orange); margin-bottom: 1.5rem; }
+
+    .curated h2 {
+      font-size: clamp(1.9rem, 5vw, 3.25rem);
+      font-weight: 700;
+      color: var(--off-white);
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      max-width: 620px;
+      margin-bottom: 1.25rem;
+    }
+
+    .curated p {
+      font-size: 0.95rem;
+      color: rgba(250, 250, 247, 0.6);
+      line-height: 1.65;
+      max-width: 500px;
+      margin-bottom: 2.25rem;
+    }
+
+
+    /* =============================================
+       SECTION 6: PORTFOLIO PREVIEW
+       ============================================= */
+    .portfolio-preview {
+      padding: 4rem 0;
+      background-color: var(--off-white);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.015em;
+    }
+
+    .section-header a {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    /* 2-up on mobile, 4-up on desktop */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+
+    .portfolio-item { display: flex; flex-direction: column; gap: 0.45rem; }
+
+    .portfolio-item .img-placeholder { aspect-ratio: 4 / 3; width: 100%; }
+
+    .item-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--mid-grey);
+    }
+
+
+    /* =============================================
+       SECTION 7: SOCIAL PROOF
+       ============================================= */
+    .social-proof {
+      background-color: var(--black);
+      padding: 5rem 0;
+    }
+
+    .testimonial {
+      max-width: 680px;
+      margin: 0 auto 3.5rem;
+      text-align: center;
+    }
+
+    .testimonial blockquote {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.8vw, 1.45rem);
+      color: var(--off-white);
+      line-height: 1.55;
+      margin-bottom: 1.25rem;
+    }
+
+    .testimonial cite {
+      display: block;
+      font-style: normal;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: rgba(250, 250, 247, 0.45);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .logo-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      align-items: center;
+      border-top: 1px solid rgba(250, 250, 247, 0.1);
+      padding-top: 2.5rem;
+    }
+
+    /* Client logo placeholders */
+    .logo-ph {
+      width: 80px;
+      height: 28px;
+      background-color: rgba(250, 250, 247, 0.1);
+    }
+
+
+    /* =============================================
+       SECTION 8: FOOTER CTA BAND
+       ============================================= */
+    .footer-cta {
+      background-color: var(--off-white);
+      padding: 5.5rem 0;
+      text-align: center;
+      border-top: 1px solid var(--light-grey);
+    }
+
+    .footer-cta h2 {
+      font-size: clamp(1.8rem, 5vw, 2.75rem);
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.02em;
+      margin-bottom: 1.75rem;
+    }
+
+    /* ORANGE USE #2 — the single high-stakes CTA on the page */
+
+
+    /* =============================================
+       SECTION 9: FOOTER
+       ============================================= */
+    .site-footer {
+      background-color: var(--black);
+      padding: 2rem 0;
+    }
+
+    .site-footer .container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .footer-top {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-wordmark {
+      font-style: italic;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--off-white);
+      text-decoration: none;
+    }
+
+    .footer-meta {
+      font-size: 0.78rem;
+      color: rgba(250, 250, 247, 0.45);
+      line-height: 1.7;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+
+    .footer-links a {
+      font-size: 0.75rem;
+      color: rgba(250, 250, 247, 0.4);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover { color: rgba(250, 250, 247, 0.7); }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      color: rgba(250, 250, 247, 0.25);
+    }
+
+
+    /* =============================================
+       RESPONSIVE — TABLET (≥ 768px)
+       ============================================= */
+    @media (min-width: 768px) {
+
+      /* Header */
+      .site-nav { display: flex; }
+      .header-quote { display: inline-block; }
+      .mobile-toggle { display: none; }
+
+      /* Hero */
+      .hero { min-height: 90vh; }
+
+      /* Persona grid — 2 columns */
+      .persona-grid { grid-template-columns: repeat(2, 1fr); }
+
+      /* Credibility — 3 columns */
+      .cred-cols { grid-template-columns: repeat(3, 1fr); }
+
+      /* Portfolio — 4 columns */
+      .portfolio-grid { grid-template-columns: repeat(4, 1fr); }
+
+      /* Footer */
+      .site-footer .container {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .footer-top {
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+      }
+    }
+
+
+    /* =============================================
+       RESPONSIVE — DESKTOP (≥ 1024px)
+       ============================================= */
+    @media (min-width: 1024px) {
+
+      /* Persona grid — 4 columns */
+      .persona-grid { grid-template-columns: repeat(4, 1fr); }
+
+      .hero-content { padding-bottom: 5rem; }
+    }
+
+  </style>
+</head>
+<body>
+
+
+  <!-- ============================================================
+       SECTION 1: HEADER
+       ============================================================ -->
+  <header class="site-header">
+    <div class="container">
+
+      <a href="#" class="wordmark" aria-label="Concept Inc. home">
+        <img src="../assets/logo v1.png" alt="Concept Inc." class="wordmark-img">
+      </a>
+
+      <div class="header-right">
+
+        <nav aria-label="Primary navigation">
+          <ul class="site-nav">
+            <li><a href="#">What We Do</a></li>
+            <li><a href="#">Packages</a></li>
+            <li><a href="#">Curated Experiences</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">About</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <a href="#contact" class="btn btn-black btn-sm header-quote">Get a quote</a>
+          <!-- Mobile nav placeholder -->
+          <span class="mobile-toggle" aria-label="Open menu">Menu</span>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       SECTION 2: HERO
+       — Full-bleed event photography behind headline + two CTAs
+       ============================================================ -->
+  <section class="hero" aria-label="Hero">
+
+    <div class="hero-bg" aria-hidden="true" role="img">
+      IMAGE PLACEHOLDER — Full-bleed event photography
+    </div>
+
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <h1>Bring your concept<br>to life.</h1>
+      <p class="hero-subhead">
+        Turnkey audio, lighting, and live production for events across
+        Cape Town — from intimate dinners to large-scale productions.
+      </p>
+      <div class="hero-ctas">
+        <!-- Primary CTA: solid black -->
+        <a href="#packages" class="btn btn-black">See packages</a>
+        <!-- Secondary CTA: outlined, light on dark bg -->
+        <a href="#contact" class="btn btn-outline-light">Talk to us</a>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 3: PERSONA ROUTING
+       — "What are you planning?" — routes two buyer types into
+         four package tracks
+       ============================================================ -->
+  <section class="persona-routing" id="packages" aria-label="Package routes">
+    <div class="container">
+
+      <h2>What are you planning?</h2>
+
+      <div class="persona-grid">
+
+        <div class="persona-card">
+          <div class="card-icon" aria-hidden="true"></div>
+          <h3>Weddings</h3>
+          <p class="price-note">From R7,000</p>
+          <p>Sound, lighting, and atmosphere for your ceremony and reception — fully managed from setup to packdown.</p>
+          <a href="#" class="card-link">See wedding packages</a>
+        </div>
+
+        <div class="persona-card">
+          <div class="card-icon" aria-hidden="true"></div>
+          <h3>Corporate</h3>
+          <p class="price-note">Audio · Lighting · AV</p>
+          <p>Conferences, launches, and galas. Professional production that makes your brand look as good as it sounds.</p>
+          <a href="#" class="card-link">See corporate packages</a>
+        </div>
+
+        <div class="persona-card">
+          <div class="card-icon" aria-hidden="true"></div>
+          <h3>Gear hire</h3>
+          <p class="price-note">Dry hire tiers</p>
+          <p>Top-spec equipment available for self-managed or lightly supported events. Flexible day and weekend rates.</p>
+          <a href="#" class="card-link">See gear hire options</a>
+        </div>
+
+        <div class="persona-card">
+          <div class="card-icon" aria-hidden="true"></div>
+          <h3>Bespoke quote</h3>
+          <p class="price-note">Custom builds</p>
+          <p>Something unusual? Festivals, custom installs, or multi-day productions — we scope and build from scratch.</p>
+          <a href="#" class="card-link">Tell us about it</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 4: CREDIBILITY STRIP
+       — "More than gear and crew." — 3-column service overview
+       ============================================================ -->
+  <section class="credibility" aria-label="What we do">
+    <div class="container">
+
+      <div class="credibility-intro">
+        <p class="section-label">What we do</p>
+        <h2>More than gear and crew.</h2>
+      </div>
+
+      <div class="cred-cols">
+
+        <div class="cred-col">
+          <h3>Audio production</h3>
+          <p>Full PA systems, monitors, and live mixing for any room size — from restaurant residencies to outdoor festivals.</p>
+          <ul>
+            <li>Live sound engineering</li>
+            <li>Line array &amp; PA systems</li>
+            <li>In-ear monitoring</li>
+            <li>Podcast &amp; recording setups</li>
+          </ul>
+        </div>
+
+        <div class="cred-col">
+          <h3>Lighting design</h3>
+          <p>Architectural, atmospheric, and dynamic lighting — designed for the room, not just patched in.</p>
+          <ul>
+            <li>Event and stage lighting</li>
+            <li>Uplighting and wash</li>
+            <li>Moving heads and effects</li>
+            <li>DMX programming</li>
+          </ul>
+        </div>
+
+        <div class="cred-col">
+          <h3>Visual &amp; LED</h3>
+          <p>LED walls, video switching, projection mapping, and confidence monitoring for speakers and performers.</p>
+          <ul>
+            <li>LED wall builds</li>
+            <li>IMAG / broadcast feeds</li>
+            <li>Projection mapping</li>
+            <li>Green room screens</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 5: CURATED EXPERIENCES
+       — Full-width black band. Orange used here (use #1).
+       ============================================================ -->
+  <section class="curated" aria-label="Curated experiences">
+    <div class="container">
+
+      <!-- ORANGE #1: eyebrow label on the black band -->
+      <span class="eyebrow">Curated experiences</span>
+
+      <h2>When the brief is<br>"make it unforgettable."</h2>
+
+      <p>
+        Beyond production, we choreograph the room. Speciality acts,
+        performance direction, custom atmospherics, and creative partnerships
+        that turn an event into an experience people actually talk about.
+      </p>
+
+      <a href="#" class="btn btn-outline-light">Explore</a>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 6: PORTFOLIO PREVIEW
+       — 4-up image grid. Real photos drop in here.
+       ============================================================ -->
+  <section class="portfolio-preview" aria-label="Portfolio preview">
+    <div class="container">
+
+      <div class="section-header">
+        <h2>Recent work</h2>
+        <a href="#">View all →</a>
+      </div>
+
+      <div class="portfolio-grid">
+
+        <div class="portfolio-item">
+          <div class="img-placeholder">IMG</div>
+          <span class="item-label">Wedding — Franschhoek</span>
+        </div>
+
+        <div class="portfolio-item">
+          <div class="img-placeholder">IMG</div>
+          <span class="item-label">Corporate — Cape Town CBD</span>
+        </div>
+
+        <div class="portfolio-item">
+          <div class="img-placeholder">IMG</div>
+          <span class="item-label">Festival stage — Stellenbosch</span>
+        </div>
+
+        <div class="portfolio-item">
+          <div class="img-placeholder">IMG</div>
+          <span class="item-label">Restaurant residency</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 7: SOCIAL PROOF
+       — Italic serif pullquote + client logo strip
+       ============================================================ -->
+  <section class="social-proof" aria-label="Client testimonials">
+    <div class="container">
+
+      <div class="testimonial">
+        <blockquote>
+          "They didn't just set up our sound — they understood the whole evening.
+          When something shifted at the last minute, it was fixed before
+          our guests even noticed."
+        </blockquote>
+        <cite>— Client name · Event type · Year</cite>
+      </div>
+
+      <div class="logo-strip" aria-label="Client logos">
+        <!-- Replace with real client logo SVGs/PNGs -->
+        <div class="logo-ph" title="Client logo placeholder"></div>
+        <div class="logo-ph" title="Client logo placeholder"></div>
+        <div class="logo-ph" title="Client logo placeholder"></div>
+        <div class="logo-ph" title="Client logo placeholder"></div>
+        <div class="logo-ph" title="Client logo placeholder"></div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 8: FOOTER CTA BAND
+       — Single conversion moment. Orange used here (use #2).
+       ============================================================ -->
+  <section class="footer-cta" id="contact" aria-label="Get in touch">
+    <div class="container">
+      <h2>Ready to transform your event?</h2>
+      <!-- ORANGE #2: the page's highest-stakes CTA -->
+      <a href="mailto:hello@conceptinc.co.za" class="btn btn-orange">Get a quote</a>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 9: FOOTER
+       — Minimal: location, contact, social, legal
+       ============================================================ -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+
+      <div class="footer-top">
+        <a href="#" class="footer-wordmark" aria-label="Concept Inc. home">
+          <img src="../assets/logo v1 light.png" alt="Concept Inc." style="height:40px;width:auto;display:block;">
+        </a>
+        <p class="footer-meta">
+          Cape Town, South Africa<br>
+          hello@conceptinc.co.za
+        </p>
+      </div>
+
+      <nav aria-label="Footer links">
+        <div class="footer-links">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Privacy policy</a>
+          <span class="footer-copy">© 2026 Concept Inc.</span>
+        </div>
+      </nav>
+
+    </div>
+  </footer>
+
+
+</body>
+</html>
