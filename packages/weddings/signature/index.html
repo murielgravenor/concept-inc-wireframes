@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signature Wedding Package — Concept Inc.</title>
+  <meta name="description" content="The Signature wedding production package — full PA, lighting, and 2 on-site technicians for receptions up to 100 guests. From R12,000.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../shared/styles.css">
+
+  <style>
+    /*
+     * Package detail template — pkg-* classes are intentionally generic.
+     * Duplicate this file for Essential, Showcase, Corporate, Gear hire, etc.
+     * Change pkg-badge, pkg-name, pkg-price, copy, and included items.
+     */
+
+    /* =============================================
+       BREADCRUMB BAR
+       Sits between header and hero.
+       ============================================= */
+    .breadcrumb-bar {
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+      padding: 0.65rem 0;
+    }
+
+    .breadcrumb ol {
+      display: flex;
+      list-style: none;
+      flex-wrap: wrap;
+      gap: 0;
+      align-items: center;
+    }
+
+    .breadcrumb li {
+      font-size: 0.78rem;
+      color: var(--mid-grey);
+      display: flex;
+      align-items: center;
+    }
+
+    .breadcrumb li + li::before {
+      content: '/';
+      margin: 0 0.5rem;
+      color: var(--light-grey);
+    }
+
+    .breadcrumb a {
+      color: var(--mid-grey);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover { color: var(--black); }
+
+    .breadcrumb li[aria-current] {
+      color: var(--black);
+      font-weight: 600;
+    }
+
+    /* =============================================
+       PACKAGE HERO
+       Reuses .hero, .hero-bg, .hero-overlay from shared.
+       Detail pages are shorter than landing-page heroes.
+       ============================================= */
+    .hero { min-height: 52vh; }
+    @media (min-width: 768px) { .hero { min-height: 62vh; } }
+
+    /* Package-specific content within the hero overlay */
+    .pkg-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(250, 250, 247, 0.55);
+      margin-bottom: 0.6rem;
+    }
+
+    .pkg-name {
+      font-size: clamp(2rem, 6vw, 3.75rem);
+      font-weight: 700;
+      color: var(--off-white);
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+      margin-bottom: 0.65rem;
+    }
+
+    .pkg-positioning {
+      font-size: 0.95rem;
+      color: rgba(250, 250, 247, 0.7);
+      line-height: 1.6;
+      max-width: 500px;
+      margin-bottom: 1.25rem;
+    }
+
+    .pkg-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+      flex-wrap: wrap;
+    }
+
+    .pkg-price {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--off-white);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .pkg-price-note {
+      font-size: 0.78rem;
+      color: rgba(250, 250, 247, 0.45);
+      font-weight: 500;
+    }
+
+    /* =============================================
+       WHAT'S INCLUDED
+       3-column grid: Audio / Lighting / Service
+       ============================================= */
+    .pkg-details {
+      padding: 4.5rem 0;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .pkg-details > .container > h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.015em;
+      margin-bottom: 2.25rem;
+    }
+
+    .pkg-details-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .pkg-details-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    }
+
+    .pkg-col-heading {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--black);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--black);
+    }
+
+    .pkg-col-list {
+      list-style: none;
+    }
+
+    .pkg-col-list li {
+      font-size: 0.875rem;
+      color: var(--soft-black);
+      padding: 0.45rem 0;
+      border-bottom: 1px solid var(--light-grey);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      line-height: 1.4;
+    }
+
+    .pkg-col-list li:last-child { border-bottom: none; }
+
+    .pkg-col-list li::before {
+      content: '—';
+      color: var(--mid-grey);
+      flex-shrink: 0;
+      font-weight: 400;
+    }
+
+    .pkg-col-note {
+      font-size: 0.75rem;
+      color: var(--mid-grey);
+      margin-top: 0.75rem;
+      line-height: 1.55;
+    }
+
+    /* =============================================
+       PERFECT FOR
+       Soft-grey background. 2-col split on desktop.
+       ============================================= */
+    .pkg-for {
+      padding: 4.5rem 0;
+      background-color: var(--soft-grey);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .pkg-for-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .pkg-for-grid { grid-template-columns: 3fr 2fr; gap: 4rem; align-items: start; }
+    }
+
+    .pkg-for h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.015em;
+      margin-bottom: 1rem;
+    }
+
+    .pkg-for p {
+      font-size: 0.9rem;
+      color: var(--mid-grey);
+      line-height: 1.75;
+    }
+
+    .pkg-for p + p { margin-top: 0.75rem; }
+
+    /* Right column: quick-scan list */
+    .pkg-for-checklist {
+      list-style: none;
+    }
+
+    .pkg-for-checklist li {
+      font-size: 0.85rem;
+      color: var(--soft-black);
+      font-weight: 500;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--light-grey);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .pkg-for-checklist li:last-child { border-bottom: none; }
+
+    .pkg-for-checklist li::before {
+      content: '✓';
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--mid-grey);
+      flex-shrink: 0;
+    }
+
+    /* =============================================
+       IMAGE GALLERY
+       6 thumbnails — 2-col mobile, 3-col desktop
+       ============================================= */
+    .pkg-gallery {
+      padding: 4rem 0;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .pkg-gallery h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.01em;
+      margin-bottom: 1.25rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+
+    @media (min-width: 768px) {
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .gallery-item .img-placeholder {
+      aspect-ratio: 4 / 3;
+      width: 100%;
+    }
+
+    /* =============================================
+       ADD-ONS
+       3-4 optional extras with name + desc + price
+       ============================================= */
+    .pkg-addons {
+      padding: 4.5rem 0;
+      background-color: var(--soft-grey);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .pkg-addons-intro { margin-bottom: 2rem; }
+
+    .pkg-addons-intro h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.015em;
+      margin-bottom: 0.3rem;
+    }
+
+    .pkg-addons-intro p {
+      font-size: 0.875rem;
+      color: var(--mid-grey);
+    }
+
+    .addon-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background-color: var(--light-grey);
+      border: 1px solid var(--light-grey);
+    }
+
+    @media (min-width: 600px) { .addon-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .addon-grid { grid-template-columns: repeat(4, 1fr); } }
+
+    .addon-item {
+      background-color: var(--off-white);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .addon-item h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .addon-item p {
+      font-size: 0.8rem;
+      color: var(--mid-grey);
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    .addon-price {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-top: 0.5rem;
+    }
+
+    .addon-cta {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--black);
+      text-decoration: none;
+      margin-top: 0.25rem;
+    }
+
+    .addon-cta:hover { text-decoration: underline; }
+
+    /* =============================================
+       OTHER WEDDING PACKAGES
+       Compact sibling cards — Essential + Showcase
+       ============================================= */
+    .pkg-siblings {
+      padding: 4rem 0;
+      background-color: var(--off-white);
+    }
+
+    .pkg-siblings h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.3rem;
+    }
+
+    .pkg-siblings .siblings-intro {
+      font-size: 0.875rem;
+      color: var(--mid-grey);
+      margin-bottom: 1.75rem;
+    }
+
+    .siblings-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background-color: var(--light-grey);
+      border: 1px solid var(--light-grey);
+    }
+
+    @media (min-width: 600px) {
+      .siblings-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .sibling-card {
+      background-color: var(--off-white);
+      padding: 1.75rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .sibling-tier {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .sibling-price {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.025em;
+      margin: 0.1rem 0;
+    }
+
+    .sibling-guests {
+      font-size: 0.78rem;
+      color: var(--mid-grey);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .sibling-desc {
+      font-size: 0.82rem;
+      color: var(--mid-grey);
+      line-height: 1.55;
+      flex: 1;
+    }
+
+  </style>
+</head>
+<body>
+
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="site-header">
+    <div class="container">
+
+      <a href="/" class="wordmark" aria-label="Concept Inc. home">
+        <img src="../../../assets/logo v1.png" alt="Concept Inc." class="wordmark-img">
+      </a>
+
+      <div class="header-right">
+
+        <nav aria-label="Primary navigation">
+          <ul class="site-nav">
+            <li><a href="/what-we-do">What We Do</a></li>
+            <li class="has-dropdown">
+              <a href="#" class="dropdown-toggle" aria-current="page">Packages <span class="chevron" aria-hidden="true">▾</span></a>
+              <ul class="dropdown">
+                <li><a href="/packages/weddings" aria-current="page">Weddings</a></li>
+                <li><a href="/packages/corporate">Corporate</a></li>
+                <li><a href="/packages/gear-hire">Gear hire</a></li>
+                <li><a href="/packages/bespoke">Bespoke quote</a></li>
+              </ul>
+            </li>
+            <li><a href="/curated-experiences">Curated Experiences</a></li>
+            <li><a href="/portfolio">Portfolio</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <a href="/contact" class="btn btn-black btn-sm header-quote">Get a quote</a>
+          <span class="mobile-toggle" aria-label="Open menu">Menu</span>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       BREADCRUMB
+       Home / Weddings / Signature
+       ============================================================ -->
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/packages/weddings">Weddings</a></li>
+          <li aria-current="page">Signature</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       PACKAGE HERO
+       Large image (Simon's Restaurant shoot lives here).
+       Name, price, positioning, and two CTAs overlaid at bottom.
+       ============================================================ -->
+  <section class="hero" aria-label="Signature package">
+
+    <div class="hero-bg" aria-hidden="true" role="img">
+      PHOTO PLACEHOLDER — Simon's Restaurant shoot / signature wedding setup
+    </div>
+
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <p class="pkg-badge">Weddings · Signature</p>
+      <h1 class="pkg-name">Signature</h1>
+      <p class="pkg-positioning">
+        The complete wedding production — sound, lighting, and a dedicated team
+        for receptions up to 100 guests.
+      </p>
+      <div class="pkg-price-row">
+        <span class="pkg-price">R12,000</span>
+        <span class="pkg-price-note">All-inclusive &middot; VAT excluded</span>
+      </div>
+      <div class="hero-ctas">
+        <!-- ORANGE #1: primary conversion action -->
+        <a href="/contact?package=signature&type=wedding" class="btn btn-orange">Enquire about this package</a>
+        <a href="/contact?package=signature&type=wedding&custom=true" class="btn btn-outline-light">Customise this package</a>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       WHAT'S INCLUDED
+       Detailed breakdown: Audio / Lighting / Service
+       ============================================================ -->
+  <section class="pkg-details" aria-label="What's included">
+    <div class="container">
+
+      <h2>What's included.</h2>
+
+      <div class="pkg-details-grid">
+
+        <!-- Audio -->
+        <div class="pkg-col" aria-label="Audio">
+          <h3 class="pkg-col-heading">Audio</h3>
+          <ul class="pkg-col-list">
+            <li>Full PA system — ceremony, cocktail hour &amp; reception</li>
+            <li>Digital mixing console (32-channel)</li>
+            <li>Wireless microphone — officiant channel</li>
+            <li>Wireless handheld — speeches &amp; MC</li>
+            <li>Stage monitor / foldback for performers</li>
+            <li>Music playback &amp; source management</li>
+            <li>Cable management &amp; stage box</li>
+          </ul>
+          <p class="pkg-col-note">
+            PA system is specified for the venue size. We walk the space beforehand
+            to confirm placement and avoid coverage gaps or feedback risks.
+          </p>
+        </div>
+
+        <!-- Lighting -->
+        <div class="pkg-col" aria-label="Lighting">
+          <h3 class="pkg-col-heading">Lighting</h3>
+          <ul class="pkg-col-list">
+            <li>LED uplighting — up to 12 fixtures</li>
+            <li>Colour-matched to wedding palette</li>
+            <li>Ambient wash for reception space</li>
+            <li>Dancefloor effect lighting</li>
+            <li>DMX control system &amp; programming</li>
+            <li>Ceremony ambient lighting (if required)</li>
+          </ul>
+          <p class="pkg-col-note">
+            Colours are agreed during your pre-event consultation. We can match
+            hex codes from florals or palette boards.
+          </p>
+        </div>
+
+        <!-- Service -->
+        <div class="pkg-col" aria-label="Service">
+          <h3 class="pkg-col-heading">Service</h3>
+          <ul class="pkg-col-list">
+            <li>Pre-event venue walk-through</li>
+            <li>Running order review with your coordinator</li>
+            <li>Full setup &amp; sound check</li>
+            <li>2 on-site technicians throughout</li>
+            <li>Live sound &amp; lighting operation</li>
+            <li>On-call problem resolution</li>
+            <li>Professional packdown &amp; venue sign-off</li>
+          </ul>
+          <p class="pkg-col-note">
+            We liaise directly with your venue coordinator and planner —
+            you don't need to manage that relationship on the day.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       PERFECT FOR
+       Ideal use case — helps buyers self-qualify.
+       ============================================================ -->
+  <section class="pkg-for" aria-label="Perfect for">
+    <div class="container">
+
+      <div class="pkg-for-grid">
+
+        <div>
+          <h2>Perfect for.</h2>
+          <p>
+            The Signature is designed for receptions with a proper programme — seated dinner,
+            speeches, and a dancefloor that runs into the night. At 80–100 guests, you need
+            a PA that can carry background music during dinner and have real presence when
+            the dancing starts. The uplighting count covers most mid-size venue perimeters.
+          </p>
+          <p>
+            It works particularly well for mixed indoor/outdoor setups: ceremony outside,
+            reception in. The rig is sized and configured to serve both spaces without
+            compromise. If your venue has a separate cocktail hour area, we'll configure
+            for that too.
+          </p>
+          <p>
+            Most couples who book this tier have their own DJ or a live musician.
+            We're set up to support both — the console and monitor system are ready
+            to take an external DJ input or a live backline feed.
+          </p>
+        </div>
+
+        <div>
+          <p class="section-label" style="margin-bottom: 1rem;">Good fit if you have…</p>
+          <ul class="pkg-for-checklist">
+            <li>80–100 guests</li>
+            <li>Ceremony + reception (same or separate spaces)</li>
+            <li>A DJ or live musician</li>
+            <li>A dancefloor as part of the programme</li>
+            <li>Multiple speech moments</li>
+            <li>An indoor venue or covered outdoor</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       IMAGE GALLERY
+       6 placeholder thumbnails — real photos from Simon's shoot.
+       ============================================================ -->
+  <section class="pkg-gallery" aria-label="Gallery">
+    <div class="container">
+
+      <h2>The Signature package in action.</h2>
+
+      <div class="gallery-grid">
+        <div class="gallery-item"><div class="img-placeholder">IMG 1</div></div>
+        <div class="gallery-item"><div class="img-placeholder">IMG 2</div></div>
+        <div class="gallery-item"><div class="img-placeholder">IMG 3</div></div>
+        <div class="gallery-item"><div class="img-placeholder">IMG 4</div></div>
+        <div class="gallery-item"><div class="img-placeholder">IMG 5</div></div>
+        <div class="gallery-item"><div class="img-placeholder">IMG 6</div></div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ADD-ONS
+       Optional extras — mentioned in enquiry or quoted separately.
+       ============================================================ -->
+  <section class="pkg-addons" aria-label="Optional add-ons">
+    <div class="container">
+
+      <div class="pkg-addons-intro">
+        <h2>Optional add-ons.</h2>
+        <p>Extras can be added to any package — just mention them when you enquire.</p>
+      </div>
+
+      <div class="addon-grid">
+
+        <div class="addon-item">
+          <h3>DJ booth lighting</h3>
+          <p>LED strip and front wash for the DJ position. Makes the booth part of the room, not an afterthought.</p>
+          <p class="addon-price">+ R1,500</p>
+          <a href="/contact?package=signature&addon=dj-lighting" class="addon-cta">Add to enquiry →</a>
+        </div>
+
+        <div class="addon-item">
+          <h3>Atmospheric hazer</h3>
+          <p>Low-lying haze machine for the dancefloor. Makes beam lighting pop and adds depth to the room during dancing.</p>
+          <p class="addon-price">+ R800</p>
+          <a href="/contact?package=signature&addon=hazer" class="addon-cta">Add to enquiry →</a>
+        </div>
+
+        <div class="addon-item">
+          <h3>Additional wireless mic</h3>
+          <p>Extra wireless channel — ideal if you have a live performer, second MC, or multiple speech-givers on the programme.</p>
+          <p class="addon-price">+ R500</p>
+          <a href="/contact?package=signature&addon=wireless-mic" class="addon-cta">Add to enquiry →</a>
+        </div>
+
+        <div class="addon-item">
+          <h3>Extended dancefloor uplighting</h3>
+          <p>Adds 8 extra uplights around the dancefloor perimeter. Recommended for venues with larger or irregular floor plans.</p>
+          <p class="addon-price">+ R2,000</p>
+          <a href="/contact?package=signature&addon=extra-uplighting" class="addon-cta">Add to enquiry →</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       OTHER WEDDING PACKAGES
+       Compact comparison — Essential + Showcase
+       ============================================================ -->
+  <section class="pkg-siblings" aria-label="Other wedding packages">
+    <div class="container">
+
+      <h2>Other wedding packages.</h2>
+      <p class="siblings-intro">Not quite right? See the full range.</p>
+
+      <div class="siblings-grid">
+
+        <div class="sibling-card">
+          <p class="sibling-tier">Essential</p>
+          <p class="sibling-price">R7,000</p>
+          <p class="sibling-guests">Up to 50 guests</p>
+          <p class="sibling-desc">
+            PA, wireless mic, basic uplighting, and one technician.
+            Right for intimate ceremonies and smaller receptions where
+            the atmosphere matters more than scale.
+          </p>
+          <a href="/packages/weddings/essential" class="card-link">See Essential</a>
+        </div>
+
+        <div class="sibling-card">
+          <p class="sibling-tier">Showcase</p>
+          <p class="sibling-price">R20,000</p>
+          <p class="sibling-guests">100+ guests</p>
+          <p class="sibling-desc">
+            Full production — line array PA, expanded lighting with moving heads,
+            a dedicated lighting operator, and a full crew. For weddings where
+            the production is part of the experience.
+          </p>
+          <a href="/packages/weddings/showcase" class="card-link">See Showcase</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER CTA BAND
+       ============================================================ -->
+  <section class="footer-cta" aria-label="Get in touch">
+    <div class="container">
+      <h2>Ready to book your wedding production?</h2>
+      <!-- ORANGE #2 -->
+      <a href="/contact?package=signature&type=wedding" class="btn btn-orange">Enquire about Signature</a>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+
+      <div class="footer-top">
+        <a href="/" class="footer-wordmark" aria-label="Concept Inc. home">
+          <img src="../../../assets/logo v1 light.png" alt="Concept Inc." style="height:40px;width:auto;display:block;">
+        </a>
+        <p class="footer-meta">
+          Cape Town, South Africa<br>
+          hello@conceptinc.co.za
+        </p>
+      </div>
+
+      <nav aria-label="Footer links">
+        <div class="footer-links">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Privacy policy</a>
+          <span class="footer-copy">© 2026 Concept Inc.</span>
+        </div>
+      </nav>
+
+    </div>
+  </footer>
+
+
+</body>
+</html>
