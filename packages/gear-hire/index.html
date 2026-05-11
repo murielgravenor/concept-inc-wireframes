@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gear Hire — Concept Inc.</title>
+  <meta name="description" content="Dry hire audio and lighting packages for Cape Town events. Basic, Standard, and Pro rigs from R7,000. Optional technician support available.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../shared/styles.css">
+
+  <style>
+    /*
+     * Gear hire page — page-specific styles.
+     * Catalogue/transactional tone. Zero orange. Utility over emotion.
+     */
+
+    /* =============================================
+       HERO — short, scannable
+       ============================================= */
+    .hero { min-height: 42vh; }
+    .hero-subhead { margin-bottom: 0; }
+    @media (min-width: 768px) { .hero { min-height: 52vh; } }
+
+    /* =============================================
+       TIER COMPARISON
+       3-col card grid. Standard card = brand black.
+       ============================================= */
+    .gh-tiers {
+      padding: 4.5rem 0;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .gh-tiers > .container > h2 {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+
+    .gh-tiers > .container > p {
+      font-size: 0.875rem;
+      color: var(--mid-grey);
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    .tier-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background-color: var(--light-grey);
+      border: 1px solid var(--light-grey);
+    }
+
+    @media (min-width: 680px) {
+      .tier-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .tier-card {
+      background-color: var(--off-white);
+      padding: 2rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tier-card--featured {
+      background-color: var(--black);
+    }
+
+    .tier-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--off-white);
+      background-color: rgba(250, 250, 247, 0.15);
+      padding: 0.25rem 0.6rem;
+      margin-bottom: 1.25rem;
+      align-self: flex-start;
+    }
+
+    /* Invisible spacer — keeps tier name vertically aligned across cards */
+    .tier-badge-spacer {
+      display: block;
+      height: calc(0.65rem * 1.4 + 0.5rem + 1.25rem);
+    }
+
+    .tier-name {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      margin-bottom: 0.35rem;
+    }
+
+    .tier-card--featured .tier-name {
+      color: rgba(250, 250, 247, 0.45);
+    }
+
+    .tier-price {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .tier-card--featured .tier-price {
+      color: var(--off-white);
+    }
+
+    .tier-guests {
+      font-size: 0.8rem;
+      color: var(--mid-grey);
+      margin-bottom: 1.5rem;
+    }
+
+    .tier-card--featured .tier-guests {
+      color: rgba(250, 250, 247, 0.45);
+    }
+
+    .tier-list {
+      list-style: none;
+      flex: 1;
+      border-top: 1px solid var(--light-grey);
+      padding-top: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .tier-card--featured .tier-list {
+      border-top-color: rgba(250, 250, 247, 0.12);
+    }
+
+    .tier-list li {
+      font-size: 0.83rem;
+      color: var(--soft-black);
+      padding: 0.35rem 0;
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .tier-card--featured .tier-list li {
+      color: rgba(250, 250, 247, 0.7);
+    }
+
+    .tier-list li::before {
+      content: '✓';
+      font-size: 0.7rem;
+      color: var(--mid-grey);
+      flex-shrink: 0;
+    }
+
+    .tier-card--featured .tier-list li::before {
+      color: rgba(250, 250, 247, 0.3);
+    }
+
+    /* =============================================
+       ADD-ONS STRIP
+       4-col grid. Flat, table-like, no decoration.
+       ============================================= */
+    .gh-addons {
+      padding: 3.5rem 0;
+      background-color: var(--soft-grey);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .gh-addons > .container > h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.3rem;
+    }
+
+    .gh-addons > .container > p {
+      font-size: 0.85rem;
+      color: var(--mid-grey);
+      margin-bottom: 1.75rem;
+    }
+
+    .addon-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background-color: var(--light-grey);
+      border: 1px solid var(--light-grey);
+    }
+
+    @media (min-width: 768px) {
+      .addon-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .addon-item {
+      background-color: var(--soft-grey);
+      padding: 1.5rem 1.25rem;
+    }
+
+    .addon-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 0.25rem;
+    }
+
+    .addon-price {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 0.5rem;
+    }
+
+    .addon-desc {
+      font-size: 0.78rem;
+      color: var(--mid-grey);
+      line-height: 1.55;
+    }
+
+    /* =============================================
+       WET HIRE CALLOUT
+       Dark band — explains the technician option.
+       ============================================= */
+    .gh-wet-hire {
+      background-color: var(--black);
+      padding: 3.5rem 0;
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .wet-hire-inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .wet-hire-inner {
+        grid-template-columns: 1fr auto;
+        gap: 3rem;
+      }
+    }
+
+    .wet-hire-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(250, 250, 247, 0.35);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+
+    .gh-wet-hire h2 {
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      font-weight: 700;
+      color: var(--off-white);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .gh-wet-hire p {
+      font-size: 0.875rem;
+      color: rgba(250, 250, 247, 0.55);
+      line-height: 1.7;
+      max-width: 540px;
+    }
+
+    /* =============================================
+       EQUIPMENT CATEGORIES
+       6 categories, icon placeholder + label
+       ============================================= */
+    .gh-categories {
+      padding: 4.5rem 0;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .gh-categories-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .gh-categories-header h2 {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.02em;
+    }
+
+    .gh-categories-header a {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--black);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .gh-categories-header a::after { content: ' →'; }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background-color: var(--light-grey);
+      border: 1px solid var(--light-grey);
+    }
+
+    @media (min-width: 680px) {
+      .cat-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .cat-item {
+      background-color: var(--off-white);
+      padding: 1.75rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .cat-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      background-color: var(--light-grey);
+    }
+
+    .cat-item h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .cat-item p {
+      font-size: 0.8rem;
+      color: var(--mid-grey);
+      line-height: 1.55;
+      flex: 1;
+    }
+
+    /* =============================================
+       DELIVERY INFO STRIP
+       3 columns: delivery / collection / deposit
+       ============================================= */
+    .gh-delivery {
+      padding: 4rem 0;
+      background-color: var(--soft-grey);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .gh-delivery > .container > h2 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.01em;
+      margin-bottom: 2rem;
+    }
+
+    .delivery-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 680px) {
+      .delivery-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .delivery-col {
+      border-top: 2px solid var(--light-grey);
+      padding-top: 1.25rem;
+    }
+
+    .delivery-col h3 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 0.6rem;
+    }
+
+    .delivery-col p {
+      font-size: 0.82rem;
+      color: var(--mid-grey);
+      line-height: 1.65;
+    }
+
+    .delivery-placeholder {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--mid-grey);
+      background-color: var(--light-grey);
+      padding: 0.2rem 0.5rem;
+      margin-top: 0.5rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* =============================================
+       FOOTER CTA BAND
+       Black button — consistent with Corporate. No orange.
+       ============================================= */
+    .footer-cta-note {
+      font-size: 0.85rem;
+      color: var(--mid-grey);
+      margin-bottom: 1.75rem;
+    }
+
+  </style>
+</head>
+<body>
+
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="site-header">
+    <div class="container">
+
+      <a href="/" class="wordmark" aria-label="Concept Inc. home">
+        <img src="../../assets/logo v1.png" alt="Concept Inc." class="wordmark-img">
+      </a>
+
+      <div class="header-right">
+
+        <nav aria-label="Primary navigation">
+          <ul class="site-nav">
+            <li><a href="/what-we-do">What We Do</a></li>
+            <li class="has-dropdown">
+              <a href="#" class="dropdown-toggle" aria-current="page">Packages <span class="chevron" aria-hidden="true">▾</span></a>
+              <ul class="dropdown">
+                <li><a href="/packages/weddings">Weddings</a></li>
+                <li><a href="/packages/corporate">Corporate</a></li>
+                <li><a href="/packages/gear-hire" aria-current="page">Gear hire</a></li>
+                <li><a href="/packages/bespoke">Bespoke quote</a></li>
+              </ul>
+            </li>
+            <li><a href="/curated-experiences">Curated Experiences</a></li>
+            <li><a href="/portfolio">Portfolio</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <a href="/contact" class="btn btn-black btn-sm header-quote">Get a quote</a>
+          <span class="mobile-toggle" aria-label="Open menu">Menu</span>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       HERO
+       Short and scannable — buyers know what they want.
+       ============================================================ -->
+  <section class="hero" aria-label="Gear hire">
+
+    <div class="hero-bg" aria-hidden="true" role="img">
+      PHOTO PLACEHOLDER — Equipment laid out or stacked in storage
+    </div>
+
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <h1>Dry hire packages for any size event.</h1>
+      <p class="hero-subhead">
+        Professional audio and lighting equipment, Cape Town delivery.
+        Use our rig, or add a technician for on-site support.
+      </p>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       TIER COMPARISON
+       Basic / Standard / Pro
+       ============================================================ -->
+  <section class="gh-tiers" aria-label="Package tiers">
+    <div class="container">
+
+      <h2>Choose a package.</h2>
+      <p>Fixed-price rigs for common event sizes. All packages include delivery, setup guide, and collection.</p>
+
+      <div class="tier-grid">
+
+        <!-- Basic -->
+        <div class="tier-card">
+          <span class="tier-badge-spacer" aria-hidden="true"></span>
+          <span class="tier-name">Basic</span>
+          <span class="tier-price">R7,000</span>
+          <span class="tier-guests">Up to 50 guests</span>
+          <ul class="tier-list" aria-label="Basic package includes">
+            <li>2× PA speakers</li>
+            <li>Mixer &amp; amplifier</li>
+            <li>2× Wireless microphones</li>
+            <li>Basic lighting kit (4 par cans)</li>
+            <li>Cabling &amp; stands</li>
+            <li>Delivery &amp; collection</li>
+          </ul>
+          <a href="/contact?type=gear-hire&tier=basic" class="btn btn-outline-dark btn-sm">Enquire</a>
+        </div>
+
+        <!-- Standard — featured -->
+        <div class="tier-card tier-card--featured">
+          <span class="tier-badge">Most popular</span>
+          <span class="tier-name">Standard</span>
+          <span class="tier-price">R12,000</span>
+          <span class="tier-guests">50–100 guests</span>
+          <ul class="tier-list" aria-label="Standard package includes">
+            <li>4× PA speakers</li>
+            <li>1× Subwoofer</li>
+            <li>Digital mixer</li>
+            <li>4× Wireless microphones</li>
+            <li>Lighting kit (8 moving heads)</li>
+            <li>Hazer machine</li>
+            <li>Cabling &amp; stands</li>
+            <li>Delivery &amp; collection</li>
+          </ul>
+          <a href="/contact?type=gear-hire&tier=standard" class="btn btn-outline-light btn-sm">Enquire</a>
+        </div>
+
+        <!-- Pro -->
+        <div class="tier-card">
+          <span class="tier-badge-spacer" aria-hidden="true"></span>
+          <span class="tier-name">Pro</span>
+          <span class="tier-price">R20,000</span>
+          <span class="tier-guests">100+ guests</span>
+          <ul class="tier-list" aria-label="Pro package includes">
+            <li>Line array system (8 elements)</li>
+            <li>Digital mixing console</li>
+            <li>6× Wireless microphones</li>
+            <li>Full lighting rig (16 moving heads + LED bars)</li>
+            <li>Hazer + CO₂</li>
+            <li>Staging (2m × 4m)</li>
+            <li>Cabling &amp; stands</li>
+            <li>Delivery &amp; collection</li>
+          </ul>
+          <a href="/contact?type=gear-hire&tier=pro" class="btn btn-outline-dark btn-sm">Enquire</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ADD-ONS STRIP
+       4 items. Flat and table-like.
+       ============================================================ -->
+  <section class="gh-addons" aria-label="Add-ons">
+    <div class="container">
+
+      <h2>Add-ons</h2>
+      <p>Bolt onto any package. Prices confirmed at enquiry.</p>
+
+      <div class="addon-grid">
+
+        <div class="addon-item">
+          <p class="addon-label">Lighting kit upgrade</p>
+          <p class="addon-price">From R2,500</p>
+          <p class="addon-desc">Additional moving heads or LED bars — size of uplift depends on existing package.</p>
+        </div>
+
+        <div class="addon-item">
+          <p class="addon-label">Subwoofer</p>
+          <p class="addon-price">From R800</p>
+          <p class="addon-desc">Single or double sub — specify if you need extended low-end for music-heavy events.</p>
+        </div>
+
+        <div class="addon-item">
+          <p class="addon-label">Wireless mic kit</p>
+          <p class="addon-price">From R500</p>
+          <p class="addon-desc">Additional handheld or lapel wireless channel, with receiver and spare batteries.</p>
+        </div>
+
+        <div class="addon-item">
+          <p class="addon-label">Delivery &amp; setup</p>
+          <p class="addon-price">From R1,200</p>
+          <p class="addon-desc">We deliver, set up, and run a quick test — you take it from there. No technician on call.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       WET HIRE CALLOUT
+       Technician support option. Brand black.
+       ============================================================ -->
+  <section class="gh-wet-hire" aria-label="Wet hire option">
+    <div class="container">
+      <div class="wet-hire-inner">
+
+        <div>
+          <span class="wet-hire-label">Wet hire</span>
+          <h2>Want a technician on site?</h2>
+          <p>
+            Our dry hire packages are designed for clients who know their way around
+            a rig — or who have crew on hand. If you'd rather have a Concept Inc.
+            technician operating the gear throughout your event, we can include that.
+            Rates are based on event duration and complexity. Ask when you enquire.
+          </p>
+        </div>
+
+        <a href="/contact?type=gear-hire&option=wet-hire" class="btn btn-outline-light">Ask about wet hire</a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       EQUIPMENT CATEGORIES
+       6 inventory categories. "View all gear" link TBD.
+       ============================================================ -->
+  <section class="gh-categories" aria-label="Equipment categories">
+    <div class="container">
+
+      <div class="gh-categories-header">
+        <h2>What's in the inventory.</h2>
+        <a href="/gear">View all gear</a>
+      </div>
+
+      <div class="cat-grid">
+
+        <div class="cat-item">
+          <div class="cat-icon img-placeholder" role="img" aria-label="Speakers icon" aria-hidden="true"></div>
+          <h3>Speakers</h3>
+          <p>Line arrays, point source systems, stage monitors, delay fills. Multiple brands and configurations.</p>
+        </div>
+
+        <div class="cat-item">
+          <div class="cat-icon img-placeholder" role="img" aria-label="Mixers icon" aria-hidden="true"></div>
+          <h3>Mixers</h3>
+          <p>Digital and analogue mixing consoles from small FOH desks to full-size festival boards.</p>
+        </div>
+
+        <div class="cat-item">
+          <div class="cat-icon img-placeholder" role="img" aria-label="Lighting icon" aria-hidden="true"></div>
+          <h3>Lighting</h3>
+          <p>Moving heads, LED par cans, LED bars, hazers, strobes, and wash lights. All on DMX control.</p>
+        </div>
+
+        <div class="cat-item">
+          <div class="cat-icon img-placeholder" role="img" aria-label="Microphones icon" aria-hidden="true"></div>
+          <h3>Microphones</h3>
+          <p>Wired and wireless handheld, lapel, and headset options. Multiple simultaneous channels available.</p>
+        </div>
+
+        <div class="cat-item">
+          <div class="cat-icon img-placeholder" role="img" aria-label="DJ gear icon" aria-hidden="true"></div>
+          <h3>DJ Gear</h3>
+          <p>Turntables, CDJs, DJ mixers, and controller setups. Configurable for any rider requirement.</p>
+        </div>
+
+        <div class="cat-item">
+          <div class="cat-icon img-placeholder" role="img" aria-label="Staging icon" aria-hidden="true"></div>
+          <h3>Staging</h3>
+          <p>Modular staging in standard and custom dimensions. Risers, stairs, and safety rails included.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       DELIVERY INFO STRIP
+       3 columns. Placeholder text where Duane to confirm.
+       ============================================================ -->
+  <section class="gh-delivery" aria-label="Delivery and logistics">
+    <div class="container">
+
+      <h2>Logistics &amp; booking</h2>
+
+      <div class="delivery-grid">
+
+        <div class="delivery-col">
+          <h3>Cape Town delivery</h3>
+          <p>
+            We deliver to all major Cape Town venues — CBD, Atlantic Seaboard,
+            Southern Suburbs, Winelands, and surrounding areas.
+            Delivery radius and charges are confirmed at quote stage.
+          </p>
+        </div>
+
+        <div class="delivery-col">
+          <h3>Self-collection</h3>
+          <p>
+            Collect from our facility during business hours. Pre-arrangement
+            required — equipment is prepped and packed for your event specification.
+          </p>
+          <span class="delivery-placeholder">Address — Duane to confirm</span>
+        </div>
+
+        <div class="delivery-col">
+          <h3>Deposit &amp; payment</h3>
+          <p>
+            50% deposit required to confirm booking.
+            Balance due prior to equipment leaving our facility.
+          </p>
+          <span class="delivery-placeholder">Full payment terms — Duane to confirm</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER CTA BAND
+       Black button. Zero orange on this page.
+       ============================================================ -->
+  <section class="footer-cta" aria-label="Get a quote">
+    <div class="container">
+      <h2>Not sure which package fits?</h2>
+      <p class="footer-cta-note">Send us your event details and we'll recommend the right rig.</p>
+      <a href="/contact?type=gear-hire" class="btn btn-black">Enquire now</a>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+
+      <div class="footer-top">
+        <a href="/" class="footer-wordmark" aria-label="Concept Inc. home">
+          <img src="../../assets/logo v1 light.png" alt="Concept Inc." style="height:40px;width:auto;display:block;">
+        </a>
+        <p class="footer-meta">
+          Cape Town, South Africa<br>
+          hello@conceptinc.co.za
+        </p>
+      </div>
+
+      <nav aria-label="Footer links">
+        <div class="footer-links">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Privacy policy</a>
+          <span class="footer-copy">© 2026 Concept Inc.</span>
+        </div>
+      </nav>
+
+    </div>
+  </footer>
+
+
+</body>
+</html>
