@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Concept Inc.</title>
+  <meta name="description" content="Concept Inc. was founded by Duane and Gareth — performers who crossed into production. Cape Town's turnkey event production company.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/styles.css">
+
+  <style>
+    /*
+     * About page — page-specific styles.
+     * Most human page on the site. Warmer, more storytelling.
+     * Orange: 2× — philosophy numbers (#1), footer CTA btn (#2).
+     */
+
+    /* =============================================
+       HERO — warmer, more personal than service pages
+       ============================================= */
+    .hero { min-height: 58vh; }
+    .hero-subhead { margin-bottom: 0; }
+    @media (min-width: 768px) { .hero { min-height: 68vh; } }
+
+    /* =============================================
+       FOUNDERS — 2-col side by side on desktop
+       ============================================= */
+    .about-founders {
+      padding: 5.5rem 0;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .about-founders > .container > .section-label {
+      margin-bottom: 2.5rem;
+    }
+
+    .founders-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .founders-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3.5rem;
+      }
+    }
+
+    .founder-portrait {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      max-height: 420px;
+      background-color: var(--placeholder);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--mid-grey);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      object-fit: cover;
+    }
+
+    .founder-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.015em;
+      margin-bottom: 0.2rem;
+    }
+
+    .founder-role {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      display: block;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .founder-bio p {
+      font-size: 0.95rem;
+      color: var(--soft-black);
+      line-height: 1.85;
+      margin-bottom: 1.1rem;
+    }
+
+    .founder-bio p:last-child { margin-bottom: 0; }
+
+    /* =============================================
+       PHILOSOPHY — 4 principles.
+       Orange step numbers. 2-col on desktop.
+       ============================================= */
+    .about-philosophy {
+      padding: 5.5rem 0;
+      background-color: var(--soft-grey);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .about-philosophy > .container > .section-label {
+      margin-bottom: 0.6rem;
+    }
+
+    .about-philosophy > .container > h2 {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+    }
+
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    @media (min-width: 768px) {
+      .philosophy-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0 1px;
+        background-color: var(--light-grey);
+        border: 1px solid var(--light-grey);
+      }
+    }
+
+    .philosophy-item {
+      padding: 2rem 0;
+      border-top: 1px solid var(--light-grey);
+    }
+
+    @media (min-width: 768px) {
+      .philosophy-item {
+        padding: 2.25rem 2rem;
+        background-color: var(--soft-grey);
+        border-top: none;
+      }
+    }
+
+    .philosophy-num {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange); /* orange #1 */
+      margin-bottom: 0.65rem;
+    }
+
+    .philosophy-item h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.65rem;
+      line-height: 1.3;
+    }
+
+    .philosophy-item p {
+      font-size: 0.875rem;
+      color: var(--mid-grey);
+      line-height: 1.75;
+    }
+
+    /* =============================================
+       CAPABILITY STRIP
+       4 package routes — routing section.
+       ============================================= */
+    .about-capabilities {
+      padding: 4.5rem 0;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .about-capabilities > .container > .section-label {
+      margin-bottom: 0.6rem;
+    }
+
+    .about-capabilities > .container > h2 {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.02em;
+      margin-bottom: 2.5rem;
+    }
+
+    .capability-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background-color: var(--light-grey);
+      border: 1px solid var(--light-grey);
+    }
+
+    @media (min-width: 560px) {
+      .capability-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 900px) {
+      .capability-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .capability-card {
+      background-color: var(--off-white);
+      padding: 1.75rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .capability-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 0.4rem;
+    }
+
+    .capability-card p {
+      font-size: 0.82rem;
+      color: var(--mid-grey);
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 1.25rem;
+    }
+
+    /* =============================================
+       PARTNERS & NETWORK
+       Logo placeholders + network description.
+       ============================================= */
+    .about-partners {
+      padding: 4.5rem 0;
+      background-color: var(--soft-grey);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .partners-inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    @media (min-width: 768px) {
+      .partners-inner {
+        grid-template-columns: 1fr 2fr;
+        gap: 5rem;
+        align-items: start;
+      }
+    }
+
+    .partners-intro .section-label {
+      margin-bottom: 0.6rem;
+    }
+
+    .partners-intro h2 {
+      font-size: clamp(1.3rem, 3.5vw, 1.9rem);
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .partners-intro p {
+      font-size: 0.875rem;
+      color: var(--mid-grey);
+      line-height: 1.75;
+    }
+
+    .partners-logos {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background-color: var(--light-grey);
+      border: 1px solid var(--light-grey);
+    }
+
+    @media (min-width: 480px) {
+      .partners-logos { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .partner-logo-ph {
+      background-color: var(--soft-grey);
+      padding: 1.5rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .partner-logo-inner {
+      width: 90px;
+      height: 28px;
+      background-color: var(--light-grey);
+    }
+
+    .partner-logo-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--mid-grey);
+      text-align: center;
+    }
+
+    .partner-named {
+      flex-direction: column;
+      gap: 0.4rem;
+      background-color: var(--soft-grey);
+      padding: 1.25rem;
+    }
+
+    .about-partners .partners-note {
+      font-size: 0.78rem;
+      color: var(--mid-grey);
+      line-height: 1.65;
+      margin-top: 1.25rem;
+      font-style: italic;
+    }
+
+    /* =============================================
+       GEAR INVENTORY TEASER
+       Brand black. Split: image left, content right.
+       ============================================= */
+    .about-gear {
+      background-color: var(--black);
+      border-bottom: 1px solid rgba(250, 250, 247, 0.08);
+    }
+
+    .gear-inner {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 768px) {
+      .gear-inner { grid-template-columns: 3fr 2fr; }
+    }
+
+    .gear-img {
+      min-height: 280px;
+      background-color: var(--placeholder);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--mid-grey);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    @media (min-width: 768px) { .gear-img { min-height: 400px; } }
+
+    .gear-content {
+      padding: 3rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
+    }
+
+    @media (min-width: 768px) { .gear-content { padding: 3.5rem 3rem; } }
+
+    .gear-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(250, 250, 247, 0.3);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+
+    .gear-content h2 {
+      font-size: clamp(1.2rem, 3vw, 1.7rem);
+      font-weight: 700;
+      color: var(--off-white);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .gear-content > p {
+      font-size: 0.875rem;
+      color: rgba(250, 250, 247, 0.5);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .gear-list {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .gear-list li {
+      font-size: 0.82rem;
+      color: rgba(250, 250, 247, 0.6);
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(250, 250, 247, 0.08);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .gear-list li::before {
+      content: '—';
+      color: rgba(250, 250, 247, 0.2);
+      flex-shrink: 0;
+    }
+
+  </style>
+</head>
+<body>
+
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="site-header">
+    <div class="container">
+
+      <a href="/" class="wordmark" aria-label="Concept Inc. home">
+        <img src="../assets/logo v1.png" alt="Concept Inc." class="wordmark-img">
+      </a>
+
+      <div class="header-right">
+
+        <nav aria-label="Primary navigation">
+          <ul class="site-nav">
+            <li><a href="/what-we-do">What We Do</a></li>
+            <li class="has-dropdown">
+              <a href="#" class="dropdown-toggle">Packages <span class="chevron" aria-hidden="true">▾</span></a>
+              <ul class="dropdown">
+                <li><a href="/packages/weddings">Weddings</a></li>
+                <li><a href="/packages/corporate">Corporate</a></li>
+                <li><a href="/packages/gear-hire">Gear hire</a></li>
+                <li><a href="/packages/bespoke">Bespoke quote</a></li>
+              </ul>
+            </li>
+            <li><a href="/curated-experiences">Curated Experiences</a></li>
+            <li><a href="/portfolio">Portfolio</a></li>
+            <li><a href="/about" aria-current="page">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <a href="/contact" class="btn btn-black btn-sm header-quote">Get a quote</a>
+          <span class="mobile-toggle" aria-label="Open menu">Menu</span>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       HERO — personal, warmer than service pages. No CTAs.
+       ============================================================ -->
+  <section class="hero" aria-label="About Concept Inc.">
+
+    <div class="hero-bg" aria-hidden="true" role="img">
+      PHOTO PLACEHOLDER — Behind-the-scenes or candid founders shot on site
+    </div>
+
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <h1>Performers who happen<br>to own rigging.</h1>
+      <p class="hero-subhead">
+        Concept Inc. was built by two people who came up through live
+        performance before they ever touched a lighting desk. That order
+        of things matters — it changes what you pay attention to.
+      </p>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       FOUNDERS — Duane and Gareth side by side.
+       ============================================================ -->
+  <section class="about-founders" aria-label="Our founders">
+    <div class="container">
+
+      <p class="section-label">The founders</p>
+
+      <div class="founders-grid">
+
+        <!-- Duane -->
+        <div class="founder">
+          <div class="founder-portrait img-placeholder" role="img" aria-label="Duane — portrait placeholder">
+            Portrait placeholder — Duane
+          </div>
+          <h2 class="founder-name">Duane [Surname]</h2>
+          <span class="founder-role">Co-founder · Production Director</span>
+          <div class="founder-bio">
+            <p>
+              I've been in live production for over twenty years — sound
+              engineering, touring rigs, festival stages. The kind of work
+              where you learn that no brief survives contact with a venue,
+              and you'd better be comfortable making decisions quickly.
+            </p>
+            <p>
+              Concept Inc. started from a simple observation: clients didn't
+              need equipment rental. They needed someone who could look at
+              a brief, look at a venue, and tell them exactly what would
+              work — and then be there to run it. We built a company that
+              does that.
+            </p>
+            <p>
+              My job on every event is to make sure the technical side is
+              invisible. Not because it isn't there, but because it's working.
+            </p>
+          </div>
+        </div>
+
+        <!-- Gareth -->
+        <div class="founder">
+          <div class="founder-portrait img-placeholder" role="img" aria-label="Gareth — portrait placeholder">
+            Portrait placeholder — Gareth
+          </div>
+          <h2 class="founder-name">Gareth [Surname]</h2>
+          <span class="founder-role">Co-founder · Creative Director</span>
+          <div class="founder-bio">
+            <p>
+              My background is performance — dance, physical theatre, live
+              shows. I came into production from the audience's side, which
+              means I've always thought about what people feel before I think
+              about what we're running.
+            </p>
+            <p>
+              That instinct changes how you spec a show. The lighting rig
+              isn't there to illuminate the room — it's there to tell people
+              what to feel at each moment. The sound system isn't there to
+              be loud — it's there to hold the space.
+            </p>
+            <p>
+              I lead the Curated Experiences side of what we do. For those
+              projects, the production and the creative aren't two separate
+              briefs. They're the same brief.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       PHILOSOPHY — 4 principles. Orange step numbers.
+       ============================================================ -->
+  <section class="about-philosophy" aria-label="Our philosophy">
+    <div class="container">
+
+      <p class="section-label">How we think</p>
+      <h2>What we believe about production.</h2>
+
+      <div class="philosophy-grid">
+
+        <div class="philosophy-item">
+          <span class="philosophy-num">01</span>
+          <h3>We solve problems on the spot.</h3>
+          <p>
+            Production is live. Venues change, timelines compress, gear
+            fails. We don't escalate these to the client — we have
+            contingencies, we adapt, and we tell you afterwards if it's
+            something you need to know. Your event keeps moving.
+          </p>
+        </div>
+
+        <div class="philosophy-item">
+          <span class="philosophy-num">02</span>
+          <h3>We curate, not just supply.</h3>
+          <p>
+            Anyone can deliver equipment. We think about whether the
+            equipment is right for the room, the brief, and the audience.
+            If a simpler rig will serve you better, we'll tell you. If
+            you need more than you've asked for, we'll say that too.
+          </p>
+        </div>
+
+        <div class="philosophy-item">
+          <span class="philosophy-num">03</span>
+          <h3>Every event is its own concept.</h3>
+          <p>
+            We don't template our thinking. A year-end function in a wine
+            farm has a completely different production logic to a conference
+            in a hotel ballroom. We start from the brief, not from a
+            standard spec.
+          </p>
+        </div>
+
+        <div class="philosophy-item">
+          <span class="philosophy-num">04</span>
+          <h3>We stay on for the show.</h3>
+          <p>
+            The same people who took your brief and designed your production
+            are there on the day, operating it. We don't hand off at
+            load-in. If something needs calling in the moment, the person
+            making that call knows your event.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CAPABILITY STRIP — 4 package routes
+       ============================================================ -->
+  <section class="about-capabilities" aria-label="What we do">
+    <div class="container">
+
+      <p class="section-label">What we do</p>
+      <h2>Every route we can take you.</h2>
+
+      <div class="capability-grid">
+
+        <div class="capability-card">
+          <h3>Weddings</h3>
+          <p>Full sound and lighting for ceremonies and receptions — from intimate garden weddings to large reception productions.</p>
+          <a href="/packages/weddings" class="btn btn-black btn-sm">See wedding packages</a>
+        </div>
+
+        <div class="capability-card">
+          <h3>Corporate</h3>
+          <p>Audio, lighting, and full AV for conferences, galas, product launches, and activations. One team, one contact.</p>
+          <a href="/packages/corporate" class="btn btn-black btn-sm">See corporate packages</a>
+        </div>
+
+        <div class="capability-card">
+          <h3>Curated Experiences</h3>
+          <p>Choreography, performance, speciality acts, and immersive production for events that need to be designed, not selected.</p>
+          <a href="/curated-experiences" class="btn btn-black btn-sm">See curated work</a>
+        </div>
+
+        <div class="capability-card">
+          <h3>Gear hire</h3>
+          <p>Dry hire audio and lighting packages with optional setup and technician support. Cape Town delivery.</p>
+          <a href="/packages/gear-hire" class="btn btn-black btn-sm">See gear hire</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       PARTNERS & NETWORK
+       Supplier partners + key venue relationships.
+       ============================================================ -->
+  <section class="about-partners" aria-label="Partners and network">
+    <div class="container">
+      <div class="partners-inner">
+
+        <!-- Left: intro -->
+        <div class="partners-intro">
+          <p class="section-label">Our network</p>
+          <h2>We don't work alone.</h2>
+          <p>
+            Behind every production is a broader crew — riggers, specialist
+            performers, lighting programmers, and venue partners who we've
+            built relationships with over years. Our extended network gives
+            us the depth to scale from a 50-person dinner to a 2,000-person
+            festival without changing our standards.
+          </p>
+          <p style="margin-top:1rem; font-size: 0.875rem; color: var(--mid-grey); line-height:1.75;">
+            We have established relationships with a number of Cape Town
+            venues, including Simon's Restaurant and Sky Hotel, and work
+            regularly with a trusted pool of performers, riggers, and
+            technical suppliers across the Western Cape.
+          </p>
+        </div>
+
+        <!-- Right: logo placeholders -->
+        <div>
+          <div class="partners-logos">
+
+            <div class="partner-logo-ph">
+              <div>
+                <div class="partner-logo-inner"></div>
+              </div>
+            </div>
+
+            <div class="partner-logo-ph">
+              <div>
+                <div class="partner-logo-inner"></div>
+              </div>
+            </div>
+
+            <div class="partner-logo-ph" style="flex-direction:column; gap:0.4rem; align-items:center; justify-content:center; padding:1.25rem;">
+              <div class="partner-logo-inner"></div>
+              <span class="partner-logo-label">Simon's Restaurant</span>
+            </div>
+
+            <div class="partner-logo-ph" style="flex-direction:column; gap:0.4rem; align-items:center; justify-content:center; padding:1.25rem;">
+              <div class="partner-logo-inner"></div>
+              <span class="partner-logo-label">Sky Hotel</span>
+            </div>
+
+            <div class="partner-logo-ph">
+              <div>
+                <div class="partner-logo-inner"></div>
+              </div>
+            </div>
+
+            <div class="partner-logo-ph">
+              <div>
+                <div class="partner-logo-inner"></div>
+              </div>
+            </div>
+
+          </div>
+          <p class="partners-note">Partner logos — Duane to provide final list and assets.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       GEAR INVENTORY TEASER
+       Brand black. Image left, content right.
+       ============================================================ -->
+  <section class="about-gear" aria-label="Our equipment">
+    <div class="container" style="padding:0; max-width:100%;">
+      <div class="gear-inner">
+
+        <div class="gear-img" role="img" aria-label="Gear / equipment photo placeholder">
+          PHOTO PLACEHOLDER — Equipment in the truck or laid out pre-load-in
+        </div>
+
+        <div class="gear-content">
+          <span class="gear-label">Gear inventory</span>
+          <h2>We own our equipment.<br>Here's what's in the truck.</h2>
+          <p>
+            We're not a hire company that brokers other people's gear.
+            Every item we put on your spec is ours — maintained, tested,
+            and loaded by our own crew.
+          </p>
+          <ul class="gear-list" aria-label="Equipment categories">
+            <li>Line array and point-source PA systems</li>
+            <li>Digital mixing consoles — FOH and monitor</li>
+            <li>Automated moving heads and LED fixtures</li>
+            <li>Wireless microphone systems</li>
+            <li>DJ gear, CDJs, and controllers</li>
+            <li>Staging and risers</li>
+          </ul>
+          <a href="/packages/gear-hire" class="btn btn-outline-light">See gear hire packages</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER CTA
+       ============================================================ -->
+  <section class="footer-cta" aria-label="Get in touch">
+    <div class="container">
+      <h2>Want to work with us?</h2>
+      <a href="/contact" class="btn btn-orange">Get in touch</a>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+
+      <div class="footer-top">
+        <a href="/" class="footer-wordmark" aria-label="Concept Inc. home">
+          <img src="../assets/logo v1 light.png" alt="Concept Inc." style="height:40px;width:auto;display:block;">
+        </a>
+        <p class="footer-meta">
+          Cape Town, South Africa<br>
+          hello@conceptinc.co.za
+        </p>
+      </div>
+
+      <nav aria-label="Footer links">
+        <div class="footer-links">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Privacy policy</a>
+          <span class="footer-copy">© 2026 Concept Inc.</span>
+        </div>
+      </nav>
+
+    </div>
+  </footer>
+
+
+</body>
+</html>
