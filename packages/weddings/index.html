@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Production Packages — Concept Inc.</title>
+  <meta name="description" content="Professional sound and lighting packages for Cape Town weddings. From intimate ceremonies to full reception productions. From R7,000.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../shared/styles.css">
+
+  <style>
+    /* =============================================
+       WEDDINGS PAGE — page-specific styles
+       ============================================= */
+
+    /* Hero — emotional, warmer tone */
+    .hero { min-height: 65vh; }
+    .hero-subhead { margin-bottom: 0; }
+    @media (min-width: 768px) { .hero { min-height: 75vh; } }
+
+    /* =============================================
+       PACKAGES SECTION
+       ============================================= */
+    .packages-section {
+      padding: 5rem 0;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .packages-intro {
+      margin-bottom: 3rem;
+      max-width: 560px;
+    }
+
+    .packages-intro h2 {
+      font-size: clamp(1.6rem, 4vw, 2.25rem);
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.6rem;
+    }
+
+    .packages-intro p {
+      font-size: 0.9rem;
+      color: var(--mid-grey);
+      line-height: 1.65;
+    }
+
+    /* Three-column card grid */
+    .package-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background-color: var(--light-grey);
+      border: 1px solid var(--light-grey);
+    }
+
+    @media (min-width: 768px) {
+      .package-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* Base card */
+    .package-card {
+      background-color: var(--off-white);
+      padding: 2rem 1.75rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* Featured (middle) card — brand black */
+    .package-card--featured {
+      background-color: var(--black);
+    }
+
+    .featured-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1.25rem;
+    }
+
+    /* Spacer so non-featured cards align with featured below the badge */
+    .badge-spacer {
+      display: block;
+      height: 1.6rem; /* matches badge line-height + margin */
+      margin-bottom: 1.25rem;
+    }
+
+    .tier-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.2rem;
+    }
+
+    .package-card--featured .tier-name { color: var(--off-white); }
+
+    .tier-note {
+      font-size: 0.78rem;
+      color: var(--mid-grey);
+      margin-bottom: 1.25rem;
+    }
+
+    .package-card--featured .tier-note { color: rgba(250, 250, 247, 0.5); }
+
+    .package-price {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+
+    .package-card--featured .package-price { color: var(--off-white); }
+
+    .price-note {
+      font-size: 0.72rem;
+      color: var(--mid-grey);
+      margin-bottom: 1.75rem;
+    }
+
+    .package-card--featured .price-note { color: rgba(250, 250, 247, 0.4); }
+
+    /* Inclusion list */
+    .package-inclusions {
+      list-style: none;
+      flex: 1; /* push CTA to bottom */
+      margin-bottom: 2rem;
+      border-top: 1px solid var(--light-grey);
+      padding-top: 1.25rem;
+    }
+
+    .package-card--featured .package-inclusions {
+      border-top-color: rgba(250, 250, 247, 0.12);
+    }
+
+    .package-inclusions li {
+      font-size: 0.85rem;
+      color: var(--soft-black);
+      padding: 0.35rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      line-height: 1.4;
+    }
+
+    .package-card--featured .package-inclusions li { color: rgba(250, 250, 247, 0.8); }
+
+    .package-inclusions li::before {
+      content: '✓';
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--mid-grey);
+      margin-top: 0.15rem;
+      flex-shrink: 0;
+    }
+
+    .package-card--featured .package-inclusions li::before {
+      color: rgba(250, 250, 247, 0.4);
+    }
+
+    /* =============================================
+       INCLUSIONS STRIP
+       "What's included in every package"
+       ============================================= */
+    .inclusions-strip {
+      padding: 4rem 0;
+      background-color: var(--soft-grey);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .inclusions-strip h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.01em;
+      margin-bottom: 2.25rem;
+    }
+
+    .inclusions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .inclusions-grid { grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+    }
+
+    .inclusion-item { display: flex; flex-direction: column; gap: 0.5rem; }
+
+    /* Icon placeholder */
+    .inclusion-icon {
+      width: 2rem;
+      height: 2rem;
+      background-color: var(--light-grey);
+      flex-shrink: 0;
+    }
+
+    .inclusion-item h3 {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .inclusion-item p {
+      font-size: 0.8rem;
+      color: var(--mid-grey);
+      line-height: 1.55;
+    }
+
+    /* =============================================
+       FAQ ACCORDION
+       CSS-only via <details> / <summary>
+       ============================================= */
+    .faq-section {
+      padding: 4.5rem 0;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .faq-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.015em;
+      margin-bottom: 2rem;
+    }
+
+    .faq-list { max-width: 760px; }
+
+    .faq-item {
+      border-top: 1px solid var(--light-grey);
+    }
+
+    .faq-item:last-child { border-bottom: 1px solid var(--light-grey); }
+
+    .faq-item summary {
+      list-style: none;
+      padding: 1.25rem 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--black);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      user-select: none;
+    }
+
+    /* Remove default marker in WebKit */
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    /* +/− indicator */
+    .faq-item summary::after {
+      content: '+';
+      font-size: 1.25rem;
+      font-weight: 300;
+      color: var(--mid-grey);
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .faq-item[open] > summary::after { content: '−'; }
+
+    .faq-item[open] > summary { color: var(--black); }
+
+    .faq-answer {
+      padding: 0 2rem 1.5rem 0;
+      font-size: 0.875rem;
+      color: var(--mid-grey);
+      line-height: 1.75;
+      max-width: 640px;
+    }
+
+    /* =============================================
+       "NOT SURE WHICH PACKAGE?" BAND
+       Secondary conversion — routes to bespoke
+       ============================================= */
+    .notsure-band {
+      background-color: var(--black);
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    .notsure-band h2 {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 700;
+      color: var(--off-white);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+    }
+
+    .notsure-band p {
+      font-size: 0.9rem;
+      color: rgba(250, 250, 247, 0.6);
+      line-height: 1.6;
+      max-width: 440px;
+      margin: 0 auto 1.75rem;
+    }
+
+    /* =============================================
+       PORTFOLIO STRIP
+       3–4 wedding portfolio thumbnails
+       ============================================= */
+    .portfolio-strip {
+      padding: 4rem 0;
+      background-color: var(--off-white);
+    }
+
+    .strip-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+
+    .strip-header h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.015em;
+    }
+
+    .strip-header a {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .portfolio-thumbs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+
+    @media (min-width: 768px) {
+      .portfolio-thumbs { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .thumb-item { display: flex; flex-direction: column; gap: 0.4rem; }
+
+    .thumb-item .img-placeholder { aspect-ratio: 4 / 3; width: 100%; }
+
+    .thumb-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--mid-grey);
+    }
+
+  </style>
+</head>
+<body>
+
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="site-header">
+    <div class="container">
+
+      <a href="/" class="wordmark" aria-label="Concept Inc. home">
+        <img src="../../assets/logo v1.png" alt="Concept Inc." class="wordmark-img">
+      </a>
+
+      <div class="header-right">
+
+        <nav aria-label="Primary navigation">
+          <ul class="site-nav">
+            <li><a href="/what-we-do">What We Do</a></li>
+            <li class="has-dropdown">
+              <a href="#" class="dropdown-toggle" aria-current="page">Packages <span class="chevron" aria-hidden="true">▾</span></a>
+              <ul class="dropdown">
+                <li><a href="/packages/weddings" aria-current="page">Weddings</a></li>
+                <li><a href="/packages/corporate">Corporate</a></li>
+                <li><a href="/packages/gear-hire">Gear hire</a></li>
+                <li><a href="/packages/bespoke">Bespoke quote</a></li>
+              </ul>
+            </li>
+            <li><a href="/curated-experiences">Curated Experiences</a></li>
+            <li><a href="/portfolio">Portfolio</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <a href="/contact" class="btn btn-black btn-sm header-quote">Get a quote</a>
+          <span class="mobile-toggle" aria-label="Open menu">Menu</span>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       HERO
+       Warm, emotional — couples and planners, not technical buyers.
+       Photo: wedding reception or ceremony in beautiful light.
+       ============================================================ -->
+  <section class="hero" aria-label="Page hero">
+
+    <div class="hero-bg" aria-hidden="true" role="img">
+      PHOTO PLACEHOLDER — Wedding reception or ceremony, beautiful atmospheric lighting
+    </div>
+
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <h1>Sound, light, and atmosphere<br>for your wedding day.</h1>
+      <p class="hero-subhead">
+        We handle every detail of the production so you don't have to think about it.
+        From the ceremony mic to the last song on the dancefloor — turnkey audio and
+        lighting for couples and planners who want it done properly.
+      </p>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       PACKAGE COMPARISON CARDS
+       Three tiers. Middle card featured as "Most popular".
+       Tier names are placeholder — Duane to confirm.
+       ============================================================ -->
+  <section class="packages-section" aria-label="Wedding packages">
+    <div class="container">
+
+      <div class="packages-intro">
+        <h2>Three packages. One standard of service.</h2>
+        <p>Every package includes a pre-event consultation, professional setup and teardown,
+           and a dedicated technician on the day. Prices are all-inclusive — no hidden extras.</p>
+      </div>
+
+      <div class="package-grid">
+
+        <!-- TIER 1: Essential -->
+        <div class="package-card">
+          <span class="badge-spacer" aria-hidden="true"></span>
+          <p class="tier-name">Essential</p>
+          <p class="tier-note">Intimate ceremonies — up to 50 guests</p>
+          <p class="package-price">R7,000</p>
+          <p class="price-note">All-inclusive · VAT excluded</p>
+          <ul class="package-inclusions">
+            <li>PA system for ceremony &amp; reception</li>
+            <li>Wireless mic for officiant &amp; speeches</li>
+            <li>Music playback (couple's device or playlist)</li>
+            <li>Uplighting — 4 fixtures</li>
+            <li>Professional setup &amp; packdown</li>
+            <li>1 on-site technician</li>
+          </ul>
+          <a href="/contact?package=essential" class="btn btn-outline-dark">See details</a>
+        </div>
+
+        <!-- TIER 2: Signature — MOST POPULAR -->
+        <!-- ORANGE #1: featured badge label + CTA button -->
+        <div class="package-card package-card--featured">
+          <span class="featured-badge">Most popular</span>
+          <p class="tier-name">Signature</p>
+          <p class="tier-note">Receptions — up to 100 guests</p>
+          <p class="package-price">R12,000</p>
+          <p class="price-note">All-inclusive · VAT excluded</p>
+          <ul class="package-inclusions">
+            <li>Full PA — ceremony, cocktail hour &amp; reception</li>
+            <li>Wireless mic system (officiant + speech handheld)</li>
+            <li>DJ setup or live music support</li>
+            <li>Uplighting — up to 12 fixtures</li>
+            <li>Dancefloor sound optimised for music</li>
+            <li>Pre-event venue walk-through</li>
+            <li>2 on-site technicians</li>
+          </ul>
+          <a href="/contact?package=signature" class="btn btn-orange">See details</a>
+        </div>
+
+        <!-- TIER 3: Showcase -->
+        <div class="package-card">
+          <span class="badge-spacer" aria-hidden="true"></span>
+          <p class="tier-name">Showcase</p>
+          <p class="tier-note">Full production — 100+ guests</p>
+          <p class="package-price">R20,000</p>
+          <p class="price-note">All-inclusive · VAT excluded</p>
+          <ul class="package-inclusions">
+            <li>Full production — ceremony, cocktail &amp; reception</li>
+            <li>Line array or larger PA system</li>
+            <li>Expanded lighting — moving heads &amp; effects</li>
+            <li>Multi-channel wireless mic system</li>
+            <li>DJ &amp; live performance support</li>
+            <li>Dedicated lighting operator</li>
+            <li>Full crew — 3+ technicians on site</li>
+          </ul>
+          <a href="/contact?package=showcase" class="btn btn-outline-dark">See details</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       WHAT'S INCLUDED IN EVERY PACKAGE
+       4 trust items — reinforce baseline confidence.
+       ============================================================ -->
+  <section class="inclusions-strip" aria-label="What's included in every package">
+    <div class="container">
+
+      <h2>What's included in every package.</h2>
+
+      <div class="inclusions-grid">
+
+        <div class="inclusion-item">
+          <div class="inclusion-icon" aria-hidden="true"></div>
+          <h3>Professional setup &amp; teardown</h3>
+          <p>We arrive early, set everything up properly, and pack down after the last guest leaves.</p>
+        </div>
+
+        <div class="inclusion-item">
+          <div class="inclusion-icon" aria-hidden="true"></div>
+          <h3>On-site technician</h3>
+          <p>A dedicated engineer is present throughout your event — not just for setup.</p>
+        </div>
+
+        <div class="inclusion-item">
+          <div class="inclusion-icon" aria-hidden="true"></div>
+          <h3>Backup equipment</h3>
+          <p>Critical spares travel on every truck. If something fails, you won't hear it.</p>
+        </div>
+
+        <div class="inclusion-item">
+          <div class="inclusion-icon" aria-hidden="true"></div>
+          <h3>Pre-event consultation</h3>
+          <p>A call or site visit before the day to align on running order, sound, and look.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FAQ ACCORDION
+       CSS-only via <details> / <summary> — no JavaScript.
+       ============================================================ -->
+  <section class="faq-section" aria-label="Frequently asked questions">
+    <div class="container">
+
+      <h2>Common questions.</h2>
+
+      <div class="faq-list">
+
+        <details class="faq-item">
+          <summary>Do you DJ?</summary>
+          <p class="faq-answer">
+            We provide the sound system and can fully support a DJ you've booked separately —
+            or recommend trusted DJs we've worked with across Cape Town and the Winelands.
+            Full DJ packages are available on request. Talk to us during your consultation.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Do you provide microphones for speeches?</summary>
+          <p class="faq-answer">
+            Yes. Every package includes at minimum one wireless microphone for your officiant
+            and speeches. The Signature and Showcase tiers include a multi-channel wireless
+            system, so your MC, officiant, and speech-givers all have dedicated mics.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>What if there's a power issue on the day?</summary>
+          <p class="faq-answer">
+            We carry backup power for all critical equipment on every job, and our technicians
+            are trained to diagnose and resolve power problems without interrupting the event.
+            We've worked every kind of venue, including those with unreliable supply.
+            That contingency thinking is part of what you're paying for.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can you work with our venue?</summary>
+          <p class="faq-answer">
+            Yes. We've worked across the majority of Cape Town and Winelands venues and are
+            comfortable assessing any new space before the event. Our pre-event consultation
+            includes a venue review — whether in person or via plans and photos — so there
+            are no surprises on the day.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Do you handle outdoor weddings?</summary>
+          <p class="faq-answer">
+            Absolutely. We have weather-appropriate equipment for outdoor setups and have
+            managed everything from clifftop ceremonies to winery lawn receptions.
+            We plan for wind, sun, and contingency. Outdoor sound and lighting require
+            a different approach to indoor — we've done both enough times to get it right.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>When do you arrive on the day?</summary>
+          <p class="faq-answer">
+            Typically 2–3 hours before your first guest arrival for Essential and Signature
+            setups; 4–6 hours for Showcase builds. We agree a schedule with your coordinator
+            or planner during the pre-event call and stick to it — we know you have enough
+            logistics to manage without chasing the production team.
+          </p>
+        </details>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       "NOT SURE WHICH PACKAGE?" BAND
+       Secondary conversion — routes to bespoke quote.
+       ============================================================ -->
+  <section class="notsure-band" aria-label="Get a custom quote">
+    <div class="container">
+      <h2>Not sure which package fits?</h2>
+      <p>Every wedding is different. Tell us about your day — venue, guest count,
+         style — and we'll recommend the right setup or build you a custom quote.</p>
+      <a href="/packages/bespoke" class="btn btn-outline-light">Get a custom quote</a>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       PORTFOLIO STRIP
+       Wedding portfolio thumbnails — links to full portfolio.
+       ============================================================ -->
+  <section class="portfolio-strip" aria-label="Wedding portfolio">
+    <div class="container">
+
+      <div class="strip-header">
+        <h2>Recent wedding work</h2>
+        <a href="/portfolio?filter=weddings">View all weddings →</a>
+      </div>
+
+      <div class="portfolio-thumbs">
+
+        <div class="thumb-item">
+          <div class="img-placeholder">IMG</div>
+          <span class="thumb-label">Ceremony — Constantia</span>
+        </div>
+
+        <div class="thumb-item">
+          <div class="img-placeholder">IMG</div>
+          <span class="thumb-label">Reception — Franschhoek</span>
+        </div>
+
+        <div class="thumb-item">
+          <div class="img-placeholder">IMG</div>
+          <span class="thumb-label">Outdoor — Stellenbosch winery</span>
+        </div>
+
+        <div class="thumb-item">
+          <div class="img-placeholder">IMG</div>
+          <span class="thumb-label">Gala reception — V&amp;A Waterfront</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER CTA BAND
+       ============================================================ -->
+  <section class="footer-cta" aria-label="Get in touch">
+    <div class="container">
+      <h2>Ready to book your wedding production?</h2>
+      <!-- ORANGE #2 -->
+      <a href="/contact?type=wedding" class="btn btn-orange">Get a quote</a>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+
+      <div class="footer-top">
+        <a href="/" class="footer-wordmark" aria-label="Concept Inc. home">
+          <img src="../../assets/logo v1 light.png" alt="Concept Inc." style="height:40px;width:auto;display:block;">
+        </a>
+        <p class="footer-meta">
+          Cape Town, South Africa<br>
+          hello@conceptinc.co.za
+        </p>
+      </div>
+
+      <nav aria-label="Footer links">
+        <div class="footer-links">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Privacy policy</a>
+          <span class="footer-copy">© 2026 Concept Inc.</span>
+        </div>
+      </nav>
+
+    </div>
+  </footer>
+
+
+</body>
+</html>
