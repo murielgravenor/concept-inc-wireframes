@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What We Do — Concept Inc.</title>
+  <meta name="description" content="Turnkey audio production, lighting design, LED visual systems, and full event production in Cape Town. 25+ years across live sound, stage lighting, and visual — delivered end to end.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/styles.css">
+
+  <style>
+    /* =============================================
+       WHAT WE DO — page-specific styles
+       ============================================= */
+
+    /* Hero — page-level, not homepage-scale */
+    .hero { min-height: 55vh; }
+    .hero-subhead { margin-bottom: 0; }
+
+    @media (min-width: 768px) { .hero { min-height: 65vh; } }
+
+    /* =============================================
+       ANCHOR NAV STRIP
+       Sticky below the site header
+       ============================================= */
+    .anchor-nav {
+      position: sticky;
+      top: var(--header-height);
+      z-index: 90;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .anchor-links {
+      display: flex;
+      list-style: none;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .anchor-links::-webkit-scrollbar { display: none; }
+
+    .anchor-links a {
+      display: block;
+      padding: 0.9rem 1.25rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      text-decoration: none;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px; /* aligns indicator with nav border */
+    }
+
+    .anchor-links a:hover {
+      color: var(--black);
+      border-bottom-color: var(--black);
+    }
+
+    /* =============================================
+       SERVICE SECTIONS
+       Alternating: off-white / soft-grey / off-white / black
+       ============================================= */
+    .service-section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .service-section--grey  { background-color: var(--soft-grey); }
+
+    .service-section--dark {
+      background-color: var(--black);
+      border-bottom: none;
+    }
+
+    /* Section heading */
+    .service-section h2 {
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+
+    .service-section--dark h2 { color: var(--off-white); }
+
+    /* Body paragraphs */
+    .service-section .lead {
+      font-size: 0.95rem;
+      color: var(--mid-grey);
+      line-height: 1.75;
+      max-width: 700px;
+      margin-bottom: 0.85rem;
+    }
+
+    .service-section--dark .lead { color: rgba(250, 250, 247, 0.62); }
+
+    /* Two-column layout: use cases + equipment */
+    .service-body {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-top: 2.75rem;
+      padding-top: 2.75rem;
+      border-top: 1px solid var(--light-grey);
+    }
+
+    .service-section--dark .service-body {
+      border-top-color: rgba(250, 250, 247, 0.1);
+    }
+
+    @media (min-width: 768px) {
+      .service-body { grid-template-columns: 1fr 1fr; gap: 3.5rem; }
+    }
+
+    /* Column labels */
+    .col-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .service-section--dark .col-label { color: rgba(250, 250, 247, 0.38); }
+
+    /* Use case chips */
+    .use-cases {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .use-case {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--soft-black);
+      border: 1px solid var(--light-grey);
+      padding: 0.4rem 0.9rem;
+      white-space: nowrap;
+    }
+
+    .service-section--dark .use-case {
+      color: rgba(250, 250, 247, 0.75);
+      border-color: rgba(250, 250, 247, 0.18);
+    }
+
+    /* Equipment list — 2-column on desktop */
+    .equip-list {
+      list-style: none;
+      columns: 1;
+    }
+
+    @media (min-width: 480px) { .equip-list { columns: 2; column-gap: 1.5rem; } }
+
+    .equip-list li {
+      font-size: 0.82rem;
+      color: var(--mid-grey);
+      padding: 0.22rem 0;
+      break-inside: avoid;
+    }
+
+    .equip-list li::before { content: '— '; }
+
+    .service-section--dark .equip-list li { color: rgba(250, 250, 247, 0.5); }
+
+    /* Section CTA */
+    .section-cta { margin-top: 2.5rem; }
+
+    /* =============================================
+       PROCESS STRIP (full-production section only)
+       Brief → Design → Build → Deliver
+       ============================================= */
+    .process-strip {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background-color: rgba(250, 250, 247, 0.08);
+      border: 1px solid rgba(250, 250, 247, 0.08);
+      margin: 2.75rem 0;
+    }
+
+    @media (min-width: 768px) {
+      .process-strip { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .process-step { background-color: var(--black); padding: 1.5rem; }
+
+    .step-num {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange); /* ORANGE #1 — used sparingly for process step numbers */
+      margin-bottom: 0.4rem;
+    }
+
+    .process-step h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--off-white);
+      margin-bottom: 0.35rem;
+    }
+
+    .process-step p {
+      font-size: 0.8rem;
+      color: rgba(250, 250, 247, 0.48);
+      line-height: 1.5;
+    }
+
+    /* =============================================
+       CROSS-LINK STRIP
+       "Working on something specific? See our packages."
+       ============================================= */
+    .crosslink-strip {
+      padding: 4.5rem 0;
+      background-color: var(--off-white);
+    }
+
+    .crosslink-header { margin-bottom: 2rem; }
+
+    .crosslink-header h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.015em;
+      margin-bottom: 0.3rem;
+    }
+
+    .crosslink-header p {
+      font-size: 0.875rem;
+      color: var(--mid-grey);
+    }
+
+    .crosslink-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background-color: var(--light-grey);
+      border: 1px solid var(--light-grey);
+    }
+
+    @media (min-width: 768px) {
+      .crosslink-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .crosslink-card {
+      background-color: var(--off-white);
+      padding: 1.75rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .crosslink-card h3 { font-size: 1rem; font-weight: 700; color: var(--black); }
+
+    .crosslink-card p { font-size: 0.85rem; color: var(--mid-grey); line-height: 1.55; }
+
+  </style>
+</head>
+<body>
+
+
+  <!-- ============================================================
+       HEADER — identical nav on every page
+       ============================================================ -->
+  <header class="site-header">
+    <div class="container">
+
+      <a href="/" class="wordmark" aria-label="Concept Inc. home">
+        <img src="../assets/logo v1.png" alt="Concept Inc." class="wordmark-img">
+      </a>
+
+      <div class="header-right">
+
+        <nav aria-label="Primary navigation">
+          <ul class="site-nav">
+            <li><a href="/what-we-do" aria-current="page">What We Do</a></li>
+            <li class="has-dropdown">
+              <a href="#" class="dropdown-toggle">Packages <span class="chevron" aria-hidden="true">▾</span></a>
+              <ul class="dropdown">
+                <li><a href="/packages/weddings">Weddings</a></li>
+                <li><a href="/packages/corporate">Corporate</a></li>
+                <li><a href="/packages/gear-hire">Gear hire</a></li>
+                <li><a href="/packages/bespoke">Bespoke quote</a></li>
+              </ul>
+            </li>
+            <li><a href="/curated-experiences">Curated Experiences</a></li>
+            <li><a href="/portfolio">Portfolio</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <a href="/contact" class="btn btn-black btn-sm header-quote">Get a quote</a>
+          <span class="mobile-toggle" aria-label="Open menu">Menu</span>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       HERO
+       Page-level hero — smaller than homepage.
+       Photo: rigging / crew at work, not the finished event.
+       ============================================================ -->
+  <section class="hero" aria-label="Page hero">
+
+    <div class="hero-bg" aria-hidden="true" role="img">
+      PHOTO PLACEHOLDER — Rigging / crew at work, live setup in progress
+    </div>
+
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <h1>Production that delivers.</h1>
+      <p class="hero-subhead">
+        Concept Inc. is a turnkey production house with 25+ years across audio,
+        lighting, and visual — from a single mic on a stage to a full multi-day
+        festival build. We own the brief, the equipment, and the outcome.
+      </p>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       ANCHOR NAV STRIP
+       Sticky below the header. Each link jumps to its section.
+       ============================================================ -->
+  <nav class="anchor-nav" aria-label="Jump to section">
+    <div class="container">
+      <ul class="anchor-links">
+        <li><a href="#audio">Audio</a></li>
+        <li><a href="#lighting">Lighting</a></li>
+        <li><a href="#visual">Visual &amp; LED</a></li>
+        <li><a href="#full-production">Full Production</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       #audio — AUDIO PRODUCTION
+       Background: off-white (default)
+       ============================================================ -->
+  <section class="service-section" id="audio" aria-label="Audio production">
+    <div class="container">
+
+      <p class="section-label">Audio production</p>
+      <h2>Sound that fills the room — and the moment.</h2>
+
+      <p class="lead">
+        We design and operate PA systems for any room, any audience size, and any event type.
+        From intimate boardroom AV to outdoor festival line arrays, our engineers manage
+        every signal chain — from source to speaker — so the client hears exactly what was
+        promised in the brief.
+      </p>
+      <p class="lead">
+        Our approach is system-first: we spec the right rig for the space before anything
+        is loaded in. That means no guesswork on the day, consistent gain structure, and
+        mixes that translate across the room without dead spots or feedback surprises.
+      </p>
+      <p class="lead">
+        We also carry monitoring systems, radio microphones, and in-ear rigs — so
+        performers, speakers, and MCs all have what they need to do their job confidently.
+      </p>
+
+      <div class="service-body">
+
+        <div>
+          <span class="col-label">Use cases</span>
+          <div class="use-cases">
+            <span class="use-case">Conferences &amp; panels</span>
+            <span class="use-case">Weddings</span>
+            <span class="use-case">Outdoor festivals</span>
+            <span class="use-case">Corporate galas</span>
+            <span class="use-case">Restaurant residencies</span>
+            <span class="use-case">Live performances</span>
+          </div>
+        </div>
+
+        <div>
+          <span class="col-label">Equipment highlights</span>
+          <ul class="equip-list">
+            <li>Line array systems</li>
+            <li>Sub-bass arrays</li>
+            <li>Point-source PA</li>
+            <li>Digital mixing consoles</li>
+            <li>Radio mic systems</li>
+            <li>In-ear monitoring</li>
+            <li>Stage monitors &amp; wedges</li>
+            <li>Confidence / foldback</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="section-cta">
+        <a href="/contact?service=audio" class="btn btn-black">Get an audio quote</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       #lighting — LIGHTING DESIGN
+       Background: soft-grey (alternating chapter)
+       ============================================================ -->
+  <section class="service-section service-section--grey" id="lighting" aria-label="Lighting design">
+    <div class="container">
+
+      <p class="section-label">Lighting design</p>
+      <h2>Lighting that shapes how a room feels.</h2>
+
+      <p class="lead">
+        Good lighting is invisible — it creates atmosphere, directs attention, and makes
+        a space feel intentional without announcing itself. We design lighting for the
+        event, not just the spec sheet. That means understanding the programme, the venue,
+        the mood arc of the night, and how the room looks to every person in it.
+      </p>
+      <p class="lead">
+        From uplighting that transforms a blank venue into a brand moment, to moving heads
+        and effect lighting that punctuate a performance, our rigs are designed, programmed,
+        and operated by people who understand both theatre and live events.
+      </p>
+      <p class="lead">
+        We handle rigging, patching, DMX programming, and on-site operation. All
+        equipment is owned and maintained in-house — no third-party sub-rentals
+        with unknown history.
+      </p>
+
+      <div class="service-body">
+
+        <div>
+          <span class="col-label">Use cases</span>
+          <div class="use-cases">
+            <span class="use-case">Wedding ceremonies &amp; receptions</span>
+            <span class="use-case">Venue transformation</span>
+            <span class="use-case">Stage &amp; performance lighting</span>
+            <span class="use-case">Corporate launches</span>
+            <span class="use-case">Restaurant &amp; hospitality</span>
+            <span class="use-case">Festival stages</span>
+          </div>
+        </div>
+
+        <div>
+          <span class="col-label">Equipment highlights</span>
+          <ul class="equip-list">
+            <li>Moving head wash &amp; spot</li>
+            <li>LED par &amp; uplighting</li>
+            <li>Architectural fixtures</li>
+            <li>Haze &amp; atmospheric</li>
+            <li>DMX consoles</li>
+            <li>Follow spots</li>
+            <li>Truss &amp; rigging</li>
+            <li>Gobo projectors</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="section-cta">
+        <a href="/contact?service=lighting" class="btn btn-black">Get a lighting quote</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       #visual — VISUAL & LED
+       Background: off-white (alternating back)
+       ============================================================ -->
+  <section class="service-section" id="visual" aria-label="Visual and LED">
+    <div class="container">
+
+      <p class="section-label">Visual &amp; LED</p>
+      <h2>Visual systems that command the room.</h2>
+
+      <p class="lead">
+        LED walls and video systems are increasingly a baseline expectation at corporate
+        events, conferences, and high-end weddings. We supply, build, and operate LED
+        panels at any scale — from a single presenter backdrop to multi-screen
+        IMAG setups for large audiences.
+      </p>
+      <p class="lead">
+        We handle signal routing, video switching, and playback — as well as camera
+        feeds for broadcast-style confidence monitoring, keynote presentation systems,
+        and green room screens for backstage.
+      </p>
+      <p class="lead">
+        Projection mapping is a growth specialism for us and a strategic differentiator
+        in the Cape Town market. We're actively developing our capability in mapped
+        architectural projection and surface-specific content — for venue transformation,
+        product launches, and immersive event formats that competitors can't readily
+        replicate.
+      </p>
+
+      <div class="service-body">
+
+        <div>
+          <span class="col-label">Use cases</span>
+          <div class="use-cases">
+            <span class="use-case">Corporate conferences</span>
+            <span class="use-case">Product launches</span>
+            <span class="use-case">Keynote &amp; stage backdrops</span>
+            <span class="use-case">IMAG / large audiences</span>
+            <span class="use-case">Immersive events</span>
+            <span class="use-case">Weddings (feature walls)</span>
+          </div>
+        </div>
+
+        <div>
+          <span class="col-label">Equipment highlights</span>
+          <ul class="equip-list">
+            <li>LED panel walls (modular)</li>
+            <li>Video switching &amp; routing</li>
+            <li>Projection systems</li>
+            <li>Projection mapping (growth)</li>
+            <li>Camera &amp; IMAG feeds</li>
+            <li>Confidence monitors</li>
+            <li>Green room screens</li>
+            <li>Playback &amp; media servers</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="section-cta">
+        <a href="/contact?service=visual" class="btn btn-black">Get a visual quote</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       #full-production — FULL PRODUCTION (TURNKEY)
+       Background: brand black — capstone, hero treatment
+       ============================================================ -->
+  <section class="service-section service-section--dark" id="full-production" aria-label="Full production">
+    <div class="container">
+
+      <p class="section-label" style="color: rgba(250,250,247,0.4);">Full production</p>
+      <h2>One brief. One team. One outcome.</h2>
+
+      <p class="lead">
+        Full production means we take the brief and own everything from there. Audio,
+        lighting, visual, rigging, power, crew, logistics — managed as a single
+        integrated system rather than a collection of separate suppliers who've never
+        worked together before.
+      </p>
+      <p class="lead">
+        This matters more than most clients realise. When production is fragmented across
+        multiple vendors, accountability gets fragmented too. When something shifts on
+        the day — and something always shifts — nobody owns the problem. We do.
+      </p>
+      <p class="lead">
+        Our team has worked every side of live events: on stage, behind the desk, at the
+        lighting console, in the rigging crew. We understand how a room feels and how it
+        works. That dual perspective is what lets us design production that serves the
+        experience, not just the technical spec.
+      </p>
+
+      <!-- Process strip: Brief → Design → Build → Deliver -->
+      <!-- ORANGE #1 used for step numbers only -->
+      <div class="process-strip" aria-label="Our process">
+
+        <div class="process-step">
+          <span class="step-num">01 — Brief</span>
+          <h4>Understand the event</h4>
+          <p>Programme, venue, audience, budget, and the feeling the client is going for.</p>
+        </div>
+
+        <div class="process-step">
+          <span class="step-num">02 — Design</span>
+          <h4>Spec the production</h4>
+          <p>System design, equipment lists, crew call, scheduling, and logistics plan.</p>
+        </div>
+
+        <div class="process-step">
+          <span class="step-num">03 — Build</span>
+          <h4>Load in &amp; set up</h4>
+          <p>Full crew on site. Rigging, cabling, system checks, and rehearsal support.</p>
+        </div>
+
+        <div class="process-step">
+          <span class="step-num">04 — Deliver</span>
+          <h4>Operate &amp; resolve</h4>
+          <p>Live operation by experienced engineers. We handle everything that moves on the day.</p>
+        </div>
+
+      </div>
+
+      <div class="service-body">
+
+        <div>
+          <span class="col-label" style="color:rgba(250,250,247,0.38)">Use cases</span>
+          <div class="use-cases">
+            <span class="use-case">Multi-day festivals</span>
+            <span class="use-case">Large-scale corporate events</span>
+            <span class="use-case">Gala dinners</span>
+            <span class="use-case">Branded brand activations</span>
+            <span class="use-case">Concerts &amp; live shows</span>
+            <span class="use-case">Hotel &amp; venue productions</span>
+          </div>
+        </div>
+
+        <div>
+          <span class="col-label" style="color:rgba(250,250,247,0.38)">What's included</span>
+          <ul class="equip-list">
+            <li>Full audio system</li>
+            <li>Lighting design &amp; op</li>
+            <li>LED / visual systems</li>
+            <li>Rigging &amp; power</li>
+            <li>Crew &amp; engineers</li>
+            <li>Load-in &amp; packdown</li>
+            <li>On-site problem solving</li>
+            <li>Single point of contact</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="section-cta">
+        <!-- ORANGE #2 — highest-stakes CTA on a dark background -->
+        <a href="/contact" class="btn btn-orange">Talk to us about your event</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CROSS-LINK STRIP
+       "Working on something specific? See our packages."
+       Routes buyers to the right package track.
+       ============================================================ -->
+  <section class="crosslink-strip" aria-label="See our packages">
+    <div class="container">
+
+      <div class="crosslink-header">
+        <h2>Working on something specific?</h2>
+        <p>See how we package production for different event types.</p>
+      </div>
+
+      <div class="crosslink-grid">
+
+        <div class="crosslink-card">
+          <h3>Weddings</h3>
+          <p>Curated sound and lighting packages for ceremonies and receptions — from intimate to large. From R7,000.</p>
+          <a href="/packages/weddings" class="card-link">See wedding packages</a>
+        </div>
+
+        <div class="crosslink-card">
+          <h3>Corporate</h3>
+          <p>Conferences, launches, and galas. Professional AV and production that reflects your brand.</p>
+          <a href="/packages/corporate" class="card-link">See corporate packages</a>
+        </div>
+
+        <div class="crosslink-card">
+          <h3>Gear hire</h3>
+          <p>Top-spec audio, lighting, and visual equipment available for dry hire with flexible day rates.</p>
+          <a href="/packages/gear-hire" class="card-link">See gear hire options</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER CTA BAND
+       ============================================================ -->
+  <section class="footer-cta" aria-label="Get in touch">
+    <div class="container">
+      <h2>Ready to transform your event?</h2>
+      <a href="/contact" class="btn btn-orange">Get a quote</a>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+
+      <div class="footer-top">
+        <a href="/" class="footer-wordmark" aria-label="Concept Inc. home">
+          <img src="../assets/logo v1 light.png" alt="Concept Inc." style="height:40px;width:auto;display:block;">
+        </a>
+        <p class="footer-meta">
+          Cape Town, South Africa<br>
+          hello@conceptinc.co.za
+        </p>
+      </div>
+
+      <nav aria-label="Footer links">
+        <div class="footer-links">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Privacy policy</a>
+          <span class="footer-copy">© 2026 Concept Inc.</span>
+        </div>
+      </nav>
+
+    </div>
+  </footer>
+
+
+</body>
+</html>
