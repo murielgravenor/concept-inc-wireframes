@@ -169,6 +169,77 @@
 
     .site-nav a:hover { color: var(--black); }
 
+    /* ---- Packages dropdown ---- */
+    .has-dropdown { position: relative; }
+
+    .dropdown-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      cursor: default;
+    }
+
+    .chevron {
+      font-size: 0.6rem;
+      color: var(--mid-grey);
+    }
+
+    .dropdown {
+      display: none;
+      list-style: none;
+      padding: 0;
+    }
+
+    /* Desktop: absolute panel below parent */
+    @media (min-width: 768px) {
+      .dropdown {
+        position: absolute;
+        top: calc(100% + 0.75rem);
+        left: 0;
+        z-index: 200;
+        background-color: var(--off-white);
+        border: 1px solid var(--light-grey);
+        min-width: 160px;
+        padding: 0.4rem 0;
+      }
+
+      .has-dropdown:hover .dropdown,
+      .has-dropdown:focus-within .dropdown {
+        display: block;
+      }
+
+      .dropdown li a {
+        display: block;
+        padding: 0.55rem 1rem;
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: var(--soft-black);
+        white-space: nowrap;
+      }
+
+      .dropdown li a:hover {
+        background-color: var(--light-grey);
+        color: var(--black);
+      }
+    }
+
+    /* Mobile: inline expand on focus */
+    @media (max-width: 767px) {
+      .has-dropdown:focus-within .dropdown {
+        display: block;
+        padding-left: 1rem;
+        margin-top: 0.4rem;
+      }
+
+      .dropdown li a {
+        display: block;
+        padding: 0.35rem 0;
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: var(--soft-black);
+      }
+    }
+
     .header-right {
       display: flex;
       align-items: center;
@@ -666,11 +737,20 @@
 
         <nav aria-label="Primary navigation">
           <ul class="site-nav">
-            <li><a href="#">What We Do</a></li>
-            <li><a href="#">Packages</a></li>
-            <li><a href="#">Curated Experiences</a></li>
-            <li><a href="#">Portfolio</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="/what-we-do">What We Do</a></li>
+            <li class="has-dropdown">
+              <a href="#" class="dropdown-toggle">Packages <span class="chevron" aria-hidden="true">▾</span></a>
+              <ul class="dropdown">
+                <li><a href="/packages/weddings">Weddings</a></li>
+                <li><a href="/packages/corporate">Corporate</a></li>
+                <li><a href="/packages/gear-hire">Gear hire</a></li>
+                <li><a href="/packages/bespoke">Bespoke quote</a></li>
+              </ul>
+            </li>
+            <li><a href="/curated-experiences">Curated Experiences</a></li>
+            <li><a href="/portfolio">Portfolio</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
           </ul>
         </nav>
 
