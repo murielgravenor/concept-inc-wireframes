@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Concept Inc.</title>
+  <meta name="description" content="Get in touch with Concept Inc. for a wedding, corporate event, gear hire, or bespoke production enquiry. We reply within one business day.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/styles.css">
+
+  <style>
+    /*
+     * Contact page — page-specific styles.
+     * The conversion engine. Orange once: form submit button.
+     *
+     * CSS-only type switcher — no JavaScript.
+     * Hidden radio inputs act as state variables.
+     * Sibling selectors show the correct form panel and
+     * highlight the correct type button based on :checked state.
+     *
+     * Selector chain:
+     *   #type-{x}:checked ~ .type-selector label[for="type-{x}"] → active button
+     *   #type-{x}:checked ~ form .form-panel--{x} → visible form panel
+     * All radio inputs, .type-selector, and <form> must be
+     * siblings inside .ct-form-col for this to work.
+     */
+
+    /* =============================================
+       HERO — text only, short, functional.
+       ============================================= */
+    .ct-hero {
+      padding: 4.5rem 0 3.5rem;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .ct-hero h1 {
+      font-size: clamp(2.2rem, 6vw, 3.75rem);
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 0.75rem;
+    }
+
+    .ct-hero p {
+      font-size: 1rem;
+      color: var(--mid-grey);
+      line-height: 1.6;
+      max-width: 500px;
+    }
+
+    /* =============================================
+       FORM SECTION LAYOUT
+       Left: type switcher + form. Right: sidebar.
+       ============================================= */
+    .ct-form-section {
+      padding: 4rem 0 5rem;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .ct-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    @media (min-width: 900px) {
+      .ct-layout { grid-template-columns: 2fr 1fr; gap: 4.5rem; }
+    }
+
+    /* =============================================
+       TYPE SWITCHER — CSS-only interactivity.
+       Radio inputs are hidden but functional.
+       ============================================= */
+    .type-radio {
+      position: absolute;
+      width: 0;
+      height: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .type-selector {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (min-width: 560px) {
+      .type-selector { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .type-btn {
+      display: block;
+      padding: 0.65rem 0.75rem;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--mid-grey);
+      border: 1px solid var(--light-grey);
+      background-color: var(--off-white);
+      cursor: pointer;
+      line-height: 1;
+      user-select: none;
+    }
+
+    /* Active button state — driven by :checked sibling selectors */
+    #type-wedding:checked   ~ .type-selector label[for="type-wedding"],
+    #type-corporate:checked ~ .type-selector label[for="type-corporate"],
+    #type-gear:checked      ~ .type-selector label[for="type-gear"],
+    #type-other:checked     ~ .type-selector label[for="type-other"] {
+      background-color: var(--black);
+      color: var(--off-white);
+      border-color: var(--black);
+      font-weight: 600;
+    }
+
+    /* =============================================
+       FORM PANELS — show/hide via :checked state.
+       ============================================= */
+    .form-panel { display: none; }
+
+    #type-wedding:checked   ~ form .form-panel--wedding   { display: block; }
+    #type-corporate:checked ~ form .form-panel--corporate { display: block; }
+    #type-gear:checked      ~ form .form-panel--gear      { display: block; }
+    #type-other:checked     ~ form .form-panel--other     { display: block; }
+
+    /* Submit row — always visible (outside panels, inside form) */
+    .form-submit-row {
+      padding-top: 2rem;
+      border-top: 1px solid var(--light-grey);
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .form-submit-note {
+      font-size: 0.78rem;
+      color: var(--mid-grey);
+      line-height: 1.5;
+    }
+
+    /* =============================================
+       FORM FIELD STYLES
+       Generous sizing, clear labels, soft-grey inputs.
+       ============================================= */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0 1.5rem;
+    }
+
+    @media (min-width: 560px) {
+      .form-row { grid-template-columns: 1fr 1fr; }
+    }
+
+    .form-field {
+      padding: 1.1rem 0;
+      border-top: 1px solid var(--light-grey);
+    }
+
+    .form-row:first-child > .form-field:first-child { border-top: none; }
+
+    @media (min-width: 560px) {
+      /* In a two-col row, first row has no top border on either field */
+      .form-row:first-child > .form-field { border-top: none; }
+    }
+
+    .form-field label,
+    .form-field legend {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 0.4rem;
+      padding: 0;
+    }
+
+    .field-optional {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--mid-grey);
+    }
+
+    .form-field input[type="text"],
+    .form-field input[type="email"],
+    .form-field input[type="tel"],
+    .form-field input[type="date"],
+    .form-field textarea,
+    .form-field select {
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: var(--soft-black);
+      background-color: var(--soft-grey);
+      border: 1px solid var(--light-grey);
+      padding: 0.85rem 1rem;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      line-height: 1.5;
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color: var(--placeholder);
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus,
+    .form-field select:focus {
+      border-color: var(--black);
+      background-color: var(--off-white);
+    }
+
+    .form-field textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    /* Select wrapper — custom arrow */
+    .select-wrap {
+      position: relative;
+    }
+
+    .select-wrap::after {
+      content: '▾';
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.7rem;
+      color: var(--mid-grey);
+      pointer-events: none;
+    }
+
+    .form-field select { cursor: pointer; }
+
+    /* Full-width field within a form-row */
+    .form-field--full { grid-column: 1 / -1; }
+
+    /* =============================================
+       CHECKBOXES — "What you're looking for"
+       Pill-style checkbox options.
+       ============================================= */
+    .check-group {
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .check-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.1rem;
+    }
+
+    .check-opt {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--soft-black);
+      padding: 0.5rem 0.9rem;
+      border: 1px solid var(--light-grey);
+      background-color: var(--soft-grey);
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .check-opt input[type="checkbox"] {
+      width: 1rem;
+      height: 1rem;
+      accent-color: var(--black);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* =============================================
+       CONTACT SIDEBAR
+       Sticky on desktop. Phone, email, socials.
+       ============================================= */
+    .ct-sidebar {
+      padding: 2rem;
+      background-color: var(--soft-grey);
+      border: 1px solid var(--light-grey);
+    }
+
+    @media (min-width: 900px) {
+      .ct-sidebar {
+        position: sticky;
+        top: calc(var(--header-height) + 2rem);
+      }
+    }
+
+    .sidebar-response {
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .sidebar-response-label {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      margin-bottom: 0.35rem;
+    }
+
+    .sidebar-response-time {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.3;
+    }
+
+    .sidebar-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .sidebar-contact-item {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--light-grey);
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .sidebar-contact-item:last-child { border-bottom: none; }
+
+    .sidebar-contact-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+    }
+
+    .sidebar-contact-value {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--black);
+      text-decoration: none;
+      line-height: 1.4;
+    }
+
+    a.sidebar-contact-value:hover { text-decoration: underline; }
+
+    .sidebar-contact-sub {
+      font-size: 0.75rem;
+      color: var(--mid-grey);
+    }
+
+    /* =============================================
+       FAQ STRIP — <details> accordion
+       ============================================= */
+    .ct-faq {
+      padding: 4.5rem 0;
+      background-color: var(--soft-grey);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .ct-faq > .container > .section-label {
+      margin-bottom: 0.6rem;
+    }
+
+    .ct-faq > .container > h2 {
+      font-size: clamp(1.3rem, 3.5vw, 1.9rem);
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+    }
+
+    .faq-list {
+      max-width: 680px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .faq-item {
+      border-top: 1px solid var(--light-grey);
+    }
+
+    .faq-item:last-child { border-bottom: 1px solid var(--light-grey); }
+
+    .faq-item summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--black);
+      cursor: pointer;
+      list-style: none;
+      gap: 1rem;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-chevron {
+      font-size: 0.7rem;
+      color: var(--mid-grey);
+      flex-shrink: 0;
+      transition: transform 0.15s;
+    }
+
+    .faq-item[open] .faq-chevron { transform: rotate(180deg); }
+
+    .faq-item p {
+      font-size: 0.875rem;
+      color: var(--mid-grey);
+      line-height: 1.75;
+      padding-bottom: 1.25rem;
+    }
+
+  </style>
+</head>
+<body>
+
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="site-header">
+    <div class="container">
+
+      <a href="/" class="wordmark" aria-label="Concept Inc. home">
+        <img src="../assets/logo v1.png" alt="Concept Inc." class="wordmark-img">
+      </a>
+
+      <div class="header-right">
+
+        <nav aria-label="Primary navigation">
+          <ul class="site-nav">
+            <li><a href="/what-we-do">What We Do</a></li>
+            <li class="has-dropdown">
+              <a href="#" class="dropdown-toggle">Packages <span class="chevron" aria-hidden="true">▾</span></a>
+              <ul class="dropdown">
+                <li><a href="/packages/weddings">Weddings</a></li>
+                <li><a href="/packages/corporate">Corporate</a></li>
+                <li><a href="/packages/gear-hire">Gear hire</a></li>
+                <li><a href="/packages/bespoke">Bespoke quote</a></li>
+              </ul>
+            </li>
+            <li><a href="/curated-experiences">Curated Experiences</a></li>
+            <li><a href="/portfolio">Portfolio</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact" aria-current="page">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <a href="/contact" class="btn btn-black btn-sm header-quote" aria-current="page">Get a quote</a>
+          <span class="mobile-toggle" aria-label="Open menu">Menu</span>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       HERO — text only, functional.
+       ============================================================ -->
+  <section class="ct-hero" aria-label="Contact Concept Inc.">
+    <div class="container">
+      <h1>Tell us what<br>you're planning.</h1>
+      <p>We get back to every enquiry within one business day. If it's urgent, call us directly.</p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FORM SECTION
+       Left: type switcher + enquiry form.
+       Right: direct contact sidebar.
+
+       IMPORTANT — HTML structure for CSS-only switcher:
+       The 4 radio inputs, .type-selector, and <form> must all
+       be direct children of .ct-form-col in this exact order.
+       ============================================================ -->
+  <section class="ct-form-section" id="enquiry" aria-label="Enquiry form">
+    <div class="container">
+      <div class="ct-layout">
+
+        <!-- ======================================================
+             LEFT COLUMN — type selector + form
+             ====================================================== -->
+        <div class="ct-form-col">
+
+          <!-- Hidden radio inputs — CSS interactivity engine.
+               Must be direct siblings of .type-selector and <form>. -->
+          <input type="radio" id="type-wedding"   name="enquiry-type" class="type-radio" value="wedding"   checked>
+          <input type="radio" id="type-corporate" name="enquiry-type" class="type-radio" value="corporate">
+          <input type="radio" id="type-gear"      name="enquiry-type" class="type-radio" value="gear">
+          <input type="radio" id="type-other"     name="enquiry-type" class="type-radio" value="other">
+
+          <!-- Type selector buttons -->
+          <div class="type-selector" role="group" aria-label="Select enquiry type">
+            <label for="type-wedding"   class="type-btn">Wedding</label>
+            <label for="type-corporate" class="type-btn">Corporate</label>
+            <label for="type-gear"      class="type-btn">Gear hire</label>
+            <label for="type-other"     class="type-btn">Something else</label>
+          </div>
+
+          <!-- ====================================================
+               FORM — one panel per enquiry type.
+               Only the active panel is shown (CSS :checked logic).
+               ==================================================== -->
+          <form class="enquiry-form" action="#" method="post" novalidate>
+
+
+            <!-- ——————————————————————————————————————————————————
+                 WEDDING FORM PANEL (shown by default)
+                 —————————————————————————————————————————————————— -->
+            <div class="form-panel form-panel--wedding" aria-label="Wedding enquiry fields">
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="w-name">Your name</label>
+                  <input type="text" id="w-name" name="name" autocomplete="name" placeholder="Your name" required>
+                </div>
+                <div class="form-field">
+                  <label for="w-email">Email</label>
+                  <input type="email" id="w-email" name="email" autocomplete="email" placeholder="your@email.com" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="w-phone">Phone</label>
+                  <input type="tel" id="w-phone" name="phone" autocomplete="tel" placeholder="+27 ..." required>
+                </div>
+                <div class="form-field">
+                  <label for="w-date">
+                    Wedding date
+                    <span class="field-optional">approximate is fine</span>
+                  </label>
+                  <input type="text" id="w-date" name="wedding-date" placeholder="e.g. March 2027">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="w-venue">
+                    Venue
+                    <span class="field-optional">if known</span>
+                  </label>
+                  <input type="text" id="w-venue" name="venue" placeholder="Venue name or area">
+                </div>
+                <div class="form-field">
+                  <label for="w-guests">Guest count</label>
+                  <div class="select-wrap">
+                    <select id="w-guests" name="guest-count">
+                      <option value="" disabled selected>Select a range</option>
+                      <option value="under-50">Under 50</option>
+                      <option value="50-100">50–100</option>
+                      <option value="100-200">100–200</option>
+                      <option value="200-plus">200+</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field form-field--full">
+                  <fieldset class="check-group">
+                    <legend>What you're looking for</legend>
+                    <div class="check-options">
+                      <label class="check-opt"><input type="checkbox" name="w-services" value="audio"> Audio</label>
+                      <label class="check-opt"><input type="checkbox" name="w-services" value="lighting"> Lighting</label>
+                      <label class="check-opt"><input type="checkbox" name="w-services" value="dj"> DJ</label>
+                      <label class="check-opt"><input type="checkbox" name="w-services" value="full"> Full production</label>
+                      <label class="check-opt"><input type="checkbox" name="w-services" value="unsure"> Not sure yet</label>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field form-field--full">
+                  <label for="w-message">
+                    Tell us more
+                    <span class="field-optional">optional</span>
+                  </label>
+                  <textarea id="w-message" name="message" placeholder="Anything else we should know — venue quirks, vision, timing, vibe…"></textarea>
+                </div>
+              </div>
+
+            </div>
+            <!-- / Wedding panel -->
+
+
+            <!-- ——————————————————————————————————————————————————
+                 CORPORATE FORM PANEL
+                 Adds: Company, Event type, Budget band.
+                 —————————————————————————————————————————————————— -->
+            <div class="form-panel form-panel--corporate" aria-label="Corporate enquiry fields">
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="c-name">Your name</label>
+                  <input type="text" id="c-name" name="name" autocomplete="name" placeholder="Your name" required>
+                </div>
+                <div class="form-field">
+                  <label for="c-email">Email</label>
+                  <input type="email" id="c-email" name="email" autocomplete="email" placeholder="your@email.com" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="c-phone">Phone</label>
+                  <input type="tel" id="c-phone" name="phone" autocomplete="tel" placeholder="+27 ..." required>
+                </div>
+                <div class="form-field">
+                  <label for="c-company">Company</label>
+                  <input type="text" id="c-company" name="company" autocomplete="organization" placeholder="Company or organisation name">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="c-event-type">Event type</label>
+                  <div class="select-wrap">
+                    <select id="c-event-type" name="event-type">
+                      <option value="" disabled selected>Select event type</option>
+                      <option>Conference or AGM</option>
+                      <option>Gala dinner or awards</option>
+                      <option>Product launch</option>
+                      <option>Brand activation</option>
+                      <option>Year-end function</option>
+                      <option>Hybrid event</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-field">
+                  <label for="c-date">
+                    Event date
+                    <span class="field-optional">approximate is fine</span>
+                  </label>
+                  <input type="text" id="c-date" name="event-date" placeholder="e.g. June 2026">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="c-guests">Guest count</label>
+                  <div class="select-wrap">
+                    <select id="c-guests" name="guest-count">
+                      <option value="" disabled selected>Select a range</option>
+                      <option value="under-50">Under 50</option>
+                      <option value="50-200">50–200</option>
+                      <option value="200-500">200–500</option>
+                      <option value="500-plus">500+</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-field">
+                  <label for="c-budget">
+                    Budget band
+                    <span class="field-optional">optional</span>
+                  </label>
+                  <div class="select-wrap">
+                    <select id="c-budget" name="budget">
+                      <option value="" disabled selected>Select a range</option>
+                      <option value="under-20k">Under R20,000</option>
+                      <option value="20k-50k">R20,000 – R50,000</option>
+                      <option value="50k-100k">R50,000 – R100,000</option>
+                      <option value="100k-250k">R100,000 – R250,000</option>
+                      <option value="250k-plus">R250,000+</option>
+                      <option value="discuss">I'd rather discuss</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field form-field--full">
+                  <label for="c-message">Tell us about your event</label>
+                  <textarea id="c-message" name="message" placeholder="Brief overview — venue, programme, what you need handled, any specific requirements…"></textarea>
+                </div>
+              </div>
+
+            </div>
+            <!-- / Corporate panel -->
+
+
+            <!-- ——————————————————————————————————————————————————
+                 GEAR HIRE FORM PANEL
+                 Adds: Hire dates, Delivery address, Package.
+                 —————————————————————————————————————————————————— -->
+            <div class="form-panel form-panel--gear" aria-label="Gear hire enquiry fields">
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="g-name">Your name</label>
+                  <input type="text" id="g-name" name="name" autocomplete="name" placeholder="Your name" required>
+                </div>
+                <div class="form-field">
+                  <label for="g-email">Email</label>
+                  <input type="email" id="g-email" name="email" autocomplete="email" placeholder="your@email.com" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="g-phone">Phone</label>
+                  <input type="tel" id="g-phone" name="phone" autocomplete="tel" placeholder="+27 ...">
+                </div>
+                <div class="form-field">
+                  <label for="g-dates">Hire dates</label>
+                  <input type="text" id="g-dates" name="hire-dates" placeholder="e.g. 14–15 Aug 2026">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="g-package">Package interest</label>
+                  <div class="select-wrap">
+                    <select id="g-package" name="package">
+                      <option value="" disabled selected>Select a package</option>
+                      <option value="basic">Basic — from R7,000</option>
+                      <option value="standard">Standard — from R12,000</option>
+                      <option value="pro">Pro — from R20,000</option>
+                      <option value="custom">Custom / not sure yet</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-field">
+                  <label for="g-delivery">
+                    Delivery address
+                    <span class="field-optional">or "self-collection"</span>
+                  </label>
+                  <input type="text" id="g-delivery" name="delivery-address" placeholder="Venue or delivery address">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field form-field--full">
+                  <label for="g-message">
+                    Additional requirements
+                    <span class="field-optional">optional</span>
+                  </label>
+                  <textarea id="g-message" name="message" placeholder="Specific equipment, add-ons, wet hire interest, event type…"></textarea>
+                </div>
+              </div>
+
+            </div>
+            <!-- / Gear hire panel -->
+
+
+            <!-- ——————————————————————————————————————————————————
+                 SOMETHING ELSE FORM PANEL
+                 Mostly free text. For bespoke, festivals, etc.
+                 —————————————————————————————————————————————————— -->
+            <div class="form-panel form-panel--other" aria-label="General enquiry fields">
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="o-name">Your name</label>
+                  <input type="text" id="o-name" name="name" autocomplete="name" placeholder="Your name" required>
+                </div>
+                <div class="form-field">
+                  <label for="o-email">Email</label>
+                  <input type="email" id="o-email" name="email" autocomplete="email" placeholder="your@email.com" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="o-phone">
+                    Phone
+                    <span class="field-optional">optional</span>
+                  </label>
+                  <input type="tel" id="o-phone" name="phone" autocomplete="tel" placeholder="+27 ...">
+                </div>
+                <div class="form-field">
+                  <label for="o-budget">
+                    Budget band
+                    <span class="field-optional">optional</span>
+                  </label>
+                  <div class="select-wrap">
+                    <select id="o-budget" name="budget">
+                      <option value="" disabled selected>Select a range</option>
+                      <option value="under-20k">Under R20,000</option>
+                      <option value="20k-50k">R20,000 – R50,000</option>
+                      <option value="50k-100k">R50,000 – R100,000</option>
+                      <option value="100k-250k">R100,000 – R250,000</option>
+                      <option value="250k-plus">R250,000+</option>
+                      <option value="discuss">I'd rather discuss</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field form-field--full">
+                  <label for="o-message">Tell us what you're planning</label>
+                  <textarea id="o-message" name="message" rows="8" placeholder="Tell us about your event — what you need, when, where, and the feeling you're going for. No brief is too rough."></textarea>
+                </div>
+              </div>
+
+            </div>
+            <!-- / Something else panel -->
+
+
+            <!-- Shared submit row — always visible -->
+            <div class="form-submit-row">
+              <button type="submit" class="btn btn-orange">Send enquiry</button>
+              <p class="form-submit-note">
+                We'll follow up by email within one business day.
+              </p>
+            </div>
+
+
+          </form>
+          <!-- / .enquiry-form -->
+
+        </div>
+        <!-- / .ct-form-col -->
+
+
+        <!-- ======================================================
+             RIGHT COLUMN — contact sidebar
+             Sticky on desktop.
+             ====================================================== -->
+        <aside class="ct-sidebar" aria-label="Direct contact">
+
+          <div class="sidebar-response">
+            <span class="sidebar-response-label">Response time</span>
+            <p class="sidebar-response-time">We reply within<br>one business day.</p>
+          </div>
+
+          <div class="sidebar-contacts">
+
+            <div class="sidebar-contact-item">
+              <span class="sidebar-contact-label">Phone</span>
+              <a href="tel:+270000000000" class="sidebar-contact-value">+27 00 000 0000</a>
+              <span class="sidebar-contact-sub">For urgent enquiries, call directly</span>
+            </div>
+
+            <div class="sidebar-contact-item">
+              <span class="sidebar-contact-label">Email</span>
+              <a href="mailto:hello@conceptinc.co.za" class="sidebar-contact-value">hello@conceptinc.co.za</a>
+            </div>
+
+            <div class="sidebar-contact-item">
+              <span class="sidebar-contact-label">Instagram</span>
+              <a href="#" class="sidebar-contact-value">@conceptinc</a>
+              <span class="sidebar-contact-sub">Handle TBC — Duane to confirm</span>
+            </div>
+
+            <div class="sidebar-contact-item">
+              <span class="sidebar-contact-label">Location</span>
+              <span class="sidebar-contact-value">Cape Town, South Africa</span>
+              <span class="sidebar-contact-sub">Western Cape and nationally</span>
+            </div>
+
+            <div class="sidebar-contact-item">
+              <span class="sidebar-contact-label">Business hours</span>
+              <span class="sidebar-contact-value">Mon–Fri, 9:00–17:00</span>
+              <span class="sidebar-contact-sub">Hours TBC — Duane to confirm</span>
+            </div>
+
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FAQ STRIP — enquiry-stage questions
+       ============================================================ -->
+  <section class="ct-faq" aria-label="Frequently asked questions">
+    <div class="container">
+
+      <p class="section-label">Before you ask</p>
+      <h2>Common questions.</h2>
+
+      <div class="faq-list">
+
+        <details class="faq-item">
+          <summary>
+            How far in advance should I book?
+            <span class="faq-chevron" aria-hidden="true">▾</span>
+          </summary>
+          <p>
+            As soon as you have a date. Popular weekends book six to twelve months out,
+            particularly for weddings and large outdoor events. We sometimes have
+            availability at shorter notice for weekday and off-peak dates — it's always
+            worth asking. For bespoke and curated productions, lead time depends on
+            the complexity of the brief.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            Do you work outside Cape Town?
+            <span class="faq-chevron" aria-hidden="true">▾</span>
+          </summary>
+          <p>
+            Yes. We're based in Cape Town but regularly work in the Winelands,
+            Garden Route, and nationally for larger productions and touring shows.
+            Travel costs are quoted separately based on distance and crew size.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            Can I get a quote before committing?
+            <span class="faq-chevron" aria-hidden="true">▾</span>
+          </summary>
+          <p>
+            Yes — all enquiries receive a full proposal at no cost and with no
+            obligation to proceed. We'd rather quote accurately than give you
+            a number that changes later. Send us your brief and we'll come back
+            with a detailed spec and price.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>
+            What if my event is still in early planning?
+            <span class="faq-chevron" aria-hidden="true">▾</span>
+          </summary>
+          <p>
+            Send us what you have. A rough idea of date, venue, and guest count
+            is enough to start the conversation. We'll ask the questions that
+            help shape the rest — and we're used to working with briefs that
+            evolve. Getting us involved early means fewer surprises later.
+          </p>
+        </details>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       No footer-cta band — the form already serves that purpose.
+       ============================================================ -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+
+      <div class="footer-top">
+        <a href="/" class="footer-wordmark" aria-label="Concept Inc. home">
+          <img src="../assets/logo v1 light.png" alt="Concept Inc." style="height:40px;width:auto;display:block;">
+        </a>
+        <p class="footer-meta">
+          Cape Town, South Africa<br>
+          hello@conceptinc.co.za
+        </p>
+      </div>
+
+      <nav aria-label="Footer links">
+        <div class="footer-links">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Privacy policy</a>
+          <span class="footer-copy">© 2026 Concept Inc.</span>
+        </div>
+      </nav>
+
+    </div>
+  </footer>
+
+
+</body>
+</html>
