@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Concept Inc.</title>
+  <meta name="description" content="Recent event production work by Concept Inc. — weddings, corporate, festivals, and curated experiences in Cape Town.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/styles.css">
+
+  <style>
+    /*
+     * Portfolio index — page-specific styles.
+     * Tone: visually quiet. Zero orange. The grid does the work.
+     */
+
+    /* =============================================
+       HERO — text only, no image.
+       Short. The grid below is the visual.
+       ============================================= */
+    .port-hero {
+      padding: 4.5rem 0 3.5rem;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .port-hero h1 {
+      font-size: clamp(2.4rem, 7vw, 4.5rem);
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.035em;
+      line-height: 1.0;
+      margin-bottom: 0.9rem;
+    }
+
+    .port-hero p {
+      font-size: 0.95rem;
+      color: var(--mid-grey);
+      line-height: 1.6;
+      max-width: 460px;
+    }
+
+    /* =============================================
+       FILTER CHIPS
+       Sticky below header. Scrollable on mobile.
+       Visual only — no JavaScript.
+       ============================================= */
+    .port-filters {
+      position: sticky;
+      top: var(--header-height);
+      z-index: 50;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+      padding: 0.85rem 0;
+    }
+
+    .filter-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .filter-scroll::-webkit-scrollbar { display: none; }
+
+    .filter-chips {
+      display: flex;
+      gap: 0.4rem;
+      white-space: nowrap;
+      padding: 0 0.1rem;
+    }
+
+    .chip {
+      display: inline-block;
+      padding: 0.4rem 0.9rem;
+      border: 1px solid var(--light-grey);
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--mid-grey);
+      background-color: var(--off-white);
+      text-decoration: none;
+      cursor: pointer;
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    .chip--active {
+      background-color: var(--black);
+      color: var(--off-white);
+      border-color: var(--black);
+      font-weight: 600;
+    }
+
+    /* =============================================
+       PROJECT GRID
+       2 col → 3 col. Uniform cards. Gap-separated.
+       ============================================= */
+    .port-grid-section {
+      padding: 3rem 0 5rem;
+      background-color: var(--off-white);
+    }
+
+    .port-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .port-grid { gap: 1.5rem; }
+    }
+
+    @media (min-width: 860px) {
+      .port-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* Card */
+    .port-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .port-card-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background-color: var(--placeholder);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--off-white);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    /* Vary placeholder shade slightly to suggest photo variety */
+    .port-card:nth-child(3n+2) .port-card-img { background-color: #B8B6B1; }
+    .port-card:nth-child(3n+3) .port-card-img { background-color: #CECDCA; }
+
+    .port-card-meta {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .port-card-tag {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+    }
+
+    .port-card-year {
+      font-size: 0.7rem;
+      color: var(--light-grey);
+      flex-shrink: 0;
+    }
+
+    .port-card-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.3;
+    }
+
+    /* =============================================
+       LOAD MORE
+       Visual placeholder. CMS / JS required.
+       ============================================= */
+    .port-load-more {
+      text-align: center;
+      padding-top: 1rem;
+      padding-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .port-load-count {
+      font-size: 0.78rem;
+      color: var(--mid-grey);
+    }
+
+    .port-load-note {
+      font-size: 0.72rem;
+      color: var(--light-grey);
+    }
+
+  </style>
+</head>
+<body>
+
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="site-header">
+    <div class="container">
+
+      <a href="/" class="wordmark" aria-label="Concept Inc. home">
+        <img src="../assets/logo v1.png" alt="Concept Inc." class="wordmark-img">
+      </a>
+
+      <div class="header-right">
+
+        <nav aria-label="Primary navigation">
+          <ul class="site-nav">
+            <li><a href="/what-we-do">What We Do</a></li>
+            <li class="has-dropdown">
+              <a href="#" class="dropdown-toggle">Packages <span class="chevron" aria-hidden="true">▾</span></a>
+              <ul class="dropdown">
+                <li><a href="/packages/weddings">Weddings</a></li>
+                <li><a href="/packages/corporate">Corporate</a></li>
+                <li><a href="/packages/gear-hire">Gear hire</a></li>
+                <li><a href="/packages/bespoke">Bespoke quote</a></li>
+              </ul>
+            </li>
+            <li><a href="/curated-experiences">Curated Experiences</a></li>
+            <li><a href="/portfolio" aria-current="page">Portfolio</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <a href="/contact" class="btn btn-black btn-sm header-quote">Get a quote</a>
+          <span class="mobile-toggle" aria-label="Open menu">Menu</span>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       HERO — text only. Short. The grid is the visual.
+       ============================================================ -->
+  <section class="port-hero" aria-label="Portfolio">
+    <div class="container">
+      <h1>Recent work.</h1>
+      <p>Production across weddings, corporate events, festivals, and curated experiences. Cape Town and nationally.</p>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FILTER CHIPS
+       Sticky below header. Horizontal scroll on mobile.
+       Visual only — filtering requires JavaScript.
+       ============================================================ -->
+  <div class="port-filters" role="navigation" aria-label="Filter portfolio by type">
+    <div class="container">
+      <div class="filter-scroll">
+        <div class="filter-chips" role="list">
+          <span class="chip chip--active" role="listitem" aria-current="true">All</span>
+          <span class="chip" role="listitem">Weddings</span>
+          <span class="chip" role="listitem">Corporate</span>
+          <span class="chip" role="listitem">Festivals</span>
+          <span class="chip" role="listitem">Curated Experiences</span>
+          <span class="chip" role="listitem">Gear hire</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       PROJECT GRID
+       12 thumbnails. 2-col → 3-col.
+       ============================================================ -->
+  <section class="port-grid-section" aria-label="Project grid">
+    <div class="container">
+
+      <div class="port-grid">
+
+        <article class="port-card">
+          <div class="port-card-img" role="img" aria-label="Project photo placeholder">Photo</div>
+          <div class="port-card-meta">
+            <span class="port-card-tag">Weddings</span>
+            <span class="port-card-year">2025</span>
+          </div>
+          <h2 class="port-card-name">Garden ceremony &amp; reception, Constantia</h2>
+        </article>
+
+        <article class="port-card">
+          <div class="port-card-img" role="img" aria-label="Project photo placeholder">Photo</div>
+          <div class="port-card-meta">
+            <span class="port-card-tag">Corporate</span>
+            <span class="port-card-year">2025</span>
+          </div>
+          <h2 class="port-card-name">Tech product launch, Cape Town CBD</h2>
+        </article>
+
+        <article class="port-card">
+          <div class="port-card-img" role="img" aria-label="Project photo placeholder">Photo</div>
+          <div class="port-card-meta">
+            <span class="port-card-tag">Festivals</span>
+            <span class="port-card-year">2025</span>
+          </div>
+          <h2 class="port-card-name">[Festival name] Summer Edition</h2>
+        </article>
+
+        <article class="port-card">
+          <div class="port-card-img" role="img" aria-label="Project photo placeholder">Photo</div>
+          <div class="port-card-meta">
+            <span class="port-card-tag">Curated Experiences</span>
+            <span class="port-card-year">2025</span>
+          </div>
+          <h2 class="port-card-name">Immersive brand launch with aerial &amp; projection</h2>
+        </article>
+
+        <article class="port-card">
+          <div class="port-card-img" role="img" aria-label="Project photo placeholder">Photo</div>
+          <div class="port-card-meta">
+            <span class="port-card-tag">Weddings</span>
+            <span class="port-card-year">2025</span>
+          </div>
+          <h2 class="port-card-name">Signature wedding, Atlantic Seaboard</h2>
+        </article>
+
+        <article class="port-card">
+          <div class="port-card-img" role="img" aria-label="Project photo placeholder">Photo</div>
+          <div class="port-card-meta">
+            <span class="port-card-tag">Corporate</span>
+            <span class="port-card-year">2024</span>
+          </div>
+          <h2 class="port-card-name">Annual conference &amp; gala dinner, 400 guests</h2>
+        </article>
+
+        <article class="port-card">
+          <div class="port-card-img" role="img" aria-label="Project photo placeholder">Photo</div>
+          <div class="port-card-meta">
+            <span class="port-card-tag">Festivals</span>
+            <span class="port-card-year">2024</span>
+          </div>
+          <h2 class="port-card-name">Private festival, Winelands estate</h2>
+        </article>
+
+        <article class="port-card">
+          <div class="port-card-img" role="img" aria-label="Project photo placeholder">Photo</div>
+          <div class="port-card-meta">
+            <span class="port-card-tag">Corporate</span>
+            <span class="port-card-year">2025</span>
+          </div>
+          <h2 class="port-card-name">Year-end function &amp; awards, Southern Suburbs</h2>
+        </article>
+
+        <article class="port-card">
+          <div class="port-card-img" role="img" aria-label="Project photo placeholder">Photo</div>
+          <div class="port-card-meta">
+            <span class="port-card-tag">Curated Experiences</span>
+            <span class="port-card-year">2024</span>
+          </div>
+          <h2 class="port-card-name">Choreographed performance installation, Zeitz MOCAA</h2>
+        </article>
+
+        <article class="port-card">
+          <div class="port-card-img" role="img" aria-label="Project photo placeholder">Photo</div>
+          <div class="port-card-meta">
+            <span class="port-card-tag">Weddings</span>
+            <span class="port-card-year">2024</span>
+          </div>
+          <h2 class="port-card-name">Showcase wedding, Franschhoek</h2>
+        </article>
+
+        <article class="port-card">
+          <div class="port-card-img" role="img" aria-label="Project photo placeholder">Photo</div>
+          <div class="port-card-meta">
+            <span class="port-card-tag">Corporate</span>
+            <span class="port-card-year">2025</span>
+          </div>
+          <h2 class="port-card-name">Brand activation, V&amp;A Waterfront</h2>
+        </article>
+
+        <article class="port-card">
+          <div class="port-card-img" role="img" aria-label="Project photo placeholder">Photo</div>
+          <div class="port-card-meta">
+            <span class="port-card-tag">Festivals</span>
+            <span class="port-card-year">2024</span>
+          </div>
+          <h2 class="port-card-name">Outdoor festival, Cape Point region</h2>
+        </article>
+
+      </div>
+
+      <!-- Load more -->
+      <div class="port-load-more">
+        <p class="port-load-count">Showing 12 of 24 projects</p>
+        <button class="btn btn-outline-dark" type="button" aria-label="Load more projects">Load more</button>
+        <p class="port-load-note">Pagination — requires CMS integration</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CTA BAND
+       ============================================================ -->
+  <section class="footer-cta" aria-label="Get in touch">
+    <div class="container">
+      <h2>See something you like?<br>Let's build yours.</h2>
+      <a href="/contact" class="btn btn-black">Get in touch</a>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+
+      <div class="footer-top">
+        <a href="/" class="footer-wordmark" aria-label="Concept Inc. home">
+          <img src="../assets/logo v1 light.png" alt="Concept Inc." style="height:40px;width:auto;display:block;">
+        </a>
+        <p class="footer-meta">
+          Cape Town, South Africa<br>
+          hello@conceptinc.co.za
+        </p>
+      </div>
+
+      <nav aria-label="Footer links">
+        <div class="footer-links">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Privacy policy</a>
+          <span class="footer-copy">© 2026 Concept Inc.</span>
+        </div>
+      </nav>
+
+    </div>
+  </footer>
+
+
+</body>
+</html>
