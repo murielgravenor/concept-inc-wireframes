@@ -188,7 +188,7 @@ body {
 .has-dropdown { position: relative; }
 
 .dropdown-toggle {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.25rem;
   cursor: default;
@@ -438,3 +438,28 @@ body {
 @media (min-width: 1024px) {
   .hero-content { padding-bottom: 5rem; }
 }
+
+/* ==============================================
+   DARK THEME PREVIEW — client preview only.
+   Add class="dark" to <html> on all pages.
+   ============================================= */
+html.dark {
+  --off-white:   #1C1915;
+  --soft-grey:   #231F18;
+  --light-grey:  #312E27;
+  --soft-black:  #E0DDD7;
+  --black:       #ECEAE4;
+  --mid-grey:    #948F87;
+  --placeholder: #3B3830;
+}
+
+/* Hero text — var(--off-white) is now dark, must override */
+html.dark .hero h1 { color: #ECEAE4; }
+html.dark .hero-subhead { color: rgba(236, 234, 228, 0.72); }
+
+/* Site footer — was var(--black) bg (now near-white in dark), re-darken */
+html.dark .site-footer { background-color: #0F0C08; }
+html.dark .footer-meta { color: rgba(236, 234, 228, 0.45); }
+html.dark .footer-links a { color: rgba(236, 234, 228, 0.4); }
+html.dark .footer-links a:hover { color: rgba(236, 234, 228, 0.7); }
+html.dark .footer-copy { color: rgba(236, 234, 228, 0.25); }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -421,7 +421,15 @@
 
         <nav aria-label="Primary navigation">
           <ul class="site-nav">
-            <li><a href="/what-we-do">What We Do</a></li>
+            <li class="has-dropdown">
+              <a href="/what-we-do" class="dropdown-toggle">What We Do <span class="chevron" aria-hidden="true">▾</span></a>
+              <ul class="dropdown">
+                <li><a href="/what-we-do#audio">Audio</a></li>
+                <li><a href="/what-we-do#lighting">Lighting</a></li>
+                <li><a href="/what-we-do#visual">Visual</a></li>
+                <li><a href="/what-we-do#full-production">Full Production</a></li>
+              </ul>
+            </li>
             <li class="has-dropdown">
               <a href="#" class="dropdown-toggle">Packages <span class="chevron" aria-hidden="true">▾</span></a>
               <ul class="dropdown">
