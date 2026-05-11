@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corporate Event Production — Concept Inc.</title>
+  <meta name="description" content="Professional AV, audio, and lighting production for conferences, galas, product launches, and activations in Cape Town. Single production partner. Clear pricing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../shared/styles.css">
+
+  <style>
+    /*
+     * Corporate package page — page-specific styles.
+     * Visual tone: restrained black/white discipline. No orange.
+     */
+
+    /* =============================================
+       HERO
+       Professional, editorial — not warm like Weddings.
+       ============================================= */
+    .hero { min-height: 60vh; }
+    .hero-subhead { margin-bottom: 0; }
+    @media (min-width: 768px) { .hero { min-height: 70vh; } }
+
+    /* =============================================
+       CATEGORY CARDS
+       Audio / Lighting / Full AV — route buyers to sub-areas
+       ============================================= */
+    .corp-categories {
+      padding: 4.5rem 0;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .categories-intro { margin-bottom: 2.5rem; }
+
+    .categories-intro h2 {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+
+    .categories-intro p {
+      font-size: 0.9rem;
+      color: var(--mid-grey);
+      max-width: 520px;
+      line-height: 1.6;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background-color: var(--light-grey);
+      border: 1px solid var(--light-grey);
+    }
+
+    @media (min-width: 768px) {
+      .category-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .category-card {
+      background-color: var(--off-white);
+      padding: 2rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .category-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 0.4rem;
+    }
+
+    .category-desc {
+      font-size: 0.85rem;
+      color: var(--mid-grey);
+      line-height: 1.55;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Use case list inside category card */
+    .use-case-list {
+      list-style: none;
+      flex: 1;
+      border-top: 1px solid var(--light-grey);
+      padding-top: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .use-case-list li {
+      font-size: 0.82rem;
+      color: var(--soft-black);
+      padding: 0.3rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .use-case-list li::before {
+      content: '—';
+      color: var(--light-grey);
+      flex-shrink: 0;
+    }
+
+    /* =============================================
+       EVENT TYPES GRID
+       6 cards — 1-col → 2-col → 3-col
+       ============================================= */
+    .event-types {
+      padding: 4.5rem 0;
+      background-color: var(--soft-grey);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .event-types-intro { margin-bottom: 2.25rem; }
+
+    .event-types-intro h2 {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+
+    .event-types-intro p {
+      font-size: 0.875rem;
+      color: var(--mid-grey);
+      line-height: 1.6;
+    }
+
+    .event-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background-color: var(--light-grey);
+      border: 1px solid var(--light-grey);
+    }
+
+    @media (min-width: 560px) { .event-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .event-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .event-card {
+      background-color: var(--soft-grey);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .event-icon {
+      width: 2rem;
+      height: 2rem;
+      background-color: var(--light-grey);
+      flex-shrink: 0;
+    }
+
+    .event-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .event-card p {
+      font-size: 0.82rem;
+      color: var(--mid-grey);
+      line-height: 1.6;
+    }
+
+    /* =============================================
+       HOW WE WORK WITH YOU — PROCESS
+       Brand black band. Four steps across.
+       ============================================= */
+    .process-section {
+      background-color: var(--black);
+      padding: 4.5rem 0;
+    }
+
+    .process-section > .container > h2 {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 700;
+      color: var(--off-white);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .process-section > .container > p {
+      font-size: 0.875rem;
+      color: rgba(250, 250, 247, 0.5);
+      margin-bottom: 2.5rem;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background-color: rgba(250, 250, 247, 0.08);
+      border: 1px solid rgba(250, 250, 247, 0.08);
+    }
+
+    @media (min-width: 768px) {
+      .process-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .process-step {
+      background-color: var(--black);
+      padding: 1.75rem 1.5rem;
+    }
+
+    .step-num {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(250, 250, 247, 0.3);
+      margin-bottom: 0.6rem;
+    }
+
+    .process-step h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--off-white);
+      margin-bottom: 0.5rem;
+    }
+
+    .process-step p {
+      font-size: 0.8rem;
+      color: rgba(250, 250, 247, 0.5);
+      line-height: 1.6;
+    }
+
+    /* =============================================
+       CREDENTIALS STRIP
+       Client logos + key stats
+       ============================================= */
+    .credentials {
+      padding: 4rem 0;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .cred-logos {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .cred-logo-ph {
+      width: 90px;
+      height: 32px;
+      background-color: var(--light-grey);
+    }
+
+    .cred-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .cred-stats { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .cred-stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .cred-stat-label {
+      font-size: 0.8rem;
+      color: var(--mid-grey);
+      line-height: 1.5;
+    }
+
+    /* =============================================
+       CASE STUDY FEATURE
+       Large card — image + content, 2-col on desktop
+       ============================================= */
+    .case-study-section {
+      padding: 4.5rem 0;
+      background-color: var(--off-white);
+      border-bottom: 1px solid var(--light-grey);
+    }
+
+    .case-study-section > .container > h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+    }
+
+    .case-study-card {
+      background-color: var(--black);
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 768px) {
+      .case-study-card { grid-template-columns: 1fr 1fr; }
+    }
+
+    .case-study-img {
+      background-color: var(--placeholder);
+      min-height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--mid-grey);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    @media (min-width: 768px) { .case-study-img { min-height: 360px; } }
+
+    .case-study-body {
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .case-study-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(250, 250, 247, 0.4);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .case-study-body h3 {
+      font-size: clamp(1.1rem, 3vw, 1.6rem);
+      font-weight: 700;
+      color: var(--off-white);
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+      margin-bottom: 0.9rem;
+    }
+
+    .case-study-body p {
+      font-size: 0.875rem;
+      color: rgba(250, 250, 247, 0.6);
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+    }
+
+    .case-study-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .case-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .case-meta-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(250, 250, 247, 0.3);
+    }
+
+    .case-meta-value {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: rgba(250, 250, 247, 0.75);
+    }
+
+    /* =============================================
+       CTA BAND — "Tell us about your event"
+       Brand black. White-outlined button. No orange.
+       ============================================= */
+    .cta-band {
+      background-color: var(--black);
+      padding: 5rem 0;
+      text-align: center;
+    }
+
+    .cta-band h2 {
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: var(--off-white);
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    .cta-band p {
+      font-size: 0.9rem;
+      color: rgba(250, 250, 247, 0.55);
+      line-height: 1.65;
+      max-width: 440px;
+      margin: 0 auto 2rem;
+    }
+
+  </style>
+</head>
+<body>
+
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="site-header">
+    <div class="container">
+
+      <a href="/" class="wordmark" aria-label="Concept Inc. home">
+        <img src="../../assets/logo v1.png" alt="Concept Inc." class="wordmark-img">
+      </a>
+
+      <div class="header-right">
+
+        <nav aria-label="Primary navigation">
+          <ul class="site-nav">
+            <li><a href="/what-we-do">What We Do</a></li>
+            <li class="has-dropdown">
+              <a href="#" class="dropdown-toggle" aria-current="page">Packages <span class="chevron" aria-hidden="true">▾</span></a>
+              <ul class="dropdown">
+                <li><a href="/packages/weddings">Weddings</a></li>
+                <li><a href="/packages/corporate" aria-current="page">Corporate</a></li>
+                <li><a href="/packages/gear-hire">Gear hire</a></li>
+                <li><a href="/packages/bespoke">Bespoke quote</a></li>
+              </ul>
+            </li>
+            <li><a href="/curated-experiences">Curated Experiences</a></li>
+            <li><a href="/portfolio">Portfolio</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <a href="/contact" class="btn btn-black btn-sm header-quote">Get a quote</a>
+          <span class="mobile-toggle" aria-label="Open menu">Menu</span>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       HERO
+       Professional, confident, results-oriented.
+       Photo: conference or gala — not a personal moment.
+       ============================================================ -->
+  <section class="hero" aria-label="Corporate production">
+
+    <div class="hero-bg" aria-hidden="true" role="img">
+      PHOTO PLACEHOLDER — Conference stage or corporate gala in progress
+    </div>
+
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <h1>Production that makes<br>your event work.</h1>
+      <p class="hero-subhead">
+        From conference AV to gala lighting, product launches to year-end functions —
+        we handle the full technical brief so you can focus on the programme.
+        One team, one point of contact, no surprises on the day.
+      </p>
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       CATEGORY CARDS
+       Route buyers: Audio / Lighting / Full AV
+       ============================================================ -->
+  <section class="corp-categories" aria-label="Production categories">
+    <div class="container">
+
+      <div class="categories-intro">
+        <h2>What do you need?</h2>
+        <p>Most corporate productions combine two or three of these — we can quote
+           individual disciplines or a fully integrated package.</p>
+      </div>
+
+      <div class="category-grid">
+
+        <div class="category-card">
+          <h3>Audio production</h3>
+          <p class="category-desc">
+            End-to-end sound for any audience size — from 30-person boardroom AV
+            to outdoor line arrays for 2,000.
+          </p>
+          <ul class="use-case-list">
+            <li>Conferences &amp; panel discussions</li>
+            <li>Award ceremonies</li>
+            <li>Product launches</li>
+            <li>Hybrid &amp; live-streamed events</li>
+          </ul>
+          <a href="/what-we-do#audio" class="btn btn-black btn-sm">Explore audio</a>
+        </div>
+
+        <div class="category-card">
+          <h3>Lighting design</h3>
+          <p class="category-desc">
+            Architectural and event lighting that frames your brand — from
+            subtle venue wash to full stage and effects rigs.
+          </p>
+          <ul class="use-case-list">
+            <li>Gala dinners &amp; awards</li>
+            <li>Venue transformation</li>
+            <li>Stage &amp; panel backdrops</li>
+            <li>Brand activation environments</li>
+          </ul>
+          <a href="/what-we-do#lighting" class="btn btn-black btn-sm">Explore lighting</a>
+        </div>
+
+        <div class="category-card">
+          <h3>Full AV (integrated)</h3>
+          <p class="category-desc">
+            Audio, lighting, and visual managed as one system — single
+            brief, single production team, single point of accountability.
+          </p>
+          <ul class="use-case-list">
+            <li>Full conference builds</li>
+            <li>Multi-stage activations</li>
+            <li>Year-end productions</li>
+            <li>LED wall &amp; broadcast setups</li>
+          </ul>
+          <a href="/what-we-do#full-production" class="btn btn-black btn-sm">Explore full AV</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       EVENT TYPES WE PRODUCE
+       6 cards — self-qualifying for buyers
+       ============================================================ -->
+  <section class="event-types" aria-label="Event types">
+    <div class="container">
+
+      <div class="event-types-intro">
+        <h2>Event types we produce.</h2>
+        <p>We've worked across every format of corporate event. Each has its own production logic — we know the difference.</p>
+      </div>
+
+      <div class="event-grid">
+
+        <div class="event-card">
+          <div class="event-icon" aria-hidden="true"></div>
+          <h3>Conferences &amp; AGMs</h3>
+          <p>Clear, consistent sound across large rooms. Confidence monitoring for speakers,
+             broadcast-quality camera feeds, and an engineer who knows when to fade out
+             and when to push levels.</p>
+        </div>
+
+        <div class="event-card">
+          <div class="event-icon" aria-hidden="true"></div>
+          <h3>Galas &amp; award ceremonies</h3>
+          <p>Atmospheric lighting that makes the room feel like an occasion.
+             Stage lighting for presenters and recipients, LED backdrops,
+             and sound that carries across a dinner layout without feedback.</p>
+        </div>
+
+        <div class="event-card">
+          <div class="event-icon" aria-hidden="true"></div>
+          <h3>Product launches</h3>
+          <p>Production that makes a reveal feel like a moment. Precise cue timing,
+             lighting that builds and breaks on brief, and a PA that handles both
+             presenter audio and music playback cleanly.</p>
+        </div>
+
+        <div class="event-card">
+          <div class="event-icon" aria-hidden="true"></div>
+          <h3>Brand activations</h3>
+          <p>Modular setups for environments that need to look considered, not
+             plugged in. We understand the visual language of activations and
+             spec accordingly — clean, branded, impactful.</p>
+        </div>
+
+        <div class="event-card">
+          <div class="event-icon" aria-hidden="true"></div>
+          <h3>Year-end functions</h3>
+          <p>The full programme in one night — speeches, dinner, entertainment,
+             and a dancefloor. We manage the transitions between each so
+             nothing loses momentum or catches guests off guard.</p>
+        </div>
+
+        <div class="event-card">
+          <div class="event-icon" aria-hidden="true"></div>
+          <h3>Hybrid events</h3>
+          <p>Live audiences and remote participants simultaneously. Camera feeds,
+             stream encoding, confidence monitors, and an audio mix that works
+             for the room and the recording — not just one or the other.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       HOW WE WORK WITH YOU — PROCESS
+       Brand black. 4 steps. No orange — step numbers are light grey.
+       ============================================================ -->
+  <section class="process-section" aria-label="How we work">
+    <div class="container">
+
+      <h2>How we work with you.</h2>
+      <p>A predictable process with no black boxes.</p>
+
+      <div class="process-grid">
+
+        <div class="process-step">
+          <span class="step-num">01 — Brief</span>
+          <h3>Understand the event</h3>
+          <p>Programme, venue, audience size, technical requirements, and the
+             outcome you're briefing for. We ask the questions that prevent
+             problems later.</p>
+        </div>
+
+        <div class="process-step">
+          <span class="step-num">02 — Proposal</span>
+          <h3>Spec and price</h3>
+          <p>A detailed production proposal — equipment list, crew, schedule,
+             and clear all-in pricing. No surprises on invoice.</p>
+        </div>
+
+        <div class="process-step">
+          <span class="step-num">03 — Production</span>
+          <h3>Load in and build</h3>
+          <p>Full crew on site, on schedule. Rigging, cabling, system
+             testing, and rehearsal support before doors open.</p>
+        </div>
+
+        <div class="process-step">
+          <span class="step-num">04 — Event day</span>
+          <h3>Operate and resolve</h3>
+          <p>Dedicated engineers running audio, lighting, and visual throughout.
+             Whatever shifts on the day, we handle it without escalating to you.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CREDENTIALS STRIP
+       Client logo placeholders + key statistics
+       ============================================================ -->
+  <section class="credentials" aria-label="Our track record">
+    <div class="container">
+
+      <!-- Client logos -->
+      <div class="cred-logos" aria-label="Clients we've worked with">
+        <div class="cred-logo-ph" title="Client logo placeholder"></div>
+        <div class="cred-logo-ph" title="Client logo placeholder"></div>
+        <div class="cred-logo-ph" title="Client logo placeholder"></div>
+        <div class="cred-logo-ph" title="Client logo placeholder"></div>
+        <div class="cred-logo-ph" title="Client logo placeholder"></div>
+        <div class="cred-logo-ph" title="Client logo placeholder"></div>
+      </div>
+
+      <!-- Stats -->
+      <div class="cred-stats">
+
+        <div>
+          <span class="cred-stat-number">25+</span>
+          <span class="cred-stat-label">Years across live events, touring, and permanent installs</span>
+        </div>
+
+        <div>
+          <span class="cred-stat-number">500+</span>
+          <span class="cred-stat-label">Corporate events produced in Cape Town and nationally</span>
+        </div>
+
+        <div>
+          <span class="cred-stat-number">1</span>
+          <span class="cred-stat-label">Point of contact from brief to packdown — always</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CASE STUDY FEATURE
+       Large card: image left + content right on desktop.
+       Placeholder — real case study content from Duane/Gareth.
+       ============================================================ -->
+  <section class="case-study-section" aria-label="Case study">
+    <div class="container">
+
+      <h2>Recent work.</h2>
+
+      <div class="case-study-card">
+
+        <div class="case-study-img" role="img" aria-label="Case study image placeholder">
+          PHOTO PLACEHOLDER — Corporate event in production
+        </div>
+
+        <div class="case-study-body">
+          <span class="case-study-tag">Case study · Corporate</span>
+          <h3>[Client name] — Annual Conference &amp; Gala Dinner</h3>
+          <p>
+            Full AV production for a two-day conference and awards dinner. Day one:
+            a 400-seat auditorium with IMAG, confidence monitoring, and a hybrid
+            broadcast stream. Day two: a gala dinner with DJ support, full uplighting,
+            and a live presentation segment for the award announcements.
+          </p>
+          <div class="case-study-meta">
+            <div class="case-meta-item">
+              <span class="case-meta-label">Event type</span>
+              <span class="case-meta-value">Conference + Gala</span>
+            </div>
+            <div class="case-meta-item">
+              <span class="case-meta-label">Guests</span>
+              <span class="case-meta-value">400</span>
+            </div>
+            <div class="case-meta-item">
+              <span class="case-meta-label">Production</span>
+              <span class="case-meta-value">Full AV</span>
+            </div>
+            <div class="case-meta-item">
+              <span class="case-meta-label">Duration</span>
+              <span class="case-meta-value">2 days</span>
+            </div>
+          </div>
+          <a href="/portfolio/case-study-placeholder" class="btn btn-outline-light btn-sm">Read the full story</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CTA BAND — "Tell us about your event"
+       No orange on this page. White outlined button on brand black.
+       ============================================================ -->
+  <section class="cta-band" aria-label="Get in touch">
+    <div class="container">
+      <h2>Tell us about your event.</h2>
+      <p>
+        Every corporate production is different. Send us a brief — even a rough
+        one — and we'll come back with a proposal that fits your scope and budget.
+      </p>
+      <a href="/contact?type=corporate" class="btn btn-outline-light">Start a brief</a>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER CTA BAND
+       Black button — no orange on this page.
+       ============================================================ -->
+  <section class="footer-cta" aria-label="Get a quote">
+    <div class="container">
+      <h2>Ready to get a quote?</h2>
+      <a href="/contact?type=corporate" class="btn btn-black">Get in touch</a>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container">
+
+      <div class="footer-top">
+        <a href="/" class="footer-wordmark" aria-label="Concept Inc. home">
+          <img src="../../assets/logo v1 light.png" alt="Concept Inc." style="height:40px;width:auto;display:block;">
+        </a>
+        <p class="footer-meta">
+          Cape Town, South Africa<br>
+          hello@conceptinc.co.za
+        </p>
+      </div>
+
+      <nav aria-label="Footer links">
+        <div class="footer-links">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Privacy policy</a>
+          <span class="footer-copy">© 2026 Concept Inc.</span>
+        </div>
+      </nav>
+
+    </div>
+  </footer>
+
+
+</body>
+</html>
