@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concept Inc. — Turnkey Event Production, Cape Town</title>
+  <meta name="description" content="Turnkey audio, lighting, and live production for events across Cape Town — from intimate dinners to large-scale productions. Weddings, corporate, festivals, and curated experiences.">
+
+  <!-- Fonts: Cormorant Garamond Italic (testimonial) + Plus Jakarta Sans (all UI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital@1&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+
+  <!-- ============================================================
+       §1 HEADER
+       ============================================================ -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+
+      <!-- TODO: replace with final logo asset -->
+      <a href="/" class="site-logo" aria-label="Concept Inc. home">
+        <img src="assets/logo v1.png" alt="Concept Inc." class="logo-img">
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="site-nav" aria-label="Primary navigation">
+        <ul class="nav-list">
+
+          <li class="nav-item has-dropdown">
+            <button class="nav-link" aria-expanded="false" aria-haspopup="true">
+              Production
+              <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke-width="1.8" aria-hidden="true">
+                <polyline points="2,3.5 5,6.5 8,3.5"/>
+              </svg>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="production/#audio"          role="menuitem">Audio</a></li>
+              <li><a href="production/#lighting"       role="menuitem">Lighting</a></li>
+              <li><a href="production/#visual"         role="menuitem">Visual</a></li>
+              <li><a href="production/#full-production" role="menuitem">Full Production</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item has-dropdown">
+            <button class="nav-link" aria-expanded="false" aria-haspopup="true">
+              Events
+              <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke-width="1.8" aria-hidden="true">
+                <polyline points="2,3.5 5,6.5 8,3.5"/>
+              </svg>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="packages/weddings/"  role="menuitem">Weddings</a></li>
+              <li><a href="packages/corporate/" role="menuitem">Corporate</a></li>
+              <li><a href="packages/gear-hire/" role="menuitem">Gear hire</a></li>
+              <li><a href="packages/bespoke/"   role="menuitem">Bespoke quote</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a href="curated/"   class="nav-link">Curated</a></li>
+          <li class="nav-item"><a href="portfolio/" class="nav-link">Portfolio</a></li>
+          <li class="nav-item"><a href="about/"     class="nav-link">About</a></li>
+          <li class="nav-item"><a href="contact/"   class="nav-link">Contact</a></li>
+
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#contact" class="btn btn-dark btn-sm header-quote-cta">Get a quote</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile nav panel -->
+    <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+      <div class="mobile-nav-inner">
+
+        <div class="mobile-nav-section">
+          <span class="mobile-nav-label">Production</span>
+          <div class="mobile-nav-sub">
+            <a href="production/#audio">Audio</a>
+            <a href="production/#lighting">Lighting</a>
+            <a href="production/#visual">Visual</a>
+            <a href="production/#full-production">Full Production</a>
+          </div>
+        </div>
+
+        <div class="mobile-nav-section">
+          <span class="mobile-nav-label">Events</span>
+          <div class="mobile-nav-sub">
+            <a href="packages/weddings/">Weddings</a>
+            <a href="packages/corporate/">Corporate</a>
+            <a href="packages/gear-hire/">Gear hire</a>
+            <a href="packages/bespoke/">Bespoke quote</a>
+          </div>
+        </div>
+
+        <div class="mobile-nav-section">
+          <a href="curated/">Curated</a>
+          <a href="portfolio/">Portfolio</a>
+          <a href="about/">About</a>
+          <a href="contact/">Contact</a>
+        </div>
+
+        <div class="mobile-nav-ctas">
+          <a href="#contact" class="btn btn-dark">Get a quote</a>
+        </div>
+
+      </div>
+    </div>
+
+  </header>
+
+
+  <main>
+
+    <!-- ============================================================
+         §2 HERO — "Bring your concept to life."
+         ============================================================ -->
+    <section class="hero" aria-label="Hero">
+
+      <!-- TODO: real photo — set background-image on .hero-photo -->
+      <div class="hero-photo" aria-hidden="true"></div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <h1>Bring your concept<br>to life.</h1>
+        <p class="hero-subhead">
+          Turnkey audio, lighting, and live production for events across
+          Cape Town — from intimate dinners to large-scale productions.
+        </p>
+        <div class="hero-ctas">
+          <a href="#packages" class="btn btn-offwhite">See packages</a>
+          <a href="contact/"  class="btn btn-outline-light">Talk to us</a>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ============================================================
+         §3 PERSONA ROUTING — "What are you planning?"
+         ============================================================ -->
+    <section class="persona-routing" id="packages" aria-label="Package routes">
+      <div class="container">
+
+        <div class="section-intro reveal">
+          <h2>What are you planning?</h2>
+        </div>
+
+        <div class="persona-grid">
+
+          <div class="persona-card reveal reveal-d1">
+            <div class="card-icon" aria-hidden="true">
+              <!-- Weddings: two interlocking rings -->
+              <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                <circle cx="13" cy="19" r="7.5"/>
+                <circle cx="23" cy="19" r="7.5"/>
+              </svg>
+            </div>
+            <h4>Weddings</h4>
+            <p class="price-note">From R7,000</p>
+            <p>Sound, lighting, and atmosphere for your ceremony and reception — fully managed from setup to packdown.</p>
+            <a href="packages/weddings/" class="card-cta">See wedding packages</a>
+          </div>
+
+          <div class="persona-card reveal reveal-d2">
+            <div class="card-icon" aria-hidden="true">
+              <!-- Corporate: building columns -->
+              <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="12" width="26" height="18"/>
+                <path d="M5 12 L18 4 L31 12"/>
+                <rect x="11" y="20" width="5" height="10"/>
+                <rect x="20" y="20" width="5" height="10"/>
+              </svg>
+            </div>
+            <h4>Corporate</h4>
+            <p class="price-note">Audio · Lighting · AV</p>
+            <p>Conferences, launches, and galas. Professional production that makes your brand sound as good as it looks.</p>
+            <a href="packages/corporate/" class="card-cta">See corporate packages</a>
+          </div>
+
+          <div class="persona-card reveal reveal-d3">
+            <div class="card-icon" aria-hidden="true">
+              <!-- Gear hire: speaker / circle stack -->
+              <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                <rect x="7" y="7" width="22" height="22" rx="2"/>
+                <circle cx="18" cy="18" r="7"/>
+                <circle cx="18" cy="18" r="3"/>
+                <circle cx="11" cy="10" r="1.5" fill="currentColor" stroke="none"/>
+              </svg>
+            </div>
+            <h4>Gear hire</h4>
+            <p class="price-note">Dry hire tiers</p>
+            <p>Top-spec equipment for self-managed or lightly supported events. Flexible day and weekend rates.</p>
+            <a href="packages/gear-hire/" class="card-cta">See gear hire options</a>
+          </div>
+
+          <div class="persona-card reveal reveal-d4">
+            <div class="card-icon" aria-hidden="true">
+              <!-- Bespoke: sparkle / 4-point star -->
+              <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                <line x1="18" y1="4"  x2="18" y2="32"/>
+                <line x1="4"  y1="18" x2="32" y2="18"/>
+                <line x1="8"  y1="8"  x2="28" y2="28"/>
+                <line x1="28" y1="8"  x2="8"  y2="28"/>
+              </svg>
+            </div>
+            <h4>Bespoke quote</h4>
+            <p class="price-note">Custom builds</p>
+            <p>Festivals, custom installs, or multi-day productions — we scope and build from scratch, no brief too unusual.</p>
+            <a href="packages/bespoke/" class="card-cta">Tell us about it</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         §4 CREDIBILITY STRIP — "More than gear and crew."
+         ============================================================ -->
+    <section class="credibility" aria-label="What we do">
+      <div class="container">
+
+        <div class="credibility-intro reveal">
+          <p class="eyebrow">What we do</p>
+          <h2>More than gear and crew.</h2>
+        </div>
+
+        <div class="cred-grid">
+
+          <div class="cred-col reveal reveal-d1">
+            <h3>Audio production</h3>
+            <p>Full PA systems, monitors, and live mixing for any room size — from restaurant residencies to outdoor festivals.</p>
+            <ul class="cred-list" aria-label="Audio services">
+              <li>Live sound engineering</li>
+              <li>Line array &amp; PA systems</li>
+              <li>In-ear monitoring</li>
+              <li>Podcast &amp; recording setups</li>
+            </ul>
+          </div>
+
+          <div class="cred-col reveal reveal-d2">
+            <h3>Lighting design</h3>
+            <p>Architectural, atmospheric, and dynamic lighting — designed for the room, not just patched in.</p>
+            <ul class="cred-list" aria-label="Lighting services">
+              <li>Event and stage lighting</li>
+              <li>Uplighting and wash</li>
+              <li>Moving heads and effects</li>
+              <li>DMX programming</li>
+            </ul>
+          </div>
+
+          <div class="cred-col reveal reveal-d3">
+            <h3>Visual &amp; LED</h3>
+            <p>LED walls, video switching, projection mapping, and confidence monitoring for speakers and performers.</p>
+            <ul class="cred-list" aria-label="Visual services">
+              <li>LED wall builds</li>
+              <li>IMAG / broadcast feeds</li>
+              <li>Projection mapping</li>
+              <li>Green room screens</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         §5 CURATED BAND
+         Orange #1 — eyebrow label only. CTA stays off-white outline.
+         ============================================================ -->
+    <section class="curated-band" aria-label="Curated">
+      <div class="container">
+
+        <span class="eyebrow reveal">Curated</span>
+
+        <h2 class="reveal reveal-d1">When the brief is<br>"make it unforgettable."</h2>
+
+        <p class="reveal reveal-d2">
+          Beyond production, we choreograph the room. Speciality acts,
+          performance direction, custom atmospherics, and creative partnerships
+          that turn an event into an experience people actually talk about.
+        </p>
+
+        <a href="curated/" class="btn btn-outline-light reveal reveal-d3">Explore</a>
+
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         §6 PORTFOLIO PREVIEW — "Recent work"
+         ============================================================ -->
+    <section class="portfolio-preview" aria-label="Recent work">
+      <div class="container">
+
+        <div class="section-header reveal">
+          <h2>Recent work</h2>
+          <a href="portfolio/" class="view-all">View all →</a>
+        </div>
+
+        <div class="portfolio-grid">
+
+          <div class="portfolio-item reveal reveal-d1">
+            <!-- TODO: real photo -->
+            <div class="portfolio-img-wrap">
+              <div class="portfolio-img-placeholder shade-a" role="img" aria-label="Wedding photography placeholder"></div>
+            </div>
+            <span class="portfolio-caption">Wedding — Franschhoek</span>
+          </div>
+
+          <div class="portfolio-item reveal reveal-d2">
+            <!-- TODO: real photo -->
+            <div class="portfolio-img-wrap">
+              <div class="portfolio-img-placeholder shade-b" role="img" aria-label="Corporate event photography placeholder"></div>
+            </div>
+            <span class="portfolio-caption">Corporate — Cape Town CBD</span>
+          </div>
+
+          <div class="portfolio-item reveal reveal-d3">
+            <!-- TODO: real photo -->
+            <div class="portfolio-img-wrap">
+              <div class="portfolio-img-placeholder shade-c" role="img" aria-label="Festival stage photography placeholder"></div>
+            </div>
+            <span class="portfolio-caption">Festival stage — Stellenbosch</span>
+          </div>
+
+          <div class="portfolio-item reveal reveal-d4">
+            <!-- TODO: real photo -->
+            <div class="portfolio-img-wrap">
+              <div class="portfolio-img-placeholder shade-d" role="img" aria-label="Restaurant residency photography placeholder"></div>
+            </div>
+            <span class="portfolio-caption">Restaurant residency</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         §7 SOCIAL PROOF — testimonial + client logos
+         ============================================================ -->
+    <section class="social-proof" aria-label="Client testimonials">
+      <div class="container">
+
+        <div class="testimonial reveal">
+          <blockquote>
+            <span class="quote-open">"</span>They didn't just set up our sound — they understood
+            the whole evening. When something shifted at the last minute,
+            it was fixed before our guests even noticed."
+          </blockquote>
+          <cite>— Client name · Event type · 2025</cite>
+        </div>
+
+        <div class="logo-strip reveal" aria-label="Clients we've worked with">
+          <!-- TODO: real client logos (SVG preferred for retina) -->
+          <div class="logo-placeholder" title="Client logo placeholder"></div>
+          <div class="logo-placeholder" title="Client logo placeholder"></div>
+          <div class="logo-placeholder" title="Client logo placeholder"></div>
+          <div class="logo-placeholder" title="Client logo placeholder"></div>
+          <div class="logo-placeholder" title="Client logo placeholder"></div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         §8 FOOTER CTA BAND
+         Orange #2 — the page's single conversion button.
+         ============================================================ -->
+    <section class="footer-cta-band" id="contact" aria-label="Get in touch">
+      <div class="container reveal">
+        <h2>Ready to transform<br>your event?</h2>
+        <a href="mailto:hello@conceptinc.co.za" class="btn btn-orange">Get a quote</a>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ============================================================
+       §9 SITE FOOTER
+       ============================================================ -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="container footer-inner">
+
+      <div class="footer-top">
+        <!-- TODO: replace with final logo asset -->
+        <a href="/" class="footer-logo" aria-label="Concept Inc. home">
+          <img src="assets/logo v1 light.png" alt="Concept Inc.">
+        </a>
+        <p class="footer-meta">
+          Cape Town, South Africa<br>
+          <a href="mailto:hello@conceptinc.co.za">hello@conceptinc.co.za</a>
+        </p>
+      </div>
+
+      <nav aria-label="Footer navigation">
+        <div class="footer-links">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Privacy policy</a>
+          <span class="footer-copy">© 2026 Concept Inc.</span>
+        </div>
+      </nav>
+
+    </div>
+  </footer>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
